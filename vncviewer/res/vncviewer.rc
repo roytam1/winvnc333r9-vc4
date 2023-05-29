@@ -1,0 +1,399 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,3,3,3
+ PRODUCTVERSION 3,3,3,3
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "by Quentin Stafford-Fraser\0"
+            VALUE "CompanyName", "AT&T Laboratories Cambridge\0"
+            VALUE "FileDescription", "vncviewer\0"
+            VALUE "FileVersion", "3, 3, 3, 3\0"
+            VALUE "InternalName", "vncviewer\0"
+            VALUE "LegalCopyright", "Copyright © 1999\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "vncviewer.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "AT&T vncviewer\0"
+            VALUE "ProductVersion", "3, 3, 3, 3\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_TRAY                ICON    DISCARDABLE     "idr_tray.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TRAYMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "t"
+    BEGIN
+        MENUITEM "New connection",              ID_NEWCONN
+        MENUITEM "Default connection options...", IDC_OPTIONBUTTON
+        MENUITEM SEPARATOR
+        MENUITEM "About VNCviewer...",          IDD_APP_ABOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Close listening daemon",      ID_CLOSEDAEMON
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_AUTH_DIALOG DIALOG DISCARDABLE  0, 0, 220, 47
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "VNC Authentication"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_PASSWD_EDIT,101,14,54,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "&OK",IDOK,163,7,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,163,24,50,14
+    RTEXT           "Session password:",IDC_STATIC,33,17,62,8
+    CONTROL         108,IDC_STATIC,"Static",SS_BITMAP,7,12,21,20
+END
+
+IDD_OPTIONDIALOG DIALOGEX 0, 0, 293, 143
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connection Options..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Preferred encoding",IDC_STATIC,7,7,110,81
+    CONTROL         "Hextile",IDC_HEXTILERADIO,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,15,19,37,10
+    CONTROL         "CoRRE",IDC_CORRERADIO,"Button",BS_AUTORADIOBUTTON,15,31,
+                    40,10
+    CONTROL         "RRE",IDC_RRERADIO,"Button",BS_AUTORADIOBUTTON,15,43,31,
+                    10
+    CONTROL         "Raw",IDC_RAWRADIO,"Button",BS_AUTORADIOBUTTON,15,55,31,
+                    10
+    CONTROL         "RBS",IDC_RBSRADIO,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE,55,41,31,10
+    CONTROL         "CopyRect",IDC_CRECTRADIO,"Button",BS_AUTORADIOBUTTON | 
+                    NOT WS_VISIBLE,55,54,47,10
+    CONTROL         "Allow CopyRect encoding",ID_SESSION_SET_CRECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,72,97,10
+    GROUPBOX        "Misc",IDC_STATIC,7,91,110,46
+    CONTROL         "Request shared session",IDC_SHARED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,102,91,10
+    CONTROL         "Deiconify on Bell",IDC_BELLDEICONIFY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,114,85,8
+    CONTROL         "Disable clipboard transfer",IDC_DISABLECLIPBOARD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,124,95,10
+    CONTROL         "Emulate 3 Buttons (with 2-button click)",
+                    IDC_EMULATECHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    134,17,137,10
+    CONTROL         "Swap mouse buttons 2 and 3",ID_SESSION_SWAPMOUSE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,134,29,108,10
+    CONTROL         "Restrict pixels to 8-bit (for slow networks)",
+                    IDC_8BITCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,134,
+                    58,143,10
+    CONTROL         "View only (inputs ignored)",IDC_VIEWONLY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,134,71,96,10
+    CONTROL         "Full-screen mode",IDC_FULLSCREEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,134,83,69,8
+    CONTROL         "Scale by",IDC_SCALING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,134,94,43,10
+    EDITTEXT        IDC_SCALE_NUM,177,93,15,12,ES_AUTOHSCROLL | ES_NUMBER
+    CTEXT           "/",IDC_STATIC,193,95,8,8,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_SCALE_DEN,202,93,14,12,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "OK",IDOK,180,122,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,236,122,50,14
+    GROUPBOX        "Display",IDC_STATIC,126,48,160,60
+    GROUPBOX        "Mouse",IDC_STATIC,126,7,160,37
+    LTEXT           "(experimental)",IDC_STATIC,223,95,44,8
+END
+
+IDD_SESSION_DLG DIALOG DISCARDABLE  0, 0, 250, 63
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connection details"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_HOSTNAME_EDIT,83,11,115,66,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,203,7,40,14
+    PUSHBUTTON      "Cancel",IDCANCEL,203,24,40,14
+    PUSHBUTTON      "Options...",IDC_OPTIONBUTTON,203,42,40,14
+    LTEXT           "VNC server:",IDC_STATIC,39,13,39,8
+    CONTROL         108,IDC_STATIC,"Static",SS_BITMAP,7,7,21,20
+    LTEXT           "Use host:display\ne.g. snoopy:2",IDC_STATIC,86,30,88,17
+    LTEXT           "(Display defaults to 0 if not given)",IDC_STATIC,86,48,
+                    105,8
+END
+
+IDD_SERVINFO_DLG DIALOG DISCARDABLE  0, 0, 224, 170
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "RFB Server information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,167,149,50,14
+    EDITTEXT        IDC_SERVINFO_EDIT,7,7,210,134,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_READONLY
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_AUTH_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 40
+        HORZGUIDE, 21
+    END
+
+    IDD_OPTIONDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 286
+        VERTGUIDE, 15
+        VERTGUIDE, 117
+        VERTGUIDE, 126
+        VERTGUIDE, 134
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+
+    IDD_SESSION_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+        HORZGUIDE, 17
+    END
+
+    IDD_SERVINFO_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 217
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 163
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_SESSION_DLG DLGINIT
+BEGIN
+    IDC_HOSTNAME_EDIT, 0x403, 1, 0
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_TRAY                "VNCviewer"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_CLOSEDAEMON          "Stop listening for incoming connections"
+    ID_SHOWWINDOW           "Display a connection window"
+    ID_NEWCONN              "Make a manual connection"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_OPTIONBUTTON        "Set the options to be used for new connections"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAINICON            ICON    DISCARDABLE     "vncviewer.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_APP_ABOUT DIALOG DISCARDABLE  0, 0, 236, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About VNCviewer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,179,82,50,14
+    CONTROL         106,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,81,66
+    LTEXT           "Viewer version 3.3.3 R3",IDC_STATIC,110,7,119,11
+    LTEXT           "by Quentin Stafford-Fraser",IDC_STATIC,110,46,119,8
+    LTEXT           "For more information see\nhttp://www.uk.research.att.com/vnc",
+                    IDC_STATIC,110,60,119,19
+    LTEXT           "Virtual Network Computing from AT&&T",IDC_STATIC,7,82,
+                    144,10
+    LTEXT           "Copyright (C) 1999\nAT&&T Laboratories Cambridge",
+                    IDC_STATIC,110,23,119,21
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_APP_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 229
+        VERTGUIDE, 110
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_DOTCURSOR           CURSOR  DISCARDABLE     "cursor1.cur"
+IDC_NOCURSOR            CURSOR  DISCARDABLE     "nocursor.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_VNCBITMAP           BITMAP  DISCARDABLE     "vnc.bmp"
+IDB_VNC32               BITMAP  DISCARDABLE     "vnc32.BMP"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

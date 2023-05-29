@@ -1,0 +1,13 @@
+BUILDING WINVNC
+===============
+
+
+The AT&T internal version of WinVNC uses CORBA.  
+This is not included in the distributed version.
+
+You should therefore build WinVNC using the No_CORBA configuration.
+
+Debug, Release etc will give errors.
+
+This is not the case with vncviewer.
+
