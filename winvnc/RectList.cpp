@@ -27,13 +27,13 @@
 #include "RectList.h"
 
 bool
-operator <(const RECT _X, const RECT _Y)
+operator <(RECT const &_X, RECT const &_Y)
 {
 	return _X.top < _Y.top;
 }
 
 bool
-operator >(const RECT _X, const RECT _Y)
+operator >(RECT const &_X, RECT const &_Y)
 {
 	return _X.top > _Y.top;
 }

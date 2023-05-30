@@ -39,6 +39,10 @@ class vncServer;
 #if (!defined(_WINVNC_VNCSERVER))
 #define _WINVNC_VNCSERVER
 
+// Includes
+#include "stdhdrs.h"
+#include <omnithread.h>
+
 // Custom
 #include "vncCORBAConnect.h"
 #include "vncSockConnect.h"
@@ -46,11 +50,7 @@ class vncServer;
 #include "vncClient.h"
 #include "vncRegion.h"
 #include "vncPasswd.h"
-
-// Includes
-#include "stdhdrs.h"
-#include <omnithread.h>
-#include <list>
+#include "RectList.h"
 
 // Define a datatype to handle lists of windows we wish to notify
 typedef std::list<HWND> vncNotifyList;

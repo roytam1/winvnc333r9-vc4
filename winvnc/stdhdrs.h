@@ -25,11 +25,27 @@
 // #define VC_EXTRALEAN
 #define STRICT
 
-#include <winsock2.h>
+#include <winsock.h>
 #include <windows.h>
 #include <stdio.h>
 #include <process.h>
 #include <crtdbg.h>
+
+#if defined(_MSC_VER) && _MSC_VER < 1100
+// bool/true/false support
+#include <yvals.h>
+
+// winsock.h
+#ifndef SD_BOTH
+#define SD_BOTH 2
+#endif
+
+// winuser.h
+#ifndef UOI_USER_SID
+#define UOI_USER_SID 4
+#endif
+
+#endif
 
 // LOGGING SUPPORT
 

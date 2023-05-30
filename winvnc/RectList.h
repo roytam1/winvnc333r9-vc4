@@ -23,15 +23,20 @@
 
 
 // RectList header file
+#ifndef _RECTLISH_H
+#define _RECTLISH_H
 
 #include "stdhdrs.h"
+
+// Operators on RECTs.
+bool operator <(RECT const &_X, RECT const &_Y);
+bool operator >(RECT const &_X, RECT const &_Y);
+bool operator ==(const RECT &_X, const RECT &_Y);
+bool operator !=(const RECT &_X, const RECT &_Y);
+
 #include <list>
 
 // The rectlist class
 typedef std::list<RECT> rectlist; 
 
-// Operators on RECTs.
-bool operator <(const RECT _X, const RECT _Y);
-bool operator >(const RECT _X, const RECT _Y);
-bool operator ==(const RECT _X, const RECT _Y);
-bool operator !=(const RECT _X, const RECT _Y);
+#endif

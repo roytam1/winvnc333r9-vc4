@@ -40,6 +40,17 @@
 #include <omnithread.h>
 #include "resource.h"
 
+#if defined(_MSC_VER) && _MSC_VER < 1100
+// VC4 hackfix for std::list::merge() for RECT
+namespace std {
+inline bool
+operator <(struct tagRECT _X, struct tagRECT _Y)
+{
+	return _X.top < _Y.top;
+}
+}
+#endif
+
 // Custom
 #include "vncClient.h"
 #include "VSocket.h"

@@ -32,18 +32,17 @@
 // It uses a vncBuffer and is passed the vncDesktop and
 // vncServer to communicate with.
 
+#include "stdhdrs.h"
+#include "RectList.h"
+
 class vncClient;
 typedef SHORT vncClientId;
+typedef std::list<vncClientId> vncClientList;
 
 #if (!defined(_WINVNC_VNCCLIENT))
 #define _WINVNC_VNCCLIENT
 
-#include <list>
-
-typedef std::list<vncClientId> vncClientList;
-
 // Includes
-#include "stdhdrs.h"
 #include "VSocket.h"
 #include <omnithread.h>
 
@@ -53,6 +52,8 @@ typedef std::list<vncClientId> vncClientList;
 #include "vncRegion.h"
 #include "vncBuffer.h"
 #include "vncKeymap.h"
+
+
 
 // The vncClient class itself
 
