@@ -21,10 +21,14 @@
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
+#ifndef _STDHDRS_H
+#define _STDHDRS_H
 
-#define VC_EXTRALEAN
+// #define VC_EXTRALEAN
+#define STRICT
 
-#include <winsock2.h>
+#include <winsock.h>
+#include <windows.h>
 #include <stdio.h>
 #include <process.h>
 #include <assert.h>
@@ -34,6 +38,21 @@
 #include <tchar.h>
 #include <windows.h>
 #include <io.h>
- 
-#include "rfb.h"
 
+#if defined(_MSC_VER) && _MSC_VER < 1100
+// bool/true/false support
+#include <yvals.h>
+
+// winsock.h
+#ifndef SD_BOTH
+#define SD_BOTH 2
+#endif
+
+// winuser.h
+#ifndef UOI_USER_SID
+#define UOI_USER_SID 4
+#endif
+
+#endif
+
+#endif

@@ -1,7 +1,8 @@
 //				Package : omnithread
 // omnithread/nt.h		Created : 6/95 tjr
 //
-//    Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.//
+//    Copyright  1999 AT&T Laboratories Cambridge. All Rights Reserved.
+//
 //    This file is part of the omnithread library
 //
 //    The omnithread library is free software; you can redistribute it and/or

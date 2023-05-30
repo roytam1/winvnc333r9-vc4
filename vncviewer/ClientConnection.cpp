@@ -1976,7 +1976,7 @@ void ClientConnection::ReadExtensionData() {
 
 // Reads the number of bytes specified into the buffer given
 
-inline void ClientConnection::ReadExact(char *inbuf, int wanted)
+void ClientConnection::ReadExact(char *inbuf, int wanted)
 {
 	omni_mutex_lock l(m_readMutex);
 
@@ -2044,7 +2044,7 @@ inline void ClientConnection::WriteExact(char *buf, int bytes)
 // Makes sure netbuf is at least as big as the specified size.
 // Note that netbuf itself may change as a result of this call.
 // Throws an exception on failure.
-inline void ClientConnection::CheckBufferSize(int bufsize)
+void ClientConnection::CheckBufferSize(int bufsize)
 {
 	if (m_netbufsize > bufsize) return;
 

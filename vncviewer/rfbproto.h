@@ -54,6 +54,12 @@
  * affecting alignment.
  */
 
+#ifndef _RFBPROTO_H
+#define _RFBPROTO_H
+
+#include "stdhdrs.h"
+#include "rfb.h"
+
 typedef struct {
     CARD16 x;
     CARD16 y;
@@ -715,3 +721,5 @@ typedef union {
 	rfbEnableExtensionRequestMsg eer;
 	rfbExtensionDataMsg ed;
 } rfbClientToServerMsg;
+
+#endif

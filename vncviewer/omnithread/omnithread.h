@@ -78,7 +78,7 @@ class omni_thread;
 #include <omnithread/posix.h>
 
 #elif defined(__WIN32__)
-#include "nt.h"
+#include <omnithread/nt.h>
 
 #ifdef _MSC_VER
 

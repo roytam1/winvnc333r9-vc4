@@ -23,6 +23,7 @@
 
 
 #pragma once
+#include <tchar.h>
 
 #include "res\resource.h"
 #include "VNCviewerApp.h"

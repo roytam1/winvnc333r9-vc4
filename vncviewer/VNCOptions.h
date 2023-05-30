@@ -25,6 +25,9 @@
 
 #pragma once
 
+#include "stdhdrs.h"
+#include "rfbproto.h"
+
 #define LASTENCODING rfbEncodingHextile
 
 #define NOCURSOR 0
