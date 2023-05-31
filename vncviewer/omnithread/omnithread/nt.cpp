@@ -1,7 +1,7 @@
 //				Package : omnithread
 // omnithread/nt.cc		Created : 6/95 tjr
 //
-//    Copyright (C) 1999 AT&T Laboratories Cambridge. All Rights Reserved.
+//    Copyright (C) 1995-1999 AT&T Laboratories Cambridge
 //
 //    This file is part of the omnithread library
 //
@@ -228,10 +228,15 @@ omni_condition::timedwait(unsigned long abs_sec, unsigned long abs_nsec)
 
     get_time_now(&now_sec, &now_nsec);
 
-    DWORD timeout = (abs_sec-now_sec) * 1000 + (abs_nsec-now_nsec) / 1000000;
+    DWORD timeout;
+    if ((abs_sec <= now_sec) && ((abs_sec < now_sec) || (abs_nsec < now_nsec)))
+      timeout = 0;
+    else {
+      timeout = (abs_sec-now_sec) * 1000;
 
-    if ((abs_sec <= now_sec) && ((abs_sec < now_sec) || (abs_nsec < abs_nsec)))
-	timeout = 0;
+      if( abs_nsec < now_nsec )  timeout -= (now_nsec-abs_nsec) / 1000000;
+      else                       timeout += (abs_nsec-now_nsec) / 1000000;
+    }
 
     DWORD result = WaitForSingleObject(me->cond_semaphore, timeout);
 
@@ -407,6 +412,8 @@ omni_mutex* omni_thread::next_id_mutex;
 int omni_thread::next_id = 0;
 static DWORD self_tls_index;
 
+static unsigned int stack_size = 0;
+
 //
 // Initialisation function (gets called before any user code).
 //
@@ -565,9 +572,9 @@ omni_thread::common_constructor(void* arg, priority_t pri, int det)
 omni_thread::~omni_thread(void)
 {
     DB(cerr << "destructor called for thread " << id() << endl);
-    if (!CloseHandle(handle))
+    if (handle && !CloseHandle(handle))
 	throw omni_thread_fatal(GetLastError());
-    if (!CloseHandle(cond_semaphore))
+    if (cond_semaphore && !CloseHandle(cond_semaphore))
 	throw omni_thread_fatal(GetLastError());
 }
 
@@ -589,7 +596,7 @@ omni_thread::start(void)
     unsigned int t;
     handle = (HANDLE)_beginthreadex(
                         NULL,
-			0,
+			stack_size,
 			omni_thread_wrapper,
 			(LPVOID)this,
 			CREATE_SUSPENDED, 
@@ -600,7 +607,7 @@ omni_thread::start(void)
 #else
     // Borland C++
     handle = (HANDLE)_beginthreadNT(omni_thread_wrapper,
-				    0,
+				    stack_size,
 				    (void*)this,
 				    NULL,
 				    CREATE_SUSPENDED,
@@ -609,7 +616,7 @@ omni_thread::start(void)
       throw omni_thread_fatal(errno);
 #endif
 
-    if (!SetThreadPriority(handle, _priority))
+    if (!SetThreadPriority(handle, nt_priority(_priority)))
       throw omni_thread_fatal(GetLastError());
 
     if (ResumeThread(handle) == 0xffffffff)
@@ -858,4 +865,16 @@ get_time_now(unsigned long* abs_sec, unsigned long* abs_nsec)
 		  + st.wDay - 1);
 
     *abs_sec = st.wSecond + 60 * (st.wMinute + 60 * (st.wHour + 24 * days));
+}
+
+void
+omni_thread::stacksize(unsigned long sz)
+{
+  stack_size = sz;
+}
+
+unsigned long
+omni_thread::stacksize()
+{
+  return stack_size;
 }
