@@ -39,6 +39,10 @@
 
 #include <windows.h>
 
+#ifndef WM_MOUSEWHEEL
+#define WM_MOUSEWHEEL 0x020A
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // Define the import/export tags
 

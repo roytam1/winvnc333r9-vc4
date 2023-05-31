@@ -660,6 +660,7 @@ vncClientThread::run(void *arg)
 
 					// Work out the flags for this event
 					DWORD flags = MOUSEEVENTF_ABSOLUTE;
+					long data = 0;
 					if (msg.pe.x != m_client->m_ptrevent.x ||
 						msg.pe.y != m_client->m_ptrevent.y)
 						flags |= MOUSEEVENTF_MOVE;
@@ -690,12 +691,24 @@ vncClientThread::run(void *arg)
 						    ? MOUSEEVENTF_RIGHTDOWN : MOUSEEVENTF_RIGHTUP;
 					}
 
+					// Mouse wheel support
+					if (msg.pe.buttonMask & rfbWheelUpMask)
+					{
+						flags |= MOUSEEVENTF_WHEEL;
+						data = WHEEL_DELTA;
+					}
+					if (msg.pe.buttonMask & rfbWheelDownMask)
+					{
+						flags |= MOUSEEVENTF_WHEEL;
+						data = -WHEEL_DELTA;
+					}
+
 					// Generate coordinate values
 					unsigned long x = (msg.pe.x *  65535) / (m_client->m_fullscreen.right);
 					unsigned long y = (msg.pe.y * 65535) / (m_client->m_fullscreen.bottom);
 
 					// Do the pointer event
-					::mouse_event(flags, (DWORD) x, (DWORD) y, 0, 0);
+					::mouse_event(flags, (DWORD) x, (DWORD) y, data, 0);
 					// Save the old position
 					m_client->m_ptrevent = msg.pe;
 

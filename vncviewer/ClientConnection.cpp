@@ -132,6 +132,8 @@ void ClientConnection::Init(VNCviewerApp *pApp)
 	m_waitingOnEmulateTimer = false;
 	m_emulatingMiddleButton = false;
 
+	oldPointerX = oldPointerY = oldButtonMask = 0;
+
 	// Create a buffer for various network operations
 	CheckBufferSize(INITIALNETBUFSIZE);
 
@@ -662,6 +664,7 @@ void ClientConnection::SetupPixelFormat() {
 
 		// Normally we just use the sever's format suggestion
 		m_myFormat = m_si.format;
+		m_myFormat.bigEndian = 0; // except always little endian
 
 		// It's silly requesting more bits than our current display has, but
 		// in fact it doesn't usually amount to much on the network.
@@ -711,7 +714,6 @@ void ClientConnection::SetFormatAndEncodings()
     spf.format.redMax = Swap16IfLE(spf.format.redMax);
     spf.format.greenMax = Swap16IfLE(spf.format.greenMax);
     spf.format.blueMax = Swap16IfLE(spf.format.blueMax);
-	spf.format.bigEndian = 0;
 
     WriteExact((char *)&spf, sz_rfbSetPixelFormatMsg);
 
@@ -877,6 +879,11 @@ LRESULT CALLBACK ClientConnection::WndProc(HWND hwnd, UINT iMsg,
 			return 0;
 		}
 
+	case WM_MOUSEWHEEL:
+		if (!_this->m_opts.m_ViewOnly)
+			_this->ProcessMouseWheel((SHORT)HIWORD(wParam));
+		return 0;
+
 	case WM_KEYDOWN:
 	case WM_KEYUP:
 	case WM_SYSKEYDOWN:
@@ -1009,14 +1016,15 @@ LRESULT CALLBACK ClientConnection::WndProc(HWND hwnd, UINT iMsg,
 			// And consider that in full-screen mode the window
 			// is actually bigger than the remote screen.
 			GetClientRect(hwnd, &rect);
-			_this->m_cliwidth = min( rect.right - rect.left, 
-									 _this->m_si.framebufferWidth );
-			_this->m_cliheight = min( rect.bottom - rect.top,
-									 _this->m_si.framebufferHeight );
 
 			_this->m_hScrollMax = _this->m_si.framebufferWidth * _this->m_opts.m_scale_num / _this->m_opts.m_scale_den;
 			_this->m_vScrollMax = _this->m_si.framebufferHeight* _this->m_opts.m_scale_num / _this->m_opts.m_scale_den;
             
+			_this->m_cliwidth = min( rect.right - rect.left, 
+									 _this->m_hScrollMax );
+			_this->m_cliheight = min( rect.bottom - rect.top,
+									 _this->m_vScrollMax );
+
 			int newhpos, newvpos;
 			newhpos = max(0, min(_this->m_hScrollPos, 
 								 _this->m_hScrollMax - max(_this->m_cliwidth, 0)));
@@ -1403,6 +1411,22 @@ ClientConnection::SubProcessPointerEvent(int x, int y, DWORD keyflags)
 	}
 }
 
+void ClientConnection::ProcessMouseWheel(int delta)
+{
+	int wheelMask = rfbWheelUpMask;
+	if (delta < 0)
+	{
+		wheelMask = rfbWheelDownMask;
+		delta = -delta;
+	}
+	while (delta > 0)
+	{
+		SendPointerEvent(oldPointerX, oldPointerY, oldButtonMask | wheelMask);
+		SendPointerEvent(oldPointerX, oldPointerY, oldButtonMask & ~wheelMask);
+		delta -= 120;
+	}
+}
+
 //
 // SendPointerEvent.
 //
@@ -1412,6 +1436,9 @@ ClientConnection::SendPointerEvent(int x, int y, int buttonMask)
 {
     rfbPointerEventMsg pe;
 
+	oldPointerX = x;
+	oldPointerY = y;
+	oldButtonMask = buttonMask;
     pe.type = rfbPointerEvent;
     pe.buttonMask = buttonMask;
     if (x < 0) x = 0;

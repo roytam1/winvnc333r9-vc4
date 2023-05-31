@@ -560,6 +560,10 @@ inline BOOL HookHandle(UINT MessageId, HWND hWnd, WPARAM wParam, LPARAM lParam)
 			SendDeferredWindowRect(hWnd);
 		break;
 
+	case WM_MOUSEWHEEL:           // Handle mousewheel events
+		SendDeferredWindowRect(hWnd);
+		break;
+
 	case WM_TIMER:
 		if (prf_use_Timer)
 			SendDeferredWindowRect(hWnd);

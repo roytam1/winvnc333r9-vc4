@@ -89,6 +89,7 @@ private:
 	
 	void ProcessPointerEvent(int x, int y, DWORD keyflags, UINT msg);
  	void SubProcessPointerEvent(int x, int y, DWORD keyflags);
+	void ProcessMouseWheel(int delta);
 	void SendPointerEvent(int x, int y, int buttonMask);
     void ProcessKeyEvent(int virtkey, DWORD keyData);
 	void SendKeyEvent(CARD32 key, bool down);
@@ -235,6 +236,7 @@ private:
 	int m_emulateButtonPressedX;
 	int m_emulateButtonPressedY;
 
+	int oldPointerX, oldPointerY, oldButtonMask;
 };
 
 // Some handy classes for temporary GDI object selection

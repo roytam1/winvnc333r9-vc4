@@ -36,6 +36,9 @@ typedef struct vncKeymapping_struct {
 	UINT Xcode;
 } vncKeymapping;
 
+// Make up a VK for Enter - I think anything outside the range 0-255 will do
+static const UINT VK_KEYPAD_ENTER = 0x1234;
+
 static const vncKeymapping keymap[] = {
 	{VK_BACK,		XK_BackSpace},
 	{VK_TAB,		XK_Tab},
@@ -109,7 +112,9 @@ static const vncKeymapping keymap[] = {
     {VK_F23,		XK_F23},
     {VK_F24,		XK_F24},
     {VK_NUMLOCK,	XK_Num_Lock},
-    {VK_SCROLL,		XK_Scroll_Lock}
+    {VK_SCROLL,		XK_Scroll_Lock},
+	{VK_KEYPAD_ENTER,	XK_KP_Enter},
+	{VK_CANCEL,         XK_Break}
 };
 
 
@@ -133,6 +138,8 @@ KeyActionSpec KeyMap::PCtoX(UINT virtkey, DWORD keyData) {
             virtkey = VK_RMENU; break;
         case VK_CONTROL:
             virtkey = VK_RCONTROL; break;
+		case VK_RETURN:
+			virtkey = VK_KEYPAD_ENTER; break;
         }
     }
     

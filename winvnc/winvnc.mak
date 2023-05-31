@@ -2122,19 +2122,6 @@ DEP_RSC_WINVNC=\
 # Begin Source File
 
 SOURCE=.\omnithread\omnithread\nt.cpp
-
-!IF  "$(CFG)" == "omnithread - Win32 Release"
-
-DEP_CPP_NT_CP=\
-	".\omnithread\omnithread.h"\
-	
-
-"$(INTDIR)\nt.obj" : $(SOURCE) $(DEP_CPP_NT_CP) "$(INTDIR)"
-   $(CPP) $(CPP_PROJ) $(SOURCE)
-
-
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
-
 DEP_CPP_NT_CP=\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -2143,8 +2130,6 @@ DEP_CPP_NT_CP=\
 "$(INTDIR)\nt.obj" : $(SOURCE) $(DEP_CPP_NT_CP) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################

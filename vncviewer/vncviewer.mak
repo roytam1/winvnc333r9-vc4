@@ -694,6 +694,9 @@ SOURCE=.\AboutBox.h
 # Begin Source File
 
 SOURCE=.\AuthDialog.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_AUTHD=\
 	".\AuthDialog.h"\
 	".\ClientConnection.h"\
@@ -702,11 +705,33 @@ DEP_CPP_AUTHD=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_AUTHD=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\AuthDialog.obj" : $(SOURCE) $(DEP_CPP_AUTHD) "$(INTDIR)"
+
+"$(INTDIR)\AuthDialog.sbr" : $(SOURCE) $(DEP_CPP_AUTHD) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_AUTHD=\
+	".\AuthDialog.h"\
+	".\ClientConnection.h"\
+	".\Exception.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
+	".\stdhdrs.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
 	".\yvals.h"\
@@ -719,6 +744,8 @@ NODEP_CPP_AUTHD=\
 
 "$(INTDIR)\AuthDialog.sbr" : $(SOURCE) $(DEP_CPP_AUTHD) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -793,9 +820,7 @@ DEP_CPP_CLIEN=\
 	".\yvals.h"\
 	
 NODEP_CPP_CLIEN=\
-	".\omnithread\nt.h"\
 	".\omnithreadce.h"\
-	".\ReadExact"\
 	
 
 "$(INTDIR)\ClientConnection.obj" : $(SOURCE) $(DEP_CPP_CLIEN) "$(INTDIR)"
@@ -822,6 +847,9 @@ SOURCE=.\ClientConnection.h
 # Begin Source File
 
 SOURCE=.\ClientConnectionClipboard.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENT=\
 	".\ClientConnection.h"\
 	".\Exception.h"\
@@ -829,7 +857,35 @@ DEP_CPP_CLIENT=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENT=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionClipboard.obj" : $(SOURCE) $(DEP_CPP_CLIENT)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionClipboard.sbr" : $(SOURCE) $(DEP_CPP_CLIENT)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENT=\
+	".\ClientConnection.h"\
+	".\Exception.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -849,18 +905,50 @@ NODEP_CPP_CLIENT=\
  "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\ClientConnectionCopyRect.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENTC=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENTC=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionCopyRect.obj" : $(SOURCE) $(DEP_CPP_CLIENTC)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionCopyRect.sbr" : $(SOURCE) $(DEP_CPP_CLIENTC)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENTC=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -880,18 +968,50 @@ NODEP_CPP_CLIENTC=\
  "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\ClientConnectionCoRRE.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENTCO=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENTCO=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionCoRRE.obj" : $(SOURCE) $(DEP_CPP_CLIENTCO)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionCoRRE.sbr" : $(SOURCE) $(DEP_CPP_CLIENTCO)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENTCO=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -911,11 +1031,16 @@ NODEP_CPP_CLIENTCO=\
  "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\ClientConnectionFile.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENTCON=\
 	".\ClientConnection.h"\
 	".\Exception.h"\
@@ -923,7 +1048,36 @@ DEP_CPP_CLIENTCON=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\vncauth.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENTCON=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionFile.obj" : $(SOURCE) $(DEP_CPP_CLIENTCON)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionFile.sbr" : $(SOURCE) $(DEP_CPP_CLIENTCON)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENTCON=\
+	".\ClientConnection.h"\
+	".\Exception.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -944,18 +1098,50 @@ NODEP_CPP_CLIENTCON=\
  "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\ClientConnectionFullScreen.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENTCONN=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENTCONN=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionFullScreen.obj" : $(SOURCE) $(DEP_CPP_CLIENTCONN)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionFullScreen.sbr" : $(SOURCE) $(DEP_CPP_CLIENTCONN)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENTCONN=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -975,18 +1161,50 @@ NODEP_CPP_CLIENTCONN=\
  "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\ClientConnectionHextile.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENTCONNE=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENTCONNE=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionHextile.obj" : $(SOURCE) $(DEP_CPP_CLIENTCONNE)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionHextile.sbr" : $(SOURCE) $(DEP_CPP_CLIENTCONNE)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENTCONNE=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1006,18 +1224,50 @@ NODEP_CPP_CLIENTCONNE=\
  "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\ClientConnectionRaw.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENTCONNEC=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENTCONNEC=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionRaw.obj" : $(SOURCE) $(DEP_CPP_CLIENTCONNEC)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionRaw.sbr" : $(SOURCE) $(DEP_CPP_CLIENTCONNEC)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENTCONNEC=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1037,18 +1287,50 @@ NODEP_CPP_CLIENTCONNEC=\
  "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\ClientConnectionRRE.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_CLIENTCONNECT=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_CLIENTCONNECT=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\ClientConnectionRRE.obj" : $(SOURCE) $(DEP_CPP_CLIENTCONNECT)\
+ "$(INTDIR)"
+
+"$(INTDIR)\ClientConnectionRRE.sbr" : $(SOURCE) $(DEP_CPP_CLIENTCONNECT)\
+ "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_CLIENTCONNECT=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1067,6 +1349,8 @@ NODEP_CPP_CLIENTCONNECT=\
 "$(INTDIR)\ClientConnectionRRE.sbr" : $(SOURCE) $(DEP_CPP_CLIENTCONNECT)\
  "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1099,6 +1383,9 @@ SOURCE=.\d3des.h
 # Begin Source File
 
 SOURCE=.\Daemon.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_DAEMO=\
 	".\AboutBox.h"\
 	".\ClientConnection.h"\
@@ -1108,7 +1395,35 @@ DEP_CPP_DAEMO=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_DAEMO=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\Daemon.obj" : $(SOURCE) $(DEP_CPP_DAEMO) "$(INTDIR)"
+
+"$(INTDIR)\Daemon.sbr" : $(SOURCE) $(DEP_CPP_DAEMO) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_DAEMO=\
+	".\AboutBox.h"\
+	".\ClientConnection.h"\
+	".\Daemon.h"\
+	".\Exception.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1125,6 +1440,8 @@ NODEP_CPP_DAEMO=\
 
 "$(INTDIR)\Daemon.sbr" : $(SOURCE) $(DEP_CPP_DAEMO) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1171,6 +1488,9 @@ SOURCE=.\Exception.h
 # Begin Source File
 
 SOURCE=.\Flasher.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_FLASH=\
 	".\ClientConnection.h"\
 	".\Exception.h"\
@@ -1179,7 +1499,34 @@ DEP_CPP_FLASH=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_FLASH=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\Flasher.obj" : $(SOURCE) $(DEP_CPP_FLASH) "$(INTDIR)"
+
+"$(INTDIR)\Flasher.sbr" : $(SOURCE) $(DEP_CPP_FLASH) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_FLASH=\
+	".\ClientConnection.h"\
+	".\Exception.h"\
+	".\Flasher.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1196,6 +1543,8 @@ NODEP_CPP_FLASH=\
 
 "$(INTDIR)\Flasher.sbr" : $(SOURCE) $(DEP_CPP_FLASH) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1214,13 +1563,41 @@ SOURCE=.\Flasher.h
 # Begin Source File
 
 SOURCE=.\KeyMap.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_KEYMA=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_KEYMA=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\KeyMap.obj" : $(SOURCE) $(DEP_CPP_KEYMA) "$(INTDIR)"
+
+"$(INTDIR)\KeyMap.sbr" : $(SOURCE) $(DEP_CPP_KEYMA) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_KEYMA=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1237,6 +1614,8 @@ NODEP_CPP_KEYMA=\
 
 "$(INTDIR)\KeyMap.sbr" : $(SOURCE) $(DEP_CPP_KEYMA) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1345,6 +1724,9 @@ SOURCE=.\rfbproto.h
 # Begin Source File
 
 SOURCE=.\SessionDialog.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_SESSI=\
 	".\ClientConnection.h"\
 	".\Exception.h"\
@@ -1353,7 +1735,35 @@ DEP_CPP_SESSI=\
 	".\Log.h"\
 	".\MRU.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\SessionDialog.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_SESSI=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\SessionDialog.obj" : $(SOURCE) $(DEP_CPP_SESSI) "$(INTDIR)"
+
+"$(INTDIR)\SessionDialog.sbr" : $(SOURCE) $(DEP_CPP_SESSI) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_SESSI=\
+	".\ClientConnection.h"\
+	".\Exception.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\MRU.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\SessionDialog.h"\
@@ -1371,6 +1781,8 @@ NODEP_CPP_SESSI=\
 
 "$(INTDIR)\SessionDialog.sbr" : $(SOURCE) $(DEP_CPP_SESSI) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1445,6 +1857,9 @@ SOURCE=.\vncauth.h
 # Begin Source File
 
 SOURCE=.\VNCOptions.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_VNCOP=\
 	".\ClientConnection.h"\
 	".\Exception.h"\
@@ -1452,7 +1867,33 @@ DEP_CPP_VNCOP=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_VNCOP=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\VNCOptions.obj" : $(SOURCE) $(DEP_CPP_VNCOP) "$(INTDIR)"
+
+"$(INTDIR)\VNCOptions.sbr" : $(SOURCE) $(DEP_CPP_VNCOP) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_VNCOP=\
+	".\ClientConnection.h"\
+	".\Exception.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1469,6 +1910,8 @@ NODEP_CPP_VNCOP=\
 
 "$(INTDIR)\VNCOptions.sbr" : $(SOURCE) $(DEP_CPP_VNCOP) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1487,6 +1930,9 @@ SOURCE=.\VNCOptions.h
 # Begin Source File
 
 SOURCE=.\vncviewer.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_VNCVI=\
 	".\ClientConnection.h"\
 	".\Daemon.h"\
@@ -1496,7 +1942,36 @@ DEP_CPP_VNCVI=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\VNCviewerApp32.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_VNCVI=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\vncviewer.obj" : $(SOURCE) $(DEP_CPP_VNCVI) "$(INTDIR)"
+
+"$(INTDIR)\vncviewer.sbr" : $(SOURCE) $(DEP_CPP_VNCVI) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_VNCVI=\
+	".\ClientConnection.h"\
+	".\Daemon.h"\
+	".\Exception.h"\
+	".\Flasher.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1515,6 +1990,8 @@ NODEP_CPP_VNCVI=\
 "$(INTDIR)\vncviewer.sbr" : $(SOURCE) $(DEP_CPP_VNCVI) "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
@@ -1532,6 +2009,9 @@ SOURCE=.\vncviewer.h
 # Begin Source File
 
 SOURCE=.\VNCviewerApp.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_VNCVIE=\
 	".\ClientConnection.h"\
 	".\Exception.h"\
@@ -1539,7 +2019,33 @@ DEP_CPP_VNCVIE=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_VNCVIE=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\VNCviewerApp.obj" : $(SOURCE) $(DEP_CPP_VNCVIE) "$(INTDIR)"
+
+"$(INTDIR)\VNCviewerApp.sbr" : $(SOURCE) $(DEP_CPP_VNCVIE) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_VNCVIE=\
+	".\ClientConnection.h"\
+	".\Exception.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1556,6 +2062,8 @@ NODEP_CPP_VNCVIE=\
 
 "$(INTDIR)\VNCviewerApp.sbr" : $(SOURCE) $(DEP_CPP_VNCVIE) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1574,6 +2082,9 @@ SOURCE=.\VNCviewerApp.h
 # Begin Source File
 
 SOURCE=.\VNCviewerApp32.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_VNCVIEW=\
 	".\ClientConnection.h"\
 	".\Daemon.h"\
@@ -1583,7 +2094,36 @@ DEP_CPP_VNCVIEW=\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\VNCviewerApp32.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_VNCVIEW=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\VNCviewerApp32.obj" : $(SOURCE) $(DEP_CPP_VNCVIEW) "$(INTDIR)"
+
+"$(INTDIR)\VNCviewerApp32.sbr" : $(SOURCE) $(DEP_CPP_VNCVIEW) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_VNCVIEW=\
+	".\ClientConnection.h"\
+	".\Daemon.h"\
+	".\Exception.h"\
+	".\Flasher.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1602,18 +2142,48 @@ NODEP_CPP_VNCVIEW=\
 "$(INTDIR)\VNCviewerApp32.sbr" : $(SOURCE) $(DEP_CPP_VNCVIEW) "$(INTDIR)"
 
 
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\AboutBox.cpp
+
+!IF  "$(CFG)" == "vncviewer - Win32 Release"
+
 DEP_CPP_ABOUT=\
 	".\ClientConnection.h"\
 	".\KeyMap.h"\
 	".\keysymdef.h"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread\nt.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\VNCOptions.h"\
+	".\vncviewer.h"\
+	".\VNCviewerApp.h"\
+	".\yvals.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\omnithread\nt.h"\
+	".\omnithreadce.h"\
+	
+
+"$(INTDIR)\AboutBox.obj" : $(SOURCE) $(DEP_CPP_ABOUT) "$(INTDIR)"
+
+"$(INTDIR)\AboutBox.sbr" : $(SOURCE) $(DEP_CPP_ABOUT) "$(INTDIR)"
+
+
+!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+
+DEP_CPP_ABOUT=\
+	".\ClientConnection.h"\
+	".\KeyMap.h"\
+	".\keysymdef.h"\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
@@ -1630,6 +2200,8 @@ NODEP_CPP_ABOUT=\
 
 "$(INTDIR)\AboutBox.sbr" : $(SOURCE) $(DEP_CPP_ABOUT) "$(INTDIR)"
 
+
+!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1721,8 +2293,14 @@ SOURCE=.\omnithread\omnithread.h
 # Begin Source File
 
 SOURCE=.\omnithread\omnithread\nt.cpp
+DEP_CPP_NT_CP=\
+	".\omnithread\omnithread.h"\
+	
+NODEP_CPP_NT_CP=\
+	".\omnithread\nt.h"\
+	
 
-"$(INTDIR)\nt.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\nt.obj" : $(SOURCE) $(DEP_CPP_NT_CP) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 

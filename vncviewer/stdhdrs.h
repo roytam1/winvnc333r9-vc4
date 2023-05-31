@@ -52,6 +52,9 @@
 #ifndef UOI_USER_SID
 #define UOI_USER_SID 4
 #endif
+#ifndef WM_MOUSEWHEEL
+#define WM_MOUSEWHEEL 0x020A
+#endif
 
 #endif
 

@@ -44,6 +44,15 @@
 #ifndef UOI_USER_SID
 #define UOI_USER_SID 4
 #endif
+#ifndef MOUSEEVENTF_WHEEL
+#define MOUSEEVENTF_WHEEL 0x0800
+#endif
+#ifndef WM_MOUSEWHEEL
+#define WM_MOUSEWHEEL 0x020A
+#endif
+#ifndef WHEEL_DELTA
+#define WHEEL_DELTA 120
+#endif
 
 #endif
 
