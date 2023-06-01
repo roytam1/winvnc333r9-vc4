@@ -714,6 +714,7 @@ void ClientConnection::SetFormatAndEncodings()
     spf.format.redMax = Swap16IfLE(spf.format.redMax);
     spf.format.greenMax = Swap16IfLE(spf.format.greenMax);
     spf.format.blueMax = Swap16IfLE(spf.format.blueMax);
+    spf.format.bigEndian = 0;
 
     WriteExact((char *)&spf, sz_rfbSetPixelFormatMsg);
 
