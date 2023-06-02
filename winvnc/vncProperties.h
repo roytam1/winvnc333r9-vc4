@@ -80,20 +80,20 @@ protected:
 	BOOL				m_allowshutdown;
 
 	// Password handling
-	void LoadPassword(HKEY k, char *buffer);
-	void SavePassword(HKEY k, char *buffer);
+	void LoadPassword(LPCSTR k, char *buffer);
+	void SavePassword(LPCSTR k, char *buffer);
 
 	// String handling
-	char * LoadString(HKEY k, LPCSTR valname);
-	void SaveString(HKEY k, LPCSTR valname, const char *buffer);
+	char * LoadString(LPCSTR k, LPCSTR valname);
+	void SaveString(LPCSTR k, LPCSTR valname, const char *buffer);
 
 	// Manipulate the registry settings
-	LONG LoadInt(HKEY key, LPCSTR valname, LONG defval);
-	void SaveInt(HKEY key, LPCSTR valname, LONG val);
+	LONG LoadInt(LPCSTR key, LPCSTR valname, LONG defval);
+	void SaveInt(LPCSTR key, LPCSTR valname, LONG val);
 
 	// Loading/saving all the user prefs
-	void LoadUserPrefs(HKEY appkey);
-	void SaveUserPrefs(HKEY appkey);
+	void LoadUserPrefs();
+	void SaveUserPrefs();
 
 	// Making the loaded user prefs active
 	void ApplyUserPrefs();
@@ -119,6 +119,7 @@ protected:
 	BOOL m_pref_PollFullScreen;
 	BOOL m_pref_PollConsoleOnly;
 	BOOL m_pref_PollOnEventOnly;
+	char m_Inifile[MAX_PATH];
 };
 
 #endif // _WINVNC_VNCPROPERTIES

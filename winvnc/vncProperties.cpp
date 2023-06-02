@@ -35,7 +35,6 @@
 #include "vncServer.h"
 #include "vncPasswd.h"
 
-const char WINVNC_REGISTRY_KEY [] = "Software\\ORL\\WinVNC3";
 const char NO_PASSWORD_WARN [] = "WARNING : Running WinVNC without setting a password is "
 								"a dangerous security risk!\n"
 								"Until you set a password, WinVNC will not accept incoming connections.";
@@ -62,6 +61,18 @@ vncProperties::vncProperties()
 	m_allowshutdown = TRUE;
 	m_dlgvisible = FALSE;
 	m_usersettings = TRUE;
+
+	char myWorkDir[MAX_PATH];
+	if (GetModuleFileName(NULL, myWorkDir, MAX_PATH))
+	{
+		char* p = strrchr(myWorkDir, '\\');
+		if (p == NULL) return;
+		*p = '\0';
+	}
+	strcpy(m_Inifile,"");
+	strcat(m_Inifile,myWorkDir);//set the directory
+	strcat(m_Inifile,"\\");
+	strcat(m_Inifile,"winvnc.ini");
 }
 
 vncProperties::~vncProperties()
@@ -75,7 +86,7 @@ vncProperties::Init(vncServer *server)
 	// Save the server pointer
 	m_server = server;
 	
-	// Load the settings from the registry
+	// Load the settings
 	Load(TRUE);
 
 	// If the password is empty then always show a dialog
@@ -122,53 +133,10 @@ vncProperties::Show(BOOL show, BOOL usersettings)
 {
 	if (show)
 	{
-		if (!m_allowproperties)
-		{
-			// If the user isn't allowed to override the settings then tell them
-			MessageBox(NULL, NO_OVERRIDE_ERR, "WinVNC Error", MB_OK | MB_ICONEXCLAMATION);
-			return;
-		}
-
-		// Verify that we know who is logged on
-		if (usersettings) {
-			char username[UNLEN+1];
-			if (!vncService::CurrentUser(username, sizeof(username)))
-				return;
-			if (strcmp(username, "") == 0) {
-				MessageBox(NULL, NO_CURRENT_USER_ERR, "WinVNC Error", MB_OK | MB_ICONEXCLAMATION);
-				return;
-			}
-		} else {
-			// We're trying to edit the default local settings - verify that we can
-			HKEY hkLocal, hkDefault;
-			BOOL canEditDefaultPrefs = 1;
-			DWORD dw;
-			if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
-				WINVNC_REGISTRY_KEY,
-				0, REG_NONE, REG_OPTION_NON_VOLATILE,
-				KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS)
-				canEditDefaultPrefs = 0;
-			else if (RegCreateKeyEx(hkLocal,
-				"Default",
-				0, REG_NONE, REG_OPTION_NON_VOLATILE,
-				KEY_WRITE | KEY_READ, NULL, &hkDefault, &dw) != ERROR_SUCCESS)
-				canEditDefaultPrefs = 0;
-			if (hkLocal) RegCloseKey(hkLocal);
-			if (hkDefault) RegCloseKey(hkDefault);
-
-			if (!canEditDefaultPrefs) {
-				MessageBox(NULL, CANNOT_EDIT_DEFAULT_PREFS, "WinVNC Error", MB_OK | MB_ICONEXCLAMATION);
-				return;
-			}
-		}
-
 		// Now, if the dialog is not already displayed, show it!
 		if (!m_dlgvisible)
 		{
-			if (usersettings)
-				log.Print(LL_INTINFO, VNCLOG("show per-user Properties\n"));
-			else
-				log.Print(LL_INTINFO, VNCLOG("show default system Properties\n"));
+			log.Print(LL_INTINFO, VNCLOG("show default system Properties\n"));
 
 			// Load in the settings relevant to the user or system
 			Load(usersettings);
@@ -531,89 +499,24 @@ vncProperties::DialogProc(HWND hwnd,
 
 // Functions to load & save the settings
 LONG
-vncProperties::LoadInt(HKEY key, LPCSTR valname, LONG defval)
+vncProperties::LoadInt(LPCSTR key, LPCSTR valname, LONG defval)
 {
-	LONG pref;
-	ULONG type = REG_DWORD;
-	ULONG prefsize = sizeof(pref);
-
-	if (RegQueryValueEx(key,
-		valname,
-		NULL,
-		&type,
-		(LPBYTE) &pref,
-		&prefsize) != ERROR_SUCCESS)
-		return defval;
-
-	if (type != REG_DWORD)
-		return defval;
-
-	if (prefsize != sizeof(pref))
-		return defval;
-
-	return pref;
+	return GetPrivateProfileInt(key, valname, defval, m_Inifile);
 }
 
 void
-vncProperties::LoadPassword(HKEY key, char *buffer)
+vncProperties::LoadPassword(LPCSTR key, char *buffer)
 {
-	DWORD type = REG_BINARY;
-	int slen=MAXPWLEN;
-	char inouttext[MAXPWLEN];
-
-	// Retrieve the encrypted password
-	if (RegQueryValueEx(key,
-		"Password",
-		NULL,
-		&type,
-		(LPBYTE) &inouttext,
-		(LPDWORD) &slen) != ERROR_SUCCESS)
-		return;
-
-	if (slen > MAXPWLEN)
-		return;
-
-	memcpy(buffer, inouttext, MAXPWLEN);
+	GetPrivateProfileStruct(key,"passwd",buffer,MAXPWLEN,m_Inifile);
 }
 
 char *
-vncProperties::LoadString(HKEY key, LPCSTR keyname)
+vncProperties::LoadString(LPCSTR key, LPCSTR keyname)
 {
-	DWORD type = REG_SZ;
-	DWORD buflen = 0;
-	BYTE *buffer = 0;
+	char *buffer = 0;
 
-	// Get the length of the AuthHosts string
-	if (RegQueryValueEx(key,
-		keyname,
-		NULL,
-		&type,
-		NULL,
-		&buflen) != ERROR_SUCCESS)
-		return 0;
-
-	if (type != REG_SZ)
-		return 0;
-	buffer = new BYTE[buflen];
-	if (buffer == 0)
-		return 0;
-
-	// Get the AuthHosts string data
-	if (RegQueryValueEx(key,
-		keyname,
-		NULL,
-		&type,
-		buffer,
-		&buflen) != ERROR_SUCCESS) {
-		delete [] buffer;
-		return 0;
-	}
-
-	// Verify the type
-	if (type != REG_SZ) {
-		delete [] buffer;
-		return 0;
-	}
+	buffer = new char[MAX_PATH];
+	GetPrivateProfileString(key,keyname, "",buffer,MAX_PATH,m_Inifile);
 
 	return (char *)buffer;
 }
@@ -621,69 +524,24 @@ vncProperties::LoadString(HKEY key, LPCSTR keyname)
 void
 vncProperties::Load(BOOL usersettings)
 {
-	char username[UNLEN+1];
-	HKEY hkLocal, hkLocalUser, hkDefault;
-	DWORD dw;
-
-	// NEW (R3) PREFERENCES ALGORITHM
-	// 1.	Look in HKEY_LOCAL_MACHINE/Software/ORL/WinVNC3/%username%
-	//		for sysadmin-defined, user-specific settings.
-	// 2.	If not found, fall back to %username%=Default
-	// 3.	If AllowOverrides is set then load settings from
-	//		HKEY_CURRENT_USER/Software/ORL/WinVNC3
-
-	// GET THE CORRECT KEY TO READ FROM
-
-	// Get the user name / service name
-	if (!vncService::CurrentUser((char *)&username, sizeof(username)))
-		return;
-
-	// If there is no user logged on them default to SYSTEM
-	if (strcmp(username, "") == 0)
-		strcpy((char *)&username, "SYSTEM");
-
-	// Try to get the machine registry key for WinVNC
-	if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
-		WINVNC_REGISTRY_KEY,
-		0, REG_NONE, REG_OPTION_NON_VOLATILE,
-		KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS)
-		return;
-
-	// Now try to get the per-user local key
-	if (RegOpenKeyEx(hkLocal,
-		username,
-		0, KEY_READ,
-		&hkLocalUser) != ERROR_SUCCESS)
-		hkLocalUser = NULL;
-
-	// Get the default key
-	if (RegCreateKeyEx(hkLocal,
-		"Default",
-		0, REG_NONE, REG_OPTION_NON_VOLATILE,
-		KEY_READ,
-		NULL,
-		&hkDefault,
-		&dw) != ERROR_SUCCESS)
-		hkDefault = NULL;
-
 	// LOAD THE MACHINE-LEVEL PREFS
 
 	// Logging/debugging prefs
 	log.Print(LL_INTINFO, VNCLOG("loading local-only settings\n"));
-	log.SetMode(LoadInt(hkLocal, "DebugMode", 0));
-	log.SetLevel(LoadInt(hkLocal, "DebugLevel", 0));
+	log.SetMode(LoadInt("winvnc", "DebugMode", 0));
+	log.SetLevel(LoadInt("winvnc", "DebugLevel", 0));
 
 	// Authentication required, loopback allowed, loopbackOnly
-	m_server->SetLoopbackOnly(LoadInt(hkLocal, "LoopbackOnly", false));
+	m_server->SetLoopbackOnly(LoadInt("winvnc", "LoopbackOnly", false));
 	if (m_server->LoopbackOnly())
 		m_server->SetLoopbackOk(true);
 	else
-		m_server->SetLoopbackOk(LoadInt(hkLocal, "AllowLoopback", false));
-	m_server->SetAuthRequired(LoadInt(hkLocal, "AuthRequired", true));
-	m_server->SetConnectPriority(LoadInt(hkLocal, "ConnectPriority", 0));
+		m_server->SetLoopbackOk(LoadInt("winvnc", "AllowLoopback", false));
+	m_server->SetAuthRequired(LoadInt("winvnc", "AuthRequired", true));
+	m_server->SetConnectPriority(LoadInt("winvnc", "ConnectPriority", 0));
 	if (!m_server->LoopbackOnly())
 	{
-		char *authhosts = LoadString(hkLocal, "AuthHosts");
+		char *authhosts = LoadString("winvnc", "AuthHosts");
 		if (authhosts != 0) {
 			m_server->SetAuthHosts(authhosts);
 			delete [] authhosts;
@@ -721,51 +579,12 @@ vncProperties::Load(BOOL usersettings)
 	m_allowproperties = TRUE;
 
 	// Load the local prefs for this user
-	if (hkDefault != NULL)
 	{
 		log.Print(LL_INTINFO, VNCLOG("loading DEFAULT local settings\n"));
-		LoadUserPrefs(hkDefault);
-		m_allowshutdown = LoadInt(hkDefault, "AllowShutdown", m_allowshutdown);
-		m_allowproperties = LoadInt(hkDefault, "AllowProperties", m_allowproperties);
+		LoadUserPrefs();
+		m_allowshutdown = LoadInt("winvnc", "AllowShutdown", m_allowshutdown);
+		m_allowproperties = LoadInt("winvnc", "AllowProperties", m_allowproperties);
 	}
-
-	// Are we being asked to load the user settings, or just the default local system settings?
-	if (usersettings) {
-		// We want the user settings, so load them!
-
-		if (hkLocalUser != NULL)
-		{
-			log.Print(LL_INTINFO, VNCLOG("loading \"%s\" local settings\n"), username);
-			LoadUserPrefs(hkLocalUser);
-			m_allowshutdown = LoadInt(hkLocalUser, "AllowShutdown", m_allowshutdown);
-			m_allowproperties = LoadInt(hkLocalUser, "AllowProperties", m_allowproperties);
-		}
-
-		// Now override the system settings with the user's settings
-		// If the username is SYSTEM then don't try to load them, because there aren't any...
-		if (m_allowproperties && (strcmp(username, "SYSTEM") != 0))
-		{
-			HKEY hkGlobalUser;
-			if (RegCreateKeyEx(HKEY_CURRENT_USER,
-				WINVNC_REGISTRY_KEY,
-				0, REG_NONE, REG_OPTION_NON_VOLATILE,
-				KEY_READ, NULL, &hkGlobalUser, &dw) == ERROR_SUCCESS)
-			{
-				log.Print(LL_INTINFO, VNCLOG("loading \"%s\" global settings\n"), username);
-				LoadUserPrefs(hkGlobalUser);
-				RegCloseKey(hkGlobalUser);
-
-				// Close the user registry hive so it can unload if required
-				RegCloseKey(HKEY_CURRENT_USER);
-			}
-		}
-	} else {
-		log.Print(LL_INTINFO, VNCLOG("bypassing user-specific settings (both local and global)\n"));
-	}
-
-	if (hkLocalUser != NULL) RegCloseKey(hkLocalUser);
-	if (hkDefault != NULL) RegCloseKey(hkDefault);
-	RegCloseKey(hkLocal);
 
 	// Make the loaded settings active..
 	ApplyUserPrefs();
@@ -775,39 +594,39 @@ vncProperties::Load(BOOL usersettings)
 }
 
 void
-vncProperties::LoadUserPrefs(HKEY appkey)
+vncProperties::LoadUserPrefs()
 {
 	// LOAD USER PREFS FROM THE SELECTED KEY
 
 	// Connection prefs
-	m_pref_SockConnect=LoadInt(appkey, "SocketConnect", m_pref_SockConnect);
-	m_pref_AutoPortSelect=LoadInt(appkey, "AutoPortSelect", m_pref_AutoPortSelect);
-	m_pref_PortNumber=LoadInt(appkey, "PortNumber", m_pref_PortNumber);
-	m_pref_IdleTimeout=LoadInt(appkey, "IdleTimeout", m_pref_IdleTimeout);
+	m_pref_SockConnect=LoadInt("winvnc", "SocketConnect", m_pref_SockConnect);
+	m_pref_AutoPortSelect=LoadInt("winvnc", "AutoPortSelect", m_pref_AutoPortSelect);
+	m_pref_PortNumber=LoadInt("winvnc", "PortNumber", m_pref_PortNumber);
+	m_pref_IdleTimeout=LoadInt("winvnc", "IdleTimeout", m_pref_IdleTimeout);
 	
-	m_pref_RemoveWallpaper=LoadInt(appkey, "RemoveWallpaper", m_pref_RemoveWallpaper);
+	m_pref_RemoveWallpaper=LoadInt("winvnc", "RemoveWallpaper", m_pref_RemoveWallpaper);
 
 	// Connection querying settings
-	m_pref_QuerySetting=LoadInt(appkey, "QuerySetting", m_pref_QuerySetting);
-	m_pref_QueryTimeout=LoadInt(appkey, "QueryTimeout", m_pref_QueryTimeout);
+	m_pref_QuerySetting=LoadInt("winvnc", "QuerySetting", m_pref_QuerySetting);
+	m_pref_QueryTimeout=LoadInt("winvnc", "QueryTimeout", m_pref_QueryTimeout);
 
 	// Load the password
-	LoadPassword(appkey, m_pref_passwd);
+	LoadPassword("winvnc", m_pref_passwd);
 	
 	// CORBA Settings
-	m_pref_CORBAConn=LoadInt(appkey, "CORBAConnect", m_pref_CORBAConn);
+	m_pref_CORBAConn=LoadInt("winvnc", "CORBAConnect", m_pref_CORBAConn);
 
 	// Remote access prefs
-	m_pref_EnableRemoteInputs=LoadInt(appkey, "InputsEnabled", m_pref_EnableRemoteInputs);
-	m_pref_LockSettings=LoadInt(appkey, "LockSetting", m_pref_LockSettings);
-	m_pref_DisableLocalInputs=LoadInt(appkey, "LocalInputsDisabled", m_pref_DisableLocalInputs);
+	m_pref_EnableRemoteInputs=LoadInt("winvnc", "InputsEnabled", m_pref_EnableRemoteInputs);
+	m_pref_LockSettings=LoadInt("winvnc", "LockSetting", m_pref_LockSettings);
+	m_pref_DisableLocalInputs=LoadInt("winvnc", "LocalInputsDisabled", m_pref_DisableLocalInputs);
 
 	// Polling prefs
-	m_pref_PollUnderCursor=LoadInt(appkey, "PollUnderCursor", m_pref_PollUnderCursor);
-	m_pref_PollForeground=LoadInt(appkey, "PollForeground", m_pref_PollForeground);
-	m_pref_PollFullScreen=LoadInt(appkey, "PollFullScreen", m_pref_PollFullScreen);
-	m_pref_PollConsoleOnly=LoadInt(appkey, "OnlyPollConsole", m_pref_PollConsoleOnly);
-	m_pref_PollOnEventOnly=LoadInt(appkey, "OnlyPollOnEvent", m_pref_PollOnEventOnly);
+	m_pref_PollUnderCursor=LoadInt("winvnc", "PollUnderCursor", m_pref_PollUnderCursor);
+	m_pref_PollForeground=LoadInt("winvnc", "PollForeground", m_pref_PollForeground);
+	m_pref_PollFullScreen=LoadInt("winvnc", "PollFullScreen", m_pref_PollFullScreen);
+	m_pref_PollConsoleOnly=LoadInt("winvnc", "OnlyPollConsole", m_pref_PollConsoleOnly);
+	m_pref_PollOnEventOnly=LoadInt("winvnc", "OnlyPollOnEvent", m_pref_PollOnEventOnly);
 }
 
 void
@@ -857,111 +676,63 @@ vncProperties::ApplyUserPrefs()
 }
 
 void
-vncProperties::SaveInt(HKEY key, LPCSTR valname, LONG val)
+vncProperties::SaveInt(LPCSTR key, LPCSTR valname, LONG val)
 {
-	RegSetValueEx(key, valname, 0, REG_DWORD, (LPBYTE) &val, sizeof(val));
+	char       buf[32];
+	wsprintf(buf, "%d", val);
+	WritePrivateProfileString(key,valname, buf,m_Inifile);
 }
 
 void
-vncProperties::SavePassword(HKEY key, char *buffer)
+vncProperties::SavePassword(LPCSTR key, char *buffer)
 {
-	RegSetValueEx(key, "Password", 0, REG_BINARY, (LPBYTE) buffer, MAXPWLEN);
+	WritePrivateProfileStruct(key,"passwd", buffer,MAXPWLEN,m_Inifile);
 }
 
 void
 vncProperties::Save()
 {
-	HKEY appkey;
-	DWORD dw;
-
 	if (!m_allowproperties)
 		return;
 
-	// NEW (R3) PREFERENCES ALGORITHM
-	// The user's prefs are only saved if the user is allowed to override
-	// the machine-local settings specified for them.  Otherwise, the
-	// properties entry on the tray icon menu will be greyed out.
-
-	// GET THE CORRECT KEY TO READ FROM
-
-	// Have we loaded user settings, or system settings?
-	if (m_usersettings) {
-		// Verify that we know who is logged on
-		char username[UNLEN+1];
-		if (!vncService::CurrentUser((char *)&username, sizeof(username)))
-			return;
-		if (strcmp(username, "") == 0)
-			return;
-
-		// Try to get the per-user, global registry key for WinVNC
-		if (RegCreateKeyEx(HKEY_CURRENT_USER,
-			WINVNC_REGISTRY_KEY,
-			0, REG_NONE, REG_OPTION_NON_VOLATILE,
-			KEY_WRITE | KEY_READ, NULL, &appkey, &dw) != ERROR_SUCCESS)
-			return;
-	} else {
-		// Try to get the default local registry key for WinVNC
-		HKEY hkLocal;
-		if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
-			WINVNC_REGISTRY_KEY,
-			0, REG_NONE, REG_OPTION_NON_VOLATILE,
-			KEY_READ, NULL, &hkLocal, &dw) != ERROR_SUCCESS) {
-			MessageBox(NULL, "MB1", "WVNC", MB_OK);
-			return;
-		}
-		if (RegCreateKeyEx(hkLocal,
-			"Default",
-			0, REG_NONE, REG_OPTION_NON_VOLATILE,
-			KEY_WRITE | KEY_READ, NULL, &appkey, &dw) != ERROR_SUCCESS) {
-			RegCloseKey(hkLocal);
-			return;
-		}
-		RegCloseKey(hkLocal);
-	}
-
 	// SAVE PER-USER PREFS IF ALLOWED
-	SaveUserPrefs(appkey);
-
-	RegCloseKey(appkey);
-
-	// Close the user registry hive, to allow it to unload if reqd
-	RegCloseKey(HKEY_CURRENT_USER);
+	SaveUserPrefs();
 }
 
 void
-vncProperties::SaveUserPrefs(HKEY appkey)
+vncProperties::SaveUserPrefs()
 {
 	// SAVE THE PER USER PREFS
 	log.Print(LL_INTINFO, VNCLOG("saving current settings to registry\n"));
 
 	// Connection prefs
-	SaveInt(appkey, "SocketConnect", m_server->SockConnected());
-	SaveInt(appkey, "AutoPortSelect", m_server->AutoPortSelect());
+	SaveInt("winvnc", "SocketConnect", m_server->SockConnected());
+	SaveInt("winvnc", "AutoPortSelect", m_server->AutoPortSelect());
 	if (!m_server->AutoPortSelect())
-		SaveInt(appkey, "PortNumber", m_server->GetPort());
-	SaveInt(appkey, "InputsEnabled", m_server->RemoteInputsEnabled());
-	SaveInt(appkey, "LocalInputsDisabled", m_server->LocalInputsDisabled());
-	SaveInt(appkey, "IdleTimeout", m_server->AutoIdleDisconnectTimeout());
+		SaveInt("winvnc", "PortNumber", m_server->GetPort());
+	SaveInt("winvnc", "InputsEnabled", m_server->RemoteInputsEnabled());
+	SaveInt("winvnc", "LocalInputsDisabled", m_server->LocalInputsDisabled());
+	SaveInt("winvnc", "IdleTimeout", m_server->AutoIdleDisconnectTimeout());
 
 	// Connection querying settings
-	SaveInt(appkey, "QuerySetting", m_server->QuerySetting());
-	SaveInt(appkey, "QueryTimeout", m_server->QueryTimeout());
+	SaveInt("winvnc", "QuerySetting", m_server->QuerySetting());
+	SaveInt("winvnc", "QueryTimeout", m_server->QueryTimeout());
 
 	// Save the password
 	char passwd[MAXPWLEN];
 	m_server->GetPassword(passwd);
-	SavePassword(appkey, passwd);
+	SavePassword("winvnc", passwd);
 
 #if(defined(_CORBA))
 	// Don't save the CORBA enabled flag if CORBA is not compiled in!
-	SaveInt(appkey, "CORBAConnect", m_server->CORBAConnected());
+	SaveInt("winvnc", "CORBAConnect", m_server->CORBAConnected());
 #endif
 
 	// Polling prefs
-	SaveInt(appkey, "PollUnderCursor", m_server->PollUnderCursor());
-	SaveInt(appkey, "PollForeground", m_server->PollForeground());
-	SaveInt(appkey, "PollFullScreen", m_server->PollFullScreen());
+	SaveInt("winvnc", "PollUnderCursor", m_server->PollUnderCursor());
+	SaveInt("winvnc", "PollForeground", m_server->PollForeground());
+	SaveInt("winvnc", "PollFullScreen", m_server->PollFullScreen());
 
-	SaveInt(appkey, "OnlyPollConsole", m_server->PollConsoleOnly());
-	SaveInt(appkey, "OnlyPollOnEvent", m_server->PollOnEventOnly());
+	SaveInt("winvnc", "OnlyPollConsole", m_server->PollConsoleOnly());
+	SaveInt("winvnc", "OnlyPollOnEvent", m_server->PollOnEventOnly());
 }
