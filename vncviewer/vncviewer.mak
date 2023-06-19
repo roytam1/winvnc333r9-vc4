@@ -694,9 +694,6 @@ SOURCE=.\AboutBox.h
 # Begin Source File
 
 SOURCE=.\AuthDialog.cpp
-
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
-
 DEP_CPP_AUTHD=\
 	".\AuthDialog.h"\
 	".\ClientConnection.h"\
@@ -709,10 +706,10 @@ DEP_CPP_AUTHD=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_AUTHD=\
 	".\omnithreadce.h"\
@@ -722,36 +719,6 @@ NODEP_CPP_AUTHD=\
 
 "$(INTDIR)\AuthDialog.sbr" : $(SOURCE) $(DEP_CPP_AUTHD) "$(INTDIR)"
 
-
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
-
-DEP_CPP_AUTHD=\
-	".\AuthDialog.h"\
-	".\ClientConnection.h"\
-	".\Exception.h"\
-	".\KeyMap.h"\
-	".\keysymdef.h"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread/nt.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\VNCOptions.h"\
-	".\vncviewer.h"\
-	".\VNCviewerApp.h"\
-	".\yvals.h"\
-	
-NODEP_CPP_AUTHD=\
-	".\omnithreadce.h"\
-	
-
-"$(INTDIR)\AuthDialog.obj" : $(SOURCE) $(DEP_CPP_AUTHD) "$(INTDIR)"
-
-"$(INTDIR)\AuthDialog.sbr" : $(SOURCE) $(DEP_CPP_AUTHD) "$(INTDIR)"
-
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -770,9 +737,6 @@ SOURCE=.\AuthDialog.h
 # Begin Source File
 
 SOURCE=.\ClientConnection.cpp
-
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
-
 DEP_CPP_CLIEN=\
 	".\AboutBox.h"\
 	".\AuthDialog.h"\
@@ -788,11 +752,11 @@ DEP_CPP_CLIEN=\
 	".\rfbproto.h"\
 	".\SessionDialog.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIEN=\
 	".\omnithreadce.h"\
@@ -802,40 +766,6 @@ NODEP_CPP_CLIEN=\
 
 "$(INTDIR)\ClientConnection.sbr" : $(SOURCE) $(DEP_CPP_CLIEN) "$(INTDIR)"
 
-
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
-
-DEP_CPP_CLIEN=\
-	".\AboutBox.h"\
-	".\AuthDialog.h"\
-	".\ClientConnection.h"\
-	".\Exception.h"\
-	".\KeyMap.h"\
-	".\keysymdef.h"\
-	".\Log.h"\
-	".\MRU.h"\
-	".\omnithread\omnithread.h"\
-	".\omnithread\omnithread/nt.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\SessionDialog.h"\
-	".\stdhdrs.h"\
-	".\vncauth.h"\
-	".\VNCOptions.h"\
-	".\vncviewer.h"\
-	".\VNCviewerApp.h"\
-	".\yvals.h"\
-	
-NODEP_CPP_CLIEN=\
-	".\omnithreadce.h"\
-	
-
-"$(INTDIR)\ClientConnection.obj" : $(SOURCE) $(DEP_CPP_CLIEN) "$(INTDIR)"
-
-"$(INTDIR)\ClientConnection.sbr" : $(SOURCE) $(DEP_CPP_CLIEN) "$(INTDIR)"
-
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -865,10 +795,10 @@ DEP_CPP_CLIENT=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENT=\
 	".\omnithreadce.h"\
@@ -896,10 +826,10 @@ DEP_CPP_CLIENTC=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTC=\
 	".\omnithreadce.h"\
@@ -927,10 +857,10 @@ DEP_CPP_CLIENTCO=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCO=\
 	".\omnithreadce.h"\
@@ -959,11 +889,11 @@ DEP_CPP_CLIENTCON=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCON=\
 	".\omnithreadce.h"\
@@ -991,10 +921,10 @@ DEP_CPP_CLIENTCONN=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONN=\
 	".\omnithreadce.h"\
@@ -1022,10 +952,10 @@ DEP_CPP_CLIENTCONNE=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONNE=\
 	".\omnithreadce.h"\
@@ -1053,10 +983,10 @@ DEP_CPP_CLIENTCONNEC=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONNEC=\
 	".\omnithreadce.h"\
@@ -1084,10 +1014,10 @@ DEP_CPP_CLIENTCONNECT=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONNECT=\
 	".\omnithreadce.h"\
@@ -1144,10 +1074,10 @@ DEP_CPP_DAEMO=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_DAEMO=\
 	".\omnithreadce.h"\
@@ -1178,7 +1108,7 @@ SOURCE=.\Exception.cpp
 DEP_CPP_EXCEP=\
 	".\Exception.h"\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\Exception.obj" : $(SOURCE) $(DEP_CPP_EXCEP) "$(INTDIR)"
@@ -1215,10 +1145,10 @@ DEP_CPP_FLASH=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_FLASH=\
 	".\omnithreadce.h"\
@@ -1256,10 +1186,10 @@ DEP_CPP_KEYMA=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_KEYMA=\
 	".\omnithreadce.h"\
@@ -1302,7 +1232,7 @@ SOURCE=.\Log.cpp
 DEP_CPP_LOG_C=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\Log.obj" : $(SOURCE) $(DEP_CPP_LOG_C) "$(INTDIR)"
@@ -1390,10 +1320,10 @@ DEP_CPP_SESSI=\
 	".\rfbproto.h"\
 	".\SessionDialog.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_SESSI=\
 	".\omnithreadce.h"\
@@ -1423,7 +1353,7 @@ SOURCE=.\SessionDialog.h
 SOURCE=.\stdhdrs.cpp
 DEP_CPP_STDHD=\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\stdhdrs.obj" : $(SOURCE) $(DEP_CPP_STDHD) "$(INTDIR)"
@@ -1451,8 +1381,8 @@ SOURCE=.\vncauth.c
 DEP_CPP_VNCAU=\
 	".\d3des.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncauth.obj" : $(SOURCE) $(DEP_CPP_VNCAU) "$(INTDIR)"
@@ -1488,10 +1418,10 @@ DEP_CPP_VNCOP=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCOP=\
 	".\omnithreadce.h"\
@@ -1532,11 +1462,11 @@ DEP_CPP_VNCVI=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
 	".\VNCviewerApp32.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCVI=\
 	".\omnithreadce.h"\
@@ -1575,10 +1505,10 @@ DEP_CPP_VNCVIE=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCVIE=\
 	".\omnithreadce.h"\
@@ -1619,11 +1549,11 @@ DEP_CPP_VNCVIEW=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
 	".\VNCviewerApp32.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCVIEW=\
 	".\omnithreadce.h"\
@@ -1649,10 +1579,10 @@ DEP_CPP_ABOUT=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_ABOUT=\
 	".\omnithreadce.h"\

@@ -69,6 +69,7 @@ CLEAN :
 	-@erase "$(INTDIR)\RectList.obj"
 	-@erase "$(INTDIR)\stdhdrs.obj"
 	-@erase "$(INTDIR)\translate.obj"
+	-@erase "$(INTDIR)\vc40.pdb"
 	-@erase "$(INTDIR)\vncAbout.obj"
 	-@erase "$(INTDIR)\vncAcceptDialog.obj"
 	-@erase "$(INTDIR)\vncauth.obj"
@@ -94,6 +95,7 @@ CLEAN :
 	-@erase "$(INTDIR)\WinVNC.obj"
 	-@erase "$(INTDIR)\WinVNC.res"
 	-@erase "$(OUTDIR)\wvncmips.exe"
+	-@erase "$(OUTDIR)\wvncmips.pdb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -104,11 +106,11 @@ MTL=mktyplib.exe
 MTL_PROJ=/nologo /D "NDEBUG" /mips 
 CPP=cl.exe
 # ADD BASE CPP /nologo /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /Gt0 /QMOb2000 /W3 /GX /O2 /I "..\STL" /I "omnithread" /I "vnchooks" /I "." /D "NDEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /ML /Gt0 /QMOb2000 /W3 /GX /O2 /I "..\STL" /I "omnithread" /I\
- "vnchooks" /I "." /D "NDEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__"\
- /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/wvncmips.pch" /YX\
- /Fo"$(INTDIR)/" /c 
+# ADD CPP /nologo /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "..\STL" /I "omnithread" /I "vnchooks" /I "." /D "NDEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /ML /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "..\STL" /I "omnithread"\
+ /I "vnchooks" /I "." /D "NDEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D\
+ "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/wvncmips.pch" /YX\
+ /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\MIPSRel/
 CPP_SBRS=.\.
 
@@ -136,11 +138,12 @@ RSC=rc.exe
 RSC_PROJ=/l 0x411 /fo"$(INTDIR)/WinVNC.res" /d "NDEBUG" 
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:MIPS
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /machine:MIPS
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /debug /machine:MIPS
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib wsock32.lib /nologo /subsystem:windows /incremental:no\
- /pdb:"$(OUTDIR)/wvncmips.pdb" /machine:MIPS /out:"$(OUTDIR)/wvncmips.exe" 
+ /pdb:"$(OUTDIR)/wvncmips.pdb" /debug /machine:MIPS\
+ /out:"$(OUTDIR)/wvncmips.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\d3des.obj" \
 	"$(INTDIR)\Log.obj" \
@@ -353,9 +356,11 @@ ALL : "$(OUTDIR)\othdmips.dll"
 
 CLEAN : 
 	-@erase "$(INTDIR)\nt.obj"
+	-@erase "$(INTDIR)\vc40.pdb"
 	-@erase "$(OUTDIR)\othdmips.dll"
 	-@erase "$(OUTDIR)\othdmips.exp"
 	-@erase "$(OUTDIR)\othdmips.lib"
+	-@erase "$(OUTDIR)\othdmips.pdb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -366,10 +371,10 @@ MTL=mktyplib.exe
 MTL_PROJ=/nologo /D "NDEBUG" /mips 
 CPP=cl.exe
 # ADD BASE CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /YX /c
-CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "omnithread" /D\
+# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /YX /c
+CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D\
- "__NT__" /Fp"$(INTDIR)/othdmips.pch" /YX /Fo"$(INTDIR)/" /c 
+ "__NT__" /Fp"$(INTDIR)/othdmips.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\othdmips\MIPSRel/
 CPP_SBRS=.\.
 
@@ -396,12 +401,12 @@ RSC=rc.exe
 # ADD RSC /l 0x411 /d "NDEBUG"
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:MIPS
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:MIPS
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:MIPS
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/othdmips.pdb" /machine:MIPS /out:"$(OUTDIR)/othdmips.dll"\
- /implib:"$(OUTDIR)/othdmips.lib" 
+ /pdb:"$(OUTDIR)/othdmips.pdb" /debug /machine:MIPS\
+ /out:"$(OUTDIR)/othdmips.dll" /implib:"$(OUTDIR)/othdmips.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
 
@@ -521,11 +526,13 @@ INTDIR=.\vnchmips\MIPSRel
 ALL : "$(OUTDIR)\vnchmips.dll"
 
 CLEAN : 
+	-@erase "$(INTDIR)\vc40.pdb"
 	-@erase "$(INTDIR)\VNCHooks.obj"
 	-@erase "$(INTDIR)\VNCHooks.res"
 	-@erase "$(OUTDIR)\vnchmips.dll"
 	-@erase "$(OUTDIR)\vnchmips.exp"
 	-@erase "$(OUTDIR)\vnchmips.lib"
+	-@erase "$(OUTDIR)\vnchmips.pdb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -536,10 +543,10 @@ MTL=mktyplib.exe
 MTL_PROJ=/nologo /D "NDEBUG" /mips 
 CPP=cl.exe
 # ADD BASE CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "vnchooks" /D\
+# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchmips.pch" /YX\
- /Fo"$(INTDIR)/" /c 
+ /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\vnchmips\MIPSRel/
 CPP_SBRS=.\.
 
@@ -567,12 +574,12 @@ RSC=rc.exe
 RSC_PROJ=/l 0x411 /fo"$(INTDIR)/VNCHooks.res" /d "NDEBUG" 
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:MIPS
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:MIPS
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:MIPS
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/vnchmips.pdb" /machine:MIPS /out:"$(OUTDIR)/vnchmips.dll"\
- /implib:"$(OUTDIR)/vnchmips.lib" 
+ /pdb:"$(OUTDIR)/vnchmips.pdb" /debug /machine:MIPS\
+ /out:"$(OUTDIR)/vnchmips.dll" /implib:"$(OUTDIR)/vnchmips.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\VNCHooks.obj" \
 	"$(INTDIR)\VNCHooks.res"
@@ -771,7 +778,7 @@ SOURCE=.\Log.cpp
 DEP_CPP_LOG_C=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\Log.obj" : $(SOURCE) $(DEP_CPP_LOG_C) "$(INTDIR)"
@@ -823,7 +830,7 @@ DEP_CPP_RECTL=\
 	".\Log.h"\
 	".\RectList.h"\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\RectList.obj" : $(SOURCE) $(DEP_CPP_RECTL) "$(INTDIR)"
@@ -885,7 +892,7 @@ SOURCE=.\stdhdrs.cpp
 DEP_CPP_STDHD=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\stdhdrs.obj" : $(SOURCE) $(DEP_CPP_STDHD) "$(INTDIR)"
@@ -917,7 +924,7 @@ DEP_CPP_TRANS=\
 	".\tableinittctemplate.cpp"\
 	".\tabletranstemplate.cpp"\
 	".\translate.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\translate.obj" : $(SOURCE) $(DEP_CPP_TRANS) "$(INTDIR)"
@@ -943,9 +950,9 @@ SOURCE=.\vncAbout.cpp
 DEP_CPP_VNCAB=\
 	".\Log.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncAbout.obj" : $(SOURCE) $(DEP_CPP_VNCAB) "$(INTDIR)"
@@ -971,10 +978,10 @@ SOURCE=.\vncAcceptDialog.cpp
 DEP_CPP_VNCAC=\
 	".\Log.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncAcceptDialog.h"\
 	".\vncService.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncAcceptDialog.obj" : $(SOURCE) $(DEP_CPP_VNCAC) "$(INTDIR)"
@@ -1024,35 +1031,6 @@ SOURCE=.\vncauth.h
 # Begin Source File
 
 SOURCE=.\vncBuffer.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCBU=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\MinMax.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncBuffer.h"\
-	".\vncDesktop.h"\
-	".\vncEncodeCoRRE.h"\
-	".\vncEncodeHexT.h"\
-	".\vncEncoder.h"\
-	".\vncEncodeRRE.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncBuffer.obj" : $(SOURCE) $(DEP_CPP_VNCBU) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCBU=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1064,6 +1042,7 @@ DEP_CPP_VNCBU=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1081,7 +1060,6 @@ DEP_CPP_VNCBU=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCBU=\
 	".\vnc.hh"\
@@ -1089,8 +1067,6 @@ NODEP_CPP_VNCBU=\
 
 "$(INTDIR)\vncBuffer.obj" : $(SOURCE) $(DEP_CPP_VNCBU) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1109,39 +1085,6 @@ SOURCE=.\vncBuffer.h
 # Begin Source File
 
 SOURCE=.\vncClient.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCCL=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncAcceptDialog.h"\
-	".\vncauth.h"\
-	".\vncBuffer.h"\
-	".\vncClient.h"\
-	".\vncDesktop.h"\
-	".\vncEncoder.h"\
-	".\vncKeymap.h"\
-	".\vncPasswd.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\vncService.h"\
-	".\VSocket.h"\
-	".\VTypes.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncClient.obj" : $(SOURCE) $(DEP_CPP_VNCCL) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCCL=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1152,6 +1095,7 @@ DEP_CPP_VNCCL=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncAcceptDialog.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -1168,7 +1112,6 @@ DEP_CPP_VNCCL=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCCL=\
 	".\vnc.hh"\
@@ -1176,8 +1119,6 @@ NODEP_CPP_VNCCL=\
 
 "$(INTDIR)\vncClient.obj" : $(SOURCE) $(DEP_CPP_VNCCL) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1196,24 +1137,6 @@ SOURCE=.\vncClient.h
 # Begin Source File
 
 SOURCE=.\vncConnDialog.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCCO=\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\stdhdrs.h"\
-	".\vncConnDialog.h"\
-	".\vncServer.h"\
-	".\WinVNC.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncConnDialog.obj" : $(SOURCE) $(DEP_CPP_VNCCO) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCCO=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1224,6 +1147,7 @@ DEP_CPP_VNCCO=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1240,7 +1164,6 @@ DEP_CPP_VNCCO=\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCCO=\
 	".\vnc.hh"\
@@ -1248,8 +1171,6 @@ NODEP_CPP_VNCCO=\
 
 "$(INTDIR)\vncConnDialog.obj" : $(SOURCE) $(DEP_CPP_VNCCO) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1280,29 +1201,6 @@ SOURCE=.\vncCorbaConnect.h
 # Begin Source File
 
 SOURCE=.\vncDesktop.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCDE=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\stdhdrs.h"\
-	".\vncDesktop.h"\
-	".\VNCHooks\VNCHooks.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\vncService.h"\
-	".\WinVNC.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncDesktop.obj" : $(SOURCE) $(DEP_CPP_VNCDE) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCDE=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1313,6 +1211,7 @@ DEP_CPP_VNCDE=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1330,7 +1229,6 @@ DEP_CPP_VNCDE=\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCDE=\
 	".\vnc.hh"\
@@ -1338,8 +1236,6 @@ NODEP_CPP_VNCDE=\
 
 "$(INTDIR)\vncDesktop.obj" : $(SOURCE) $(DEP_CPP_VNCDE) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1358,33 +1254,6 @@ SOURCE=.\vncDesktop.h
 # Begin Source File
 
 SOURCE=.\vncEncodeCoRRE.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCEN=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\MinMax.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncBuffer.h"\
-	".\vncDesktop.h"\
-	".\vncEncodeCoRRE.h"\
-	".\vncEncoder.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncEncodeCoRRE.obj" : $(SOURCE) $(DEP_CPP_VNCEN) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCEN=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1396,6 +1265,7 @@ DEP_CPP_VNCEN=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1411,7 +1281,6 @@ DEP_CPP_VNCEN=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCEN=\
 	".\vnc.hh"\
@@ -1419,8 +1288,6 @@ NODEP_CPP_VNCEN=\
 
 "$(INTDIR)\vncEncodeCoRRE.obj" : $(SOURCE) $(DEP_CPP_VNCEN) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1439,33 +1306,6 @@ SOURCE=.\vncEncodeCoRRE.h
 # Begin Source File
 
 SOURCE=.\vncEncodeHexT.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCENC=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\MinMax.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncBuffer.h"\
-	".\vncDesktop.h"\
-	".\vncEncodeHexT.h"\
-	".\vncEncoder.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncEncodeHexT.obj" : $(SOURCE) $(DEP_CPP_VNCENC) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCENC=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1477,6 +1317,7 @@ DEP_CPP_VNCENC=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1492,7 +1333,6 @@ DEP_CPP_VNCENC=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCENC=\
 	".\vnc.hh"\
@@ -1500,8 +1340,6 @@ NODEP_CPP_VNCENC=\
 
 "$(INTDIR)\vncEncodeHexT.obj" : $(SOURCE) $(DEP_CPP_VNCENC) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1520,31 +1358,6 @@ SOURCE=.\vncEncodeHexT.h
 # Begin Source File
 
 SOURCE=.\vncEncoder.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCENCO=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncBuffer.h"\
-	".\vncDesktop.h"\
-	".\vncEncoder.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncEncoder.obj" : $(SOURCE) $(DEP_CPP_VNCENCO) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCENCO=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1555,6 +1368,7 @@ DEP_CPP_VNCENCO=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1569,7 +1383,6 @@ DEP_CPP_VNCENCO=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCENCO=\
 	".\vnc.hh"\
@@ -1577,8 +1390,6 @@ NODEP_CPP_VNCENCO=\
 
 "$(INTDIR)\vncEncoder.obj" : $(SOURCE) $(DEP_CPP_VNCENCO) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1597,32 +1408,6 @@ SOURCE=.\vncEncoder.h
 # Begin Source File
 
 SOURCE=.\vncEncodeRRE.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCENCOD=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncBuffer.h"\
-	".\vncDesktop.h"\
-	".\vncEncoder.h"\
-	".\vncEncodeRRE.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncEncodeRRE.obj" : $(SOURCE) $(DEP_CPP_VNCENCOD) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCENCOD=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1633,6 +1418,7 @@ DEP_CPP_VNCENCOD=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1648,7 +1434,6 @@ DEP_CPP_VNCENCOD=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCENCOD=\
 	".\vnc.hh"\
@@ -1656,8 +1441,6 @@ NODEP_CPP_VNCENCOD=\
 
 "$(INTDIR)\vncEncodeRRE.obj" : $(SOURCE) $(DEP_CPP_VNCENCOD) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1676,25 +1459,6 @@ SOURCE=.\vncEncodeRRE.h
 # Begin Source File
 
 SOURCE=.\vncHTTPConnect.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCHT=\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\stdhdrs.h"\
-	".\vncHTTPConnect.h"\
-	".\vncServer.h"\
-	".\VSocket.h"\
-	".\VTypes.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncHTTPConnect.obj" : $(SOURCE) $(DEP_CPP_VNCHT) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCHT=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1705,6 +1469,7 @@ DEP_CPP_VNCHT=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1719,7 +1484,6 @@ DEP_CPP_VNCHT=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCHT=\
 	".\vnc.hh"\
@@ -1727,8 +1491,6 @@ NODEP_CPP_VNCHT=\
 
 "$(INTDIR)\vncHTTPConnect.obj" : $(SOURCE) $(DEP_CPP_VNCHT) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1750,8 +1512,8 @@ SOURCE=.\vncInstHandler.cpp
 DEP_CPP_VNCIN=\
 	".\Log.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncInstHandler.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncInstHandler.obj" : $(SOURCE) $(DEP_CPP_VNCIN) "$(INTDIR)"
@@ -1780,9 +1542,9 @@ DEP_CPP_VNCKE=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncKeymap.h"\
 	".\vncService.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncKeymap.obj" : $(SOURCE) $(DEP_CPP_VNCKE) "$(INTDIR)"
@@ -1805,28 +1567,6 @@ SOURCE=.\vncKeymap.h
 # Begin Source File
 
 SOURCE=.\vncMenu.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCME=\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\stdhdrs.h"\
-	".\vncAbout.h"\
-	".\vncConnDialog.h"\
-	".\vncMenu.h"\
-	".\vncProperties.h"\
-	".\vncServer.h"\
-	".\vncService.h"\
-	".\WinVNC.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncMenu.obj" : $(SOURCE) $(DEP_CPP_VNCME) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCME=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1837,6 +1577,7 @@ DEP_CPP_VNCME=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -1857,7 +1598,6 @@ DEP_CPP_VNCME=\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCME=\
 	".\vnc.hh"\
@@ -1865,8 +1605,6 @@ NODEP_CPP_VNCME=\
 
 "$(INTDIR)\vncMenu.obj" : $(SOURCE) $(DEP_CPP_VNCME) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1897,27 +1635,6 @@ SOURCE=.\vncPasswd.h
 # Begin Source File
 
 SOURCE=.\vncProperties.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCPR=\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\stdhdrs.h"\
-	".\vncauth.h"\
-	".\vncPasswd.h"\
-	".\vncProperties.h"\
-	".\vncServer.h"\
-	".\vncService.h"\
-	".\WinVNC.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncProperties.obj" : $(SOURCE) $(DEP_CPP_VNCPR) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCPR=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -1928,6 +1645,7 @@ DEP_CPP_VNCPR=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1945,7 +1663,6 @@ DEP_CPP_VNCPR=\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCPR=\
 	".\vnc.hh"\
@@ -1953,8 +1670,6 @@ NODEP_CPP_VNCPR=\
 
 "$(INTDIR)\vncProperties.obj" : $(SOURCE) $(DEP_CPP_VNCPR) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -1978,8 +1693,8 @@ DEP_CPP_VNCRE=\
 	".\Log.h"\
 	".\RectList.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncRegion.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncRegion.obj" : $(SOURCE) $(DEP_CPP_VNCRE) "$(INTDIR)"
@@ -2002,42 +1717,6 @@ SOURCE=.\vncRegion.h
 # Begin Source File
 
 SOURCE=.\vncServer.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCSE=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncBuffer.h"\
-	".\vncClient.h"\
-	".\vncCorbaConnect.h"\
-	".\vncDesktop.h"\
-	".\vncEncoder.h"\
-	".\vncKeymap.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\vncService.h"\
-	".\vncSockConnect.h"\
-	".\VSocket.h"\
-	".\VTypes.h"\
-	".\WinVNC.h"\
-	".\yvals.h"\
-	
-NODEP_CPP_VNCSE=\
-	".\vnc.hh"\
-	
-
-"$(INTDIR)\vncServer.obj" : $(SOURCE) $(DEP_CPP_VNCSE) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCSE=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -2048,6 +1727,7 @@ DEP_CPP_VNCSE=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -2064,7 +1744,6 @@ DEP_CPP_VNCSE=\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCSE=\
 	".\vnc.hh"\
@@ -2072,8 +1751,6 @@ NODEP_CPP_VNCSE=\
 
 "$(INTDIR)\vncServer.obj" : $(SOURCE) $(DEP_CPP_VNCSE) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -2092,49 +1769,6 @@ SOURCE=.\vncServer.h
 # Begin Source File
 
 SOURCE=.\vncService.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCSER=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncAbout.h"\
-	".\vncauth.h"\
-	".\vncBuffer.h"\
-	".\vncClient.h"\
-	".\vncCorbaConnect.h"\
-	".\vncDesktop.h"\
-	".\vncEncoder.h"\
-	".\vncHTTPConnect.h"\
-	".\vncKeymap.h"\
-	".\vncMenu.h"\
-	".\vncPasswd.h"\
-	".\vncProperties.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\vncService.h"\
-	".\vncSockConnect.h"\
-	".\vncTimedMsgBox.h"\
-	".\VSocket.h"\
-	".\VTypes.h"\
-	".\WinVNC.h"\
-	".\yvals.h"\
-	
-NODEP_CPP_VNCSER=\
-	".\vnc.hh"\
-	
-
-"$(INTDIR)\vncService.obj" : $(SOURCE) $(DEP_CPP_VNCSER) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCSER=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -2145,6 +1779,7 @@ DEP_CPP_VNCSER=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -2165,7 +1800,6 @@ DEP_CPP_VNCSER=\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCSER=\
 	".\vnc.hh"\
@@ -2173,8 +1807,6 @@ NODEP_CPP_VNCSER=\
 
 "$(INTDIR)\vncService.obj" : $(SOURCE) $(DEP_CPP_VNCSER) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -2193,43 +1825,6 @@ SOURCE=.\vncService.h
 # Begin Source File
 
 SOURCE=.\vncSockConnect.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCSO=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncauth.h"\
-	".\vncBuffer.h"\
-	".\vncClient.h"\
-	".\vncCorbaConnect.h"\
-	".\vncDesktop.h"\
-	".\vncEncoder.h"\
-	".\vncHTTPConnect.h"\
-	".\vncKeymap.h"\
-	".\vncPasswd.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\vncSockConnect.h"\
-	".\VSocket.h"\
-	".\VTypes.h"\
-	".\yvals.h"\
-	
-NODEP_CPP_VNCSO=\
-	".\vnc.hh"\
-	
-
-"$(INTDIR)\vncSockConnect.obj" : $(SOURCE) $(DEP_CPP_VNCSO) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCSO=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -2240,6 +1835,7 @@ DEP_CPP_VNCSO=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -2254,7 +1850,6 @@ DEP_CPP_VNCSO=\
 	".\vncSockConnect.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCSO=\
 	".\vnc.hh"\
@@ -2262,8 +1857,6 @@ NODEP_CPP_VNCSO=\
 
 "$(INTDIR)\vncSockConnect.obj" : $(SOURCE) $(DEP_CPP_VNCSO) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -2282,35 +1875,17 @@ SOURCE=.\vncSockConnect.h
 # Begin Source File
 
 SOURCE=.\vncTimedMsgBox.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_VNCTI=\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\stdhdrs.h"\
-	".\vncTimedMsgBox.h"\
-	".\yvals.h"\
-	
-
-"$(INTDIR)\vncTimedMsgBox.obj" : $(SOURCE) $(DEP_CPP_VNCTI) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_VNCTI=\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncTimedMsgBox.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncTimedMsgBox.obj" : $(SOURCE) $(DEP_CPP_VNCTI) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -2332,9 +1907,9 @@ SOURCE=.\VSocket.cpp
 DEP_CPP_VSOCK=\
 	".\Log.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
-	".\yvals.h"\
 	{$(INCLUDE)}"\sys\types.h"\
 	
 
@@ -2370,49 +1945,6 @@ SOURCE=.\VTypes.h
 # Begin Source File
 
 SOURCE=.\WinVNC.cpp
-
-!IF  "$(CFG)" == "wvncmips - Win32 Release"
-
-DEP_CPP_WINVN=\
-	"..\STL\list"\
-	".\Log.h"\
-	".\omnithread\omnithread.h"\
-	".\RectList.h"\
-	".\rfb.h"\
-	".\rfbproto.h"\
-	".\stdhdrs.h"\
-	".\translate.h"\
-	".\vncAbout.h"\
-	".\vncauth.h"\
-	".\vncBuffer.h"\
-	".\vncClient.h"\
-	".\vncCorbaConnect.h"\
-	".\vncDesktop.h"\
-	".\vncEncoder.h"\
-	".\vncHTTPConnect.h"\
-	".\vncInstHandler.h"\
-	".\vncKeymap.h"\
-	".\vncMenu.h"\
-	".\vncPasswd.h"\
-	".\vncProperties.h"\
-	".\vncRegion.h"\
-	".\vncServer.h"\
-	".\vncService.h"\
-	".\vncSockConnect.h"\
-	".\VSocket.h"\
-	".\VTypes.h"\
-	".\WinVNC.h"\
-	".\yvals.h"\
-	
-NODEP_CPP_WINVN=\
-	".\vnc.hh"\
-	
-
-"$(INTDIR)\WinVNC.obj" : $(SOURCE) $(DEP_CPP_WINVN) "$(INTDIR)"
-
-
-!ELSEIF  "$(CFG)" == "wvncmips - Win32 Debug"
-
 DEP_CPP_WINVN=\
 	"..\STL\list"\
 	".\Log.h"\
@@ -2423,6 +1955,7 @@ DEP_CPP_WINVN=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
+	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -2443,7 +1976,6 @@ DEP_CPP_WINVN=\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	".\WinVNC.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_WINVN=\
 	".\vnc.hh"\
@@ -2451,8 +1983,6 @@ NODEP_CPP_WINVN=\
 
 "$(INTDIR)\WinVNC.obj" : $(SOURCE) $(DEP_CPP_WINVN) "$(INTDIR)"
 
-
-!ENDIF 
 
 # End Source File
 ################################################################################
@@ -2494,7 +2024,7 @@ DEP_RSC_WINVNC=\
 ################################################################################
 # Begin Source File
 
-SOURCE=.\YVALS.H
+SOURCE=.\yvals.h
 
 !IF  "$(CFG)" == "wvncmips - Win32 Release"
 

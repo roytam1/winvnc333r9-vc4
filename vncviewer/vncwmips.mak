@@ -77,6 +77,7 @@ CLEAN :
 	-@erase "$(INTDIR)\MRU.obj"
 	-@erase "$(INTDIR)\SessionDialog.obj"
 	-@erase "$(INTDIR)\stdhdrs.obj"
+	-@erase "$(INTDIR)\vc40.pdb"
 	-@erase "$(INTDIR)\vncauth.obj"
 	-@erase "$(INTDIR)\VNCOptions.obj"
 	-@erase "$(INTDIR)\vncviewer.obj"
@@ -84,6 +85,7 @@ CLEAN :
 	-@erase "$(INTDIR)\VNCviewerApp.obj"
 	-@erase "$(INTDIR)\VNCviewerApp32.obj"
 	-@erase "$(OUTDIR)\vncwmips.exe"
+	-@erase "$(OUTDIR)\vncwmips.pdb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -94,10 +96,11 @@ MTL=mktyplib.exe
 MTL_PROJ=/nologo /D "NDEBUG" /mips 
 CPP=cl.exe
 # ADD BASE CPP /nologo /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "__WIN32__" /D "_OMNITHREAD_DLL" /YX /c
-CPP_PROJ=/nologo /ML /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "omnithread" /D\
+# ADD CPP /nologo /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "__WIN32__" /D "_OMNITHREAD_DLL" /YX /c
+CPP_PROJ=/nologo /ML /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "__WIN32__" /D\
- "_OMNITHREAD_DLL" /Fp"$(INTDIR)/vncwmips.pch" /YX /Fo"$(INTDIR)/" /c 
+ "_OMNITHREAD_DLL" /Fp"$(INTDIR)/vncwmips.pch" /YX /Fo"$(INTDIR)/"\
+ /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\MIPSRel/
 CPP_SBRS=.\.
 
@@ -125,11 +128,12 @@ RSC=rc.exe
 RSC_PROJ=/l 0x411 /fo"$(INTDIR)/vncviewer.res" /d "NDEBUG" 
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:MIPS
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo /subsystem:windows /machine:MIPS
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo /subsystem:windows /debug /machine:MIPS
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib wsock32.lib winmm.lib /nologo /subsystem:windows /incremental:no\
- /pdb:"$(OUTDIR)/vncwmips.pdb" /machine:MIPS /out:"$(OUTDIR)/vncwmips.exe" 
+ /pdb:"$(OUTDIR)/vncwmips.pdb" /debug /machine:MIPS\
+ /out:"$(OUTDIR)/vncwmips.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\AboutBox.obj" \
 	"$(INTDIR)\AuthDialog.obj" \
@@ -327,9 +331,11 @@ ALL : "$(OUTDIR)\othdmips.dll"
 
 CLEAN : 
 	-@erase "$(INTDIR)\nt.obj"
+	-@erase "$(INTDIR)\vc40.pdb"
 	-@erase "$(OUTDIR)\othdmips.dll"
 	-@erase "$(OUTDIR)\othdmips.exp"
 	-@erase "$(OUTDIR)\othdmips.lib"
+	-@erase "$(OUTDIR)\othdmips.pdb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -340,10 +346,11 @@ MTL=mktyplib.exe
 MTL_PROJ=/nologo /D "NDEBUG" /mips 
 CPP=cl.exe
 # ADD BASE CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "__WIN32__" /D "_OMNITHREAD_DLL" /YX /c
-CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /I "." /I "omnithread" /D\
+# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "__WIN32__" /D "_OMNITHREAD_DLL" /YX /c
+CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "__WIN32__" /D\
- "_OMNITHREAD_DLL" /Fp"$(INTDIR)/othdmips.pch" /YX /Fo"$(INTDIR)/" /c 
+ "_OMNITHREAD_DLL" /Fp"$(INTDIR)/othdmips.pch" /YX /Fo"$(INTDIR)/"\
+ /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\othdmips\MIPSRel/
 CPP_SBRS=.\.
 
@@ -370,12 +377,12 @@ RSC=rc.exe
 # ADD RSC /l 0x411 /d "NDEBUG"
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:MIPS
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:MIPS
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:MIPS
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/othdmips.pdb" /machine:MIPS /out:"$(OUTDIR)/othdmips.dll"\
- /implib:"$(OUTDIR)/othdmips.lib" 
+ /pdb:"$(OUTDIR)/othdmips.pdb" /debug /machine:MIPS\
+ /out:"$(OUTDIR)/othdmips.dll" /implib:"$(OUTDIR)/othdmips.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
 
@@ -550,10 +557,10 @@ DEP_CPP_AUTHD=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_AUTHD=\
 	".\omnithreadce.h"\
@@ -594,11 +601,11 @@ DEP_CPP_CLIEN=\
 	".\rfbproto.h"\
 	".\SessionDialog.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIEN=\
 	".\omnithreadce.h"\
@@ -635,10 +642,10 @@ DEP_CPP_CLIENT=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENT=\
 	".\omnithreadce.h"\
@@ -663,10 +670,10 @@ DEP_CPP_CLIENTC=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTC=\
 	".\omnithreadce.h"\
@@ -691,10 +698,10 @@ DEP_CPP_CLIENTCO=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCO=\
 	".\omnithreadce.h"\
@@ -720,11 +727,11 @@ DEP_CPP_CLIENTCON=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCON=\
 	".\omnithreadce.h"\
@@ -749,10 +756,10 @@ DEP_CPP_CLIENTCONN=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONN=\
 	".\omnithreadce.h"\
@@ -777,10 +784,10 @@ DEP_CPP_CLIENTCONNE=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONNE=\
 	".\omnithreadce.h"\
@@ -805,10 +812,10 @@ DEP_CPP_CLIENTCONNEC=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONNEC=\
 	".\omnithreadce.h"\
@@ -833,10 +840,10 @@ DEP_CPP_CLIENTCONNECT=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_CLIENTCONNECT=\
 	".\omnithreadce.h"\
@@ -888,10 +895,10 @@ DEP_CPP_DAEMO=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_DAEMO=\
 	".\omnithreadce.h"\
@@ -920,7 +927,7 @@ SOURCE=.\Exception.cpp
 DEP_CPP_EXCEP=\
 	".\Exception.h"\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\Exception.obj" : $(SOURCE) $(DEP_CPP_EXCEP) "$(INTDIR)"
@@ -955,10 +962,10 @@ DEP_CPP_FLASH=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_FLASH=\
 	".\omnithreadce.h"\
@@ -994,10 +1001,10 @@ DEP_CPP_KEYMA=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_KEYMA=\
 	".\omnithreadce.h"\
@@ -1038,7 +1045,7 @@ SOURCE=.\Log.cpp
 DEP_CPP_LOG_C=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\Log.obj" : $(SOURCE) $(DEP_CPP_LOG_C) "$(INTDIR)"
@@ -1122,10 +1129,10 @@ DEP_CPP_SESSI=\
 	".\rfbproto.h"\
 	".\SessionDialog.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_SESSI=\
 	".\omnithreadce.h"\
@@ -1153,7 +1160,7 @@ SOURCE=.\SessionDialog.h
 SOURCE=.\stdhdrs.cpp
 DEP_CPP_STDHD=\
 	".\stdhdrs.h"\
-	".\yvals.h"\
+	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\stdhdrs.obj" : $(SOURCE) $(DEP_CPP_STDHD) "$(INTDIR)"
@@ -1179,8 +1186,8 @@ SOURCE=.\vncauth.c
 DEP_CPP_VNCAU=\
 	".\d3des.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\vncauth.h"\
-	".\yvals.h"\
 	
 
 "$(INTDIR)\vncauth.obj" : $(SOURCE) $(DEP_CPP_VNCAU) "$(INTDIR)"
@@ -1214,10 +1221,10 @@ DEP_CPP_VNCOP=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCOP=\
 	".\omnithreadce.h"\
@@ -1256,11 +1263,11 @@ DEP_CPP_VNCVI=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
 	".\VNCviewerApp32.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCVI=\
 	".\omnithreadce.h"\
@@ -1297,10 +1304,10 @@ DEP_CPP_VNCVIE=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCVIE=\
 	".\omnithreadce.h"\
@@ -1339,11 +1346,11 @@ DEP_CPP_VNCVIEW=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
 	".\VNCviewerApp32.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_VNCVIEW=\
 	".\omnithreadce.h"\
@@ -1379,10 +1386,10 @@ DEP_CPP_ABOUT=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
+	".\vc4yvals.h"\
 	".\VNCOptions.h"\
 	".\vncviewer.h"\
 	".\VNCviewerApp.h"\
-	".\yvals.h"\
 	
 NODEP_CPP_ABOUT=\
 	".\omnithreadce.h"\
