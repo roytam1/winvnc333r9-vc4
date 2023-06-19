@@ -49,7 +49,7 @@ void ClientConnection::SetFullScreenMode(bool enable)
 // SetFullScreenMode, you need to call this to make it happen.
 void ClientConnection::RealiseFullScreenMode()
 {
-	LONG style = GetWindowLong(m_hwnd, GWL_STYLE);
+	LONG style = GetWindowLongPtr(m_hwnd, GWL_STYLE);
 	if (m_opts.m_FullScreen) {
 
 		// A bit crude here - we can skip the prompt on a registry setting.
@@ -76,9 +76,9 @@ void ClientConnection::RealiseFullScreenMode()
 				MB_OK | MB_ICONINFORMATION | MB_TOPMOST | MB_SETFOREGROUND);
 
 		ShowWindow(m_hwnd, SW_MAXIMIZE);
-		style = GetWindowLong(m_hwnd, GWL_STYLE);
+		style = GetWindowLongPtr(m_hwnd, GWL_STYLE);
 		style &= ~(WS_DLGFRAME | WS_THICKFRAME);
-		SetWindowLong(m_hwnd, GWL_STYLE, style);
+		SetWindowLongPtr(m_hwnd, GWL_STYLE, style);
 		int cx = GetSystemMetrics(SM_CXSCREEN);
 		int cy = GetSystemMetrics(SM_CYSCREEN);
 		SetWindowPos(m_hwnd, HWND_TOPMOST, -1, -1, cx+3, cy+3, SWP_FRAMECHANGED);
@@ -86,7 +86,7 @@ void ClientConnection::RealiseFullScreenMode()
 
 	} else {
 		style |= WS_DLGFRAME | WS_THICKFRAME;
-		SetWindowLong(m_hwnd, GWL_STYLE, style);
+		SetWindowLongPtr(m_hwnd, GWL_STYLE, style);
 		SetWindowPos(m_hwnd, HWND_NOTOPMOST, 0,0,100,100, SWP_NOMOVE | SWP_NOSIZE);
 		ShowWindow(m_hwnd, SW_NORMAL);
 		CheckMenuItem(GetSystemMenu(m_hwnd, FALSE), ID_FULLSCREEN, MF_BYCOMMAND|MF_UNCHECKED);

@@ -1,31 +1,31 @@
 # Microsoft Developer Studio Generated NMAKE File, Format Version 4.10
 # ** DO NOT EDIT **
 
-# TARGTYPE "Win32 (x86) Application" 0x0101
-# TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
+# TARGTYPE "Win64 (AMD64) Application" 0x0101
+# TARGTYPE "Win64 (AMD64) Dynamic-Link Library" 0x0102
 
 !IF "$(CFG)" == ""
-CFG=omnithread - Win32 Debug
-!MESSAGE No configuration specified.  Defaulting to omnithread - Win32 Debug.
+CFG=vncviewer - Win64 Release
+!MESSAGE No configuration specified.  Defaulting to vncviewer - Win64 Release.
 !ENDIF 
 
-!IF "$(CFG)" != "vncviewer - Win32 Release" && "$(CFG)" !=\
- "vncviewer - Win32 Debug" && "$(CFG)" != "omnithread - Win32 Release" &&\
- "$(CFG)" != "omnithread - Win32 Debug"
+!IF "$(CFG)" != "vncviewer - Win64 Release" && "$(CFG)" !=\
+ "vncviewer - Win64 Debug" && "$(CFG)" != "omnithread - Win64 Release" &&\
+ "$(CFG)" != "omnithread - Win64 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
 !MESSAGE by defining the macro CFG on the command line.  For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "vncviewer.mak" CFG="omnithread - Win32 Debug"
+!MESSAGE NMAKE /f "vncviewer-amd64.mak" CFG="omnithread - Win64 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "vncviewer - Win32 Release" (based on "Win32 (x86) Application")
-!MESSAGE "vncviewer - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE "omnithread - Win32 Release" (based on\
- "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "omnithread - Win32 Debug" (based on\
- "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "vncviewer - Win64 Release" (based on "Win64 (AMD64) Application")
+!MESSAGE "vncviewer - Win64 Debug" (based on "Win64 (AMD64) Application")
+!MESSAGE "omnithread - Win64 Release" (based on\
+ "Win64 (AMD64) Dynamic-Link Library")
+!MESSAGE "omnithread - Win64 Debug" (based on\
+ "Win64 (AMD64) Dynamic-Link Library")
 !MESSAGE 
 !ERROR An invalid configuration is specified.
 !ENDIF 
@@ -37,9 +37,9 @@ NULL=nul
 !ENDIF 
 ################################################################################
 # Begin Project
-# PROP Target_Last_Scanned "vncviewer - Win32 Release"
+# PROP Target_Last_Scanned "vncviewer - Win64 Release"
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -54,7 +54,7 @@ NULL=nul
 OUTDIR=.\Release
 INTDIR=.\Release
 
-ALL : "omnithread - Win32 Release" "$(OUTDIR)\vncviewer.exe"\
+ALL : "omnithread - Win64 Release" "$(OUTDIR)\vncviewer.exe"\
  "$(OUTDIR)\vncviewer.bsc"
 
 CLEAN : 
@@ -202,12 +202,12 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 omnithread/Release/omnithread.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo /subsystem:windows /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:AMD64
+# ADD LINK32 omnithread/Release/omnithread.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo /subsystem:windows /machine:AMD64
 LINK32_FLAGS=omnithread/Release/omnithread.lib kernel32.lib user32.lib\
  gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib\
  oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo\
- /subsystem:windows /incremental:no /pdb:"$(OUTDIR)/vncviewer.pdb" /machine:I386\
+ /subsystem:windows /incremental:no /pdb:"$(OUTDIR)/vncviewer.pdb" /machine:AMD64\
  /out:"$(OUTDIR)/vncviewer.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\AboutBox.obj" \
@@ -243,7 +243,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -258,7 +258,7 @@ LINK32_OBJS= \
 OUTDIR=.\Debug
 INTDIR=.\Debug
 
-ALL : "omnithread - Win32 Debug" "$(OUTDIR)\vncviewer.exe"\
+ALL : "omnithread - Win64 Debug" "$(OUTDIR)\vncviewer.exe"\
  "$(OUTDIR)\vncviewer.bsc"
 
 CLEAN : 
@@ -412,13 +412,13 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386
-# ADD LINK32 omnithread/Debug/omnithread.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:AMD64
+# ADD LINK32 omnithread/Debug/omnithread.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo /subsystem:windows /debug /machine:AMD64
 LINK32_FLAGS=omnithread/Debug/omnithread.lib kernel32.lib user32.lib gdi32.lib\
  winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib\
  uuid.lib odbc32.lib odbccp32.lib wsock32.lib winmm.lib /nologo\
  /subsystem:windows /incremental:yes /pdb:"$(OUTDIR)/vncviewer.pdb" /debug\
- /machine:I386 /out:"$(OUTDIR)/vncviewer.exe" 
+ /machine:AMD64 /out:"$(OUTDIR)/vncviewer.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\AboutBox.obj" \
 	"$(INTDIR)\AuthDialog.obj" \
@@ -453,7 +453,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Release"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -535,12 +535,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/omnithread.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:AMD64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:AMD64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/omnithread.pdb" /machine:I386 /out:"$(OUTDIR)/omnithread.dll"\
+ /pdb:"$(OUTDIR)/omnithread.pdb" /machine:AMD64 /out:"$(OUTDIR)/omnithread.dll"\
  /implib:"$(OUTDIR)/omnithread.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
@@ -550,7 +550,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -637,12 +637,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/omnithread.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:AMD64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:AMD64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)/omnithread.pdb" /debug /machine:I386\
+ /pdb:"$(OUTDIR)/omnithread.pdb" /debug /machine:AMD64\
  /out:"$(OUTDIR)/omnithread.dll" /implib:"$(OUTDIR)/omnithread.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
@@ -657,12 +657,12 @@ LINK32_OBJS= \
 ################################################################################
 # Begin Target
 
-# Name "vncviewer - Win32 Release"
-# Name "vncviewer - Win32 Debug"
+# Name "vncviewer - Win64 Release"
+# Name "vncviewer - Win64 Debug"
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -671,9 +671,9 @@ LINK32_OBJS= \
 
 SOURCE=.\VNCviewerApp32.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -683,9 +683,9 @@ SOURCE=.\VNCviewerApp32.h
 
 SOURCE=.\AboutBox.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -695,7 +695,7 @@ SOURCE=.\AboutBox.h
 
 SOURCE=.\AuthDialog.cpp
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
 DEP_CPP_AUTHD=\
 	".\AuthDialog.h"\
@@ -723,7 +723,7 @@ NODEP_CPP_AUTHD=\
 "$(INTDIR)\AuthDialog.sbr" : $(SOURCE) $(DEP_CPP_AUTHD) "$(INTDIR)"
 
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 DEP_CPP_AUTHD=\
 	".\AuthDialog.h"\
@@ -759,9 +759,9 @@ NODEP_CPP_AUTHD=\
 
 SOURCE=.\AuthDialog.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -771,7 +771,7 @@ SOURCE=.\AuthDialog.h
 
 SOURCE=.\ClientConnection.cpp
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
 DEP_CPP_CLIEN=\
 	".\AboutBox.h"\
@@ -803,7 +803,7 @@ NODEP_CPP_CLIEN=\
 "$(INTDIR)\ClientConnection.sbr" : $(SOURCE) $(DEP_CPP_CLIEN) "$(INTDIR)"
 
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 DEP_CPP_CLIEN=\
 	".\AboutBox.h"\
@@ -843,9 +843,9 @@ NODEP_CPP_CLIEN=\
 
 SOURCE=.\ClientConnection.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1120,9 +1120,9 @@ DEP_CPP_D3DES=\
 
 SOURCE=.\d3des.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1164,9 +1164,9 @@ NODEP_CPP_DAEMO=\
 
 SOURCE=.\Daemon.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1192,9 +1192,9 @@ DEP_CPP_EXCEP=\
 
 SOURCE=.\Exception.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1235,9 +1235,9 @@ NODEP_CPP_FLASH=\
 
 SOURCE=.\Flasher.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1276,9 +1276,9 @@ NODEP_CPP_KEYMA=\
 
 SOURCE=.\KeyMap.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1288,9 +1288,9 @@ SOURCE=.\KeyMap.h
 
 SOURCE=.\keysymdef.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1316,9 +1316,9 @@ DEP_CPP_LOG_C=\
 
 SOURCE=.\Log.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1342,9 +1342,9 @@ DEP_CPP_MRU_C=\
 
 SOURCE=.\MRU.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1354,9 +1354,9 @@ SOURCE=.\MRU.h
 
 SOURCE=.\rfb.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1366,9 +1366,9 @@ SOURCE=.\rfb.h
 
 SOURCE=.\rfbproto.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1410,9 +1410,9 @@ NODEP_CPP_SESSI=\
 
 SOURCE=.\SessionDialog.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1437,9 +1437,9 @@ DEP_CPP_STDHD=\
 
 SOURCE=.\stdhdrs.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1466,9 +1466,9 @@ DEP_CPP_VNCAU=\
 
 SOURCE=.\vncauth.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1508,9 +1508,9 @@ NODEP_CPP_VNCOP=\
 
 SOURCE=.\VNCOptions.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1553,9 +1553,9 @@ NODEP_CPP_VNCVI=\
 
 SOURCE=.\vncviewer.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1595,9 +1595,9 @@ NODEP_CPP_VNCVIE=\
 
 SOURCE=.\VNCviewerApp.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1669,9 +1669,9 @@ NODEP_CPP_ABOUT=\
 
 SOURCE=.\res\resource.h
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 !ENDIF 
 
@@ -1689,14 +1689,14 @@ DEP_RSC_VNCVIEWE=\
 	".\res\vncviewer.ico"\
 	
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
 
 "$(INTDIR)\vncviewer.res" : $(SOURCE) $(DEP_RSC_VNCVIEWE) "$(INTDIR)"
    $(RSC) /l 0x411 /fo"$(INTDIR)/vncviewer.res" /i "res" /d "NDEBUG" $(SOURCE)
 
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
 
 "$(INTDIR)\vncviewer.res" : $(SOURCE) $(DEP_RSC_VNCVIEWE) "$(INTDIR)"
@@ -1711,15 +1711,15 @@ DEP_RSC_VNCVIEWE=\
 
 # Project_Dep_Name "omnithread"
 
-!IF  "$(CFG)" == "vncviewer - Win32 Release"
+!IF  "$(CFG)" == "vncviewer - Win64 Release"
 
-"omnithread - Win32 Release" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\vncviewer.mak" CFG="omnithread - Win32 Release" 
+"omnithread - Win64 Release" : 
+   $(MAKE) /$(MAKEFLAGS) /F ".\vncviewer-amd64.mak" CFG="omnithread - Win64 Release" 
 
-!ELSEIF  "$(CFG)" == "vncviewer - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vncviewer - Win64 Debug"
 
-"omnithread - Win32 Debug" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\vncviewer.mak" CFG="omnithread - Win32 Debug" 
+"omnithread - Win64 Debug" : 
+   $(MAKE) /$(MAKEFLAGS) /F ".\vncviewer-amd64.mak" CFG="omnithread - Win64 Debug" 
 
 !ENDIF 
 
@@ -1728,12 +1728,12 @@ DEP_RSC_VNCVIEWE=\
 ################################################################################
 # Begin Target
 
-# Name "omnithread - Win32 Release"
-# Name "omnithread - Win32 Debug"
+# Name "omnithread - Win64 Release"
+# Name "omnithread - Win64 Debug"
 
-!IF  "$(CFG)" == "omnithread - Win32 Release"
+!IF  "$(CFG)" == "omnithread - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 !ENDIF 
 
@@ -1742,9 +1742,9 @@ DEP_RSC_VNCVIEWE=\
 
 SOURCE=.\omnithread\omnithread.h
 
-!IF  "$(CFG)" == "omnithread - Win32 Release"
+!IF  "$(CFG)" == "omnithread - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 !ENDIF 
 
@@ -1768,9 +1768,9 @@ DEP_CPP_NT_CP=\
 
 SOURCE=.\omnithread\omnithread\nt.h
 
-!IF  "$(CFG)" == "omnithread - Win32 Release"
+!IF  "$(CFG)" == "omnithread - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 !ENDIF 
 

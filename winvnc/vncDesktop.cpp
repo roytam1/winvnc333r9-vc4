@@ -843,7 +843,7 @@ vncDesktop::InitWindow()
 		return FALSE;
 
 	// Set the "this" pointer for the window
-	SetWindowLong(m_hwnd, GWL_USERDATA, (long)this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (long)this);
 
 	// Enable clipboard hooking
 	m_hnextviewer = SetClipboardViewer(m_hwnd);
@@ -1251,7 +1251,7 @@ vncDesktop::CalcCopyRects()
 LRESULT CALLBACK
 DesktopWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
-	vncDesktop *_this = (vncDesktop*)GetWindowLong(hwnd, GWL_USERDATA);
+	vncDesktop *_this = (vncDesktop*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (iMsg)
 	{

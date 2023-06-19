@@ -47,7 +47,7 @@ const UINT ignorekeymap[] = {
 
 const vncKeymapping keymap[] = {
     {'`',		XK_dead_grave},
-    {'´',		XK_dead_acute},
+    {0xb4,		XK_dead_acute},
     {'~',		XK_dead_tilde},
     {'^',		XK_dead_circumflex},
     {VK_BACK,		XK_BackSpace},

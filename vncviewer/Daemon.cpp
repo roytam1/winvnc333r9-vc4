@@ -69,7 +69,7 @@ Daemon::Daemon(int port)
 				NULL);
 	
 	// record which client created this window
-	SetWindowLong(m_hwnd, GWL_USERDATA, (LONG) this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG) this);
 
 	// Load a popup menu
 	m_hmenu = LoadMenu(pApp->m_instance, MAKEINTRESOURCE(IDR_TRAYMENU));
@@ -152,7 +152,7 @@ LRESULT CALLBACK Daemon::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 	// This is a static method, so we don't know which instantiation we're 
 	// dealing with. We have stored a pseudo-this in the window user data, 
 	// though.
-	Daemon *_this = (Daemon *) GetWindowLong(hwnd, GWL_USERDATA);
+	Daemon *_this = (Daemon *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (iMsg) {
 

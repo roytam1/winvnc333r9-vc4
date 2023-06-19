@@ -513,13 +513,13 @@ BOOL CALLBACK VNCOptions::OptDlgProc(  HWND hwnd,  UINT uMsg,
 	// dealing with. But we can get a pseudo-this from the parameter to 
 	// WM_INITDIALOG, which we therafter store with the window and retrieve
 	// as follows:
-	VNCOptions *_this = (VNCOptions *) GetWindowLong(hwnd, GWL_USERDATA);
+	VNCOptions *_this = (VNCOptions *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 	
 	switch (uMsg) {
 		
 	case WM_INITDIALOG:
 		{
-			SetWindowLong(hwnd, GWL_USERDATA, lParam);
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, lParam);
 			_this = (VNCOptions *) lParam;
 			// Initialise the controls
 			for (int i = rfbEncodingRaw; i <= LASTENCODING; i++) {

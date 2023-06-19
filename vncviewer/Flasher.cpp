@@ -71,7 +71,7 @@ Flasher::Flasher(int port)
 				NULL);
 	
 	// record which client created this window
-	SetWindowLong(m_hwnd, GWL_USERDATA, (LONG) this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG) this);
 
 	// Select a font for displaying user name
 	LOGFONT lf;
@@ -147,7 +147,7 @@ LRESULT CALLBACK Flasher::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	// This is a static method, so we don't know which instantiation we're 
 	// dealing with. We use Allen Hadden's (ahadden@taratec.com) suggestion 
 	// from a newsgroup to get the pseudo-this.
-	Flasher *_this = (Flasher *) GetWindowLong(hwnd, GWL_USERDATA);
+	Flasher *_this = (Flasher *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (iMsg) {
 

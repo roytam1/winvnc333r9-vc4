@@ -1,0 +1,76 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VNCHooks", "VNCHooks\VNCHooks.vcproj", "{CE694B12-9CD0-43AB-B91F-75D600BA2474}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinVNC", "WinVNC.vcproj", "{5C27500A-DA03-4545-BFF0-4DD65908878E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C} = {22A21E37-F765-471E-8EFC-55004AEC3A6C}
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474} = {CE694B12-9CD0-43AB-B91F-75D600BA2474}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "omnithread", "omnithread\omnithread.vcproj", "{22A21E37-F765-471E-8EFC-55004AEC3A6C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Alpha Debug No_CORBA = Alpha Debug No_CORBA
+		Alpha No_CORBA = Alpha No_CORBA
+		Debug = Debug
+		No_CORBA = No_CORBA
+		Profile = Profile
+		Purify = Purify
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Alpha Debug No_CORBA.ActiveCfg = Alpha Debug No_CORBA|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Alpha Debug No_CORBA.Build.0 = Alpha Debug No_CORBA|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Alpha No_CORBA.ActiveCfg = Alpha No_CORBA|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Alpha No_CORBA.Build.0 = Alpha No_CORBA|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Debug.ActiveCfg = Debug|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Debug.Build.0 = Debug|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.No_CORBA.ActiveCfg = No_CORBA|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.No_CORBA.Build.0 = No_CORBA|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Profile.ActiveCfg = Profile|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Profile.Build.0 = Profile|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Purify.ActiveCfg = Purify|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Purify.Build.0 = Purify|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Release.ActiveCfg = Release|Win32
+		{CE694B12-9CD0-43AB-B91F-75D600BA2474}.Release.Build.0 = Release|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Alpha Debug No_CORBA.ActiveCfg = Alpha Debug No_CORBA|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Alpha Debug No_CORBA.Build.0 = Alpha Debug No_CORBA|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Alpha No_CORBA.ActiveCfg = Alpha No_CORBA|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Alpha No_CORBA.Build.0 = Alpha No_CORBA|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Debug.ActiveCfg = Debug|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Debug.Build.0 = Debug|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.No_CORBA.ActiveCfg = No_CORBA|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.No_CORBA.Build.0 = No_CORBA|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Profile.ActiveCfg = Profile|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Profile.Build.0 = Profile|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Purify.ActiveCfg = Purify|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Purify.Build.0 = Purify|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Release.ActiveCfg = Release|Win32
+		{5C27500A-DA03-4545-BFF0-4DD65908878E}.Release.Build.0 = Release|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Alpha Debug No_CORBA.ActiveCfg = Alpha Debug No_CORBA|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Alpha Debug No_CORBA.Build.0 = Alpha Debug No_CORBA|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Alpha No_CORBA.ActiveCfg = Alpha No_CORBA|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Alpha No_CORBA.Build.0 = Alpha No_CORBA|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Debug.ActiveCfg = Debug|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Debug.Build.0 = Debug|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.No_CORBA.ActiveCfg = No_CORBA|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.No_CORBA.Build.0 = No_CORBA|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Profile.ActiveCfg = Profile|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Profile.Build.0 = Profile|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Purify.ActiveCfg = Purify|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Purify.Build.0 = Purify|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Release.ActiveCfg = Release|Win32
+		{22A21E37-F765-471E-8EFC-55004AEC3A6C}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

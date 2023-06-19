@@ -106,7 +106,7 @@ vncMenu::vncMenu(vncServer *server)
 	SetTimer(m_hwnd, 1, 5000, NULL);
 
 	// record which client created this window
-	SetWindowLong(m_hwnd, GWL_USERDATA, (LONG) this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG) this);
 
 	// Ask the server object to notify us of stuff
 	server->AddNotify(m_hwnd);
@@ -259,7 +259,7 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 	// This is a static method, so we don't know which instantiation we're 
 	// dealing with. We use Allen Hadden's (ahadden@taratec.com) suggestion 
 	// from a newsgroup to get the pseudo-this.
-	vncMenu *_this = (vncMenu *) GetWindowLong(hwnd, GWL_USERDATA);
+	vncMenu *_this = (vncMenu *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (iMsg)
 	{

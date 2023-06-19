@@ -57,13 +57,13 @@ BOOL CALLBACK SessionDialog::SessDlgProc(  HWND hwnd,  UINT uMsg,  WPARAM wParam
 	// dealing with. But we can get a pseudo-this from the parameter to 
 	// WM_INITDIALOG, which we therafter store with the window and retrieve
 	// as follows:
-	SessionDialog *_this = (SessionDialog *) GetWindowLong(hwnd, GWL_USERDATA);
+	SessionDialog *_this = (SessionDialog *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (uMsg) {
 
 	case WM_INITDIALOG:
 		{
-            SetWindowLong(hwnd, GWL_USERDATA, lParam);
+            SetWindowLongPtr(hwnd, GWLP_USERDATA, lParam);
             SessionDialog *_this = (SessionDialog *) lParam;
             CentreWindow(hwnd);
             // Set up recently-used list

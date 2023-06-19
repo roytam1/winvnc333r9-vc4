@@ -68,7 +68,7 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 	// dealing with. But we can get a pseudo-this from the parameter to 
 	// WM_INITDIALOG, which we therafter store with the window and retrieve
 	// as follows:
-	vncAcceptDialog *_this = (vncAcceptDialog *) GetWindowLong(hwnd, GWL_USERDATA);
+	vncAcceptDialog *_this = (vncAcceptDialog *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (uMsg) {
 
@@ -78,7 +78,7 @@ BOOL CALLBACK vncAcceptDialog::vncAcceptDlgProc(HWND hwnd,
 			// Save the lParam into our user data so that subsequent calls have
 			// access to the parent C++ object
 
-            SetWindowLong(hwnd, GWL_USERDATA, lParam);
+            SetWindowLongPtr(hwnd, GWLP_USERDATA, lParam);
             vncAcceptDialog *_this = (vncAcceptDialog *) lParam;
 
 			// Set the IP-address string

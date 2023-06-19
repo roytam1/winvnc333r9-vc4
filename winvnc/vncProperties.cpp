@@ -205,7 +205,7 @@ vncProperties::DialogProc(HWND hwnd,
 {
 	// We use the dialog-box's USERDATA to store a _this pointer
 	// This is set only once WM_INITDIALOG has been recieved, though!
-	vncProperties *_this = (vncProperties *) GetWindowLong(hwnd, GWL_USERDATA);
+	vncProperties *_this = (vncProperties *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (uMsg)
 	{
@@ -214,7 +214,7 @@ vncProperties::DialogProc(HWND hwnd,
 		{
 			// Retrieve the Dialog box parameter and use it as a pointer
 			// to the calling vncProperties object
-			SetWindowLong(hwnd, GWL_USERDATA, lParam);
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, lParam);
 			_this = (vncProperties *) lParam;
 
 			// Set the dialog box's title to indicate which Properties we're editting

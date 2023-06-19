@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "omnithread", "omnithread\omnithread.vcproj", "{048C04E9-37EE-4B57-A29A-A40483E46063}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vncviewer", "vncviewer.vcproj", "{2DE484CC-24B6-4154-BF57-A36F73C25C46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{048C04E9-37EE-4B57-A29A-A40483E46063} = {048C04E9-37EE-4B57-A29A-A40483E46063}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Profile = Profile
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Debug.ActiveCfg = Debug|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Debug.Build.0 = Debug|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Profile.ActiveCfg = Release|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Profile.Build.0 = Release|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Release.ActiveCfg = Release|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Release.Build.0 = Release|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Debug.ActiveCfg = Debug|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Debug.Build.0 = Debug|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Profile.ActiveCfg = Profile|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Profile.Build.0 = Profile|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Release.ActiveCfg = Release|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

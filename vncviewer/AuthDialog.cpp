@@ -54,13 +54,13 @@ BOOL CALLBACK AuthDialog::DlgProc(  HWND hwnd,  UINT uMsg,
 	// dealing with. But we can get a pseudo-this from the parameter to 
 	// WM_INITDIALOG, which we therafter store with the window and retrieve
 	// as follows:
-	AuthDialog *_this = (AuthDialog *) GetWindowLong(hwnd, GWL_USERDATA);
+	AuthDialog *_this = (AuthDialog *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (uMsg) {
 
 	case WM_INITDIALOG:
 		{
-			SetWindowLong(hwnd, GWL_USERDATA, lParam);
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, lParam);
 			_this = (AuthDialog *) lParam;
 			CentreWindow(hwnd);
 			return TRUE;

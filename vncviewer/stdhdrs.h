@@ -41,7 +41,8 @@
 
 #if defined(_MSC_VER) && _MSC_VER < 1100
 // bool/true/false support
-#include <yvals.h>
+#include <vc4yvals.h>
+#endif
 
 // winsock.h
 #ifndef SD_BOTH
@@ -56,6 +57,10 @@
 #define WM_MOUSEWHEEL 0x020A
 #endif
 
+#ifndef GWLP_USERDATA
+#define GWLP_USERDATA GWL_USERDATA
+#define SetWindowLongPtr SetWindowLong
+#define GetWindowLongPtr GetWindowLong
 #endif
 
 #endif

@@ -35,7 +35,7 @@
 
 #ifdef UNDER_CE
 #include "omnithreadce.h"
-#define SD_BOTH 0x02
+//#define SD_BOTH 0x02 // defined in stdhdrs.h
 #else
 #include "omnithread.h"
 #endif
@@ -57,7 +57,7 @@ extern "C" {
 const rfbPixelFormat vnc8bitFormat = {8, 8, 1, 1, 7,7,3, 0,3,6,0,0};
 const rfbPixelFormat vnc16bitFormat = {16, 16, 1, 1, 63, 31, 31, 0,6,11,0,0};
 
-static LRESULT CALLBACK ClientConnection::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
+//static LRESULT CALLBACK ClientConnection::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
 
 
 // *************************************************************************
@@ -230,7 +230,7 @@ void ClientConnection::CreateDisplay()
 	ShowWindow(m_hwnd, SW_HIDE);
 
 	// record which client created this window
-	SetWindowLong(m_hwnd, GWL_USERDATA, (LONG) this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG) this);
 
 
 	// Create a memory DC which we'll use for drawing to
@@ -590,8 +590,8 @@ void ClientConnection::SizeWindow()
 	SetRect(&fullwinrect, 0, 0, m_si.framebufferWidth * m_opts.m_scale_num / m_opts.m_scale_den, 
 								m_si.framebufferHeight* m_opts.m_scale_num / m_opts.m_scale_den);
 	AdjustWindowRectEx(&fullwinrect, 
-			   GetWindowLong(m_hwnd, GWL_STYLE) & ~WS_VSCROLL & ~WS_HSCROLL, 
-			   FALSE, GetWindowLong(m_hwnd, GWL_EXSTYLE));
+			   GetWindowLongPtr(m_hwnd, GWL_STYLE) & ~WS_VSCROLL & ~WS_HSCROLL, 
+			   FALSE, GetWindowLongPtr(m_hwnd, GWL_EXSTYLE));
 	m_fullwinwidth = fullwinrect.right - fullwinrect.left;
 	m_fullwinheight = fullwinrect.bottom - fullwinrect.top;
 
@@ -831,7 +831,7 @@ LRESULT CALLBACK ClientConnection::WndProc(HWND hwnd, UINT iMsg,
 	
 	// This is a static method, so we don't know which instantiation we're 
 	// dealing with.  But we've stored a 'pseudo-this' in the window data.
-	ClientConnection *_this = (ClientConnection *) GetWindowLong(hwnd, GWL_USERDATA);
+	ClientConnection *_this = (ClientConnection *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (iMsg) {
 
@@ -935,7 +935,7 @@ LRESULT CALLBACK ClientConnection::WndProc(HWND hwnd, UINT iMsg,
 				HWND foreground = GetForegroundWindow();
 				HWND hwndafter = NULL;
 				if ((foreground == NULL) || 
-					(GetWindowLong(foreground, GWL_EXSTYLE) & WS_EX_TOPMOST)) {
+					(GetWindowLongPtr(foreground, GWL_EXSTYLE) & WS_EX_TOPMOST)) {
 					hwndafter = HWND_NOTOPMOST;
 				} else {
 					hwndafter = GetNextWindow(foreground, GW_HWNDNEXT); 
