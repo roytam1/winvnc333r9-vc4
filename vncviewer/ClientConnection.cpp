@@ -732,7 +732,8 @@ void ClientConnection::SetFormatAndEncodings()
 
 	// Put the preferred encoding first, and change it if the
 	// preferred encoding is not actually usable.
-	for (int i = LASTENCODING; i >= rfbEncodingRaw; i--)
+	int i;
+	for (i = LASTENCODING; i >= rfbEncodingRaw; i--)
 	{
 		if (m_opts.m_PreferredEncoding == i) {
 			if (m_opts.m_UseEnc[i]) {

@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "omnithread", "omnithread\omnithread-vc8.vcproj", "{048C04E9-37EE-4B57-A29A-A40483E46063}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vncviewer", "vncviewer-vc8.vcproj", "{2DE484CC-24B6-4154-BF57-A36F73C25C46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{048C04E9-37EE-4B57-A29A-A40483E46063} = {048C04E9-37EE-4B57-A29A-A40483E46063}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Itanium = Debug|Itanium
+		Debug|Win32 = Debug|Win32
+		Profile|Itanium = Profile|Itanium
+		Profile|Win32 = Profile|Win32
+		Release|Itanium = Release|Itanium
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Debug|Itanium.ActiveCfg = Debug|Itanium
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Debug|Itanium.Build.0 = Debug|Itanium
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Debug|Win32.ActiveCfg = Debug|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Debug|Win32.Build.0 = Debug|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Profile|Itanium.ActiveCfg = Release|Itanium
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Profile|Itanium.Build.0 = Release|Itanium
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Profile|Win32.ActiveCfg = Release|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Profile|Win32.Build.0 = Release|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Release|Itanium.ActiveCfg = Release|Itanium
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Release|Itanium.Build.0 = Release|Itanium
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Release|Win32.ActiveCfg = Release|Win32
+		{048C04E9-37EE-4B57-A29A-A40483E46063}.Release|Win32.Build.0 = Release|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Debug|Itanium.ActiveCfg = Debug|Itanium
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Debug|Itanium.Build.0 = Debug|Itanium
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Debug|Win32.Build.0 = Debug|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Profile|Itanium.ActiveCfg = Profile|Itanium
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Profile|Itanium.Build.0 = Profile|Itanium
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Profile|Win32.ActiveCfg = Profile|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Profile|Win32.Build.0 = Profile|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Release|Itanium.ActiveCfg = Release|Itanium
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Release|Itanium.Build.0 = Release|Itanium
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Release|Win32.ActiveCfg = Release|Win32
+		{2DE484CC-24B6-4154-BF57-A36F73C25C46}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
