@@ -59,7 +59,7 @@ void ClientConnection::ReadRawRect(rfbFramebufferUpdateRectHeader *pfburh) {
 			SETPIXELS(32, pfburh->r.x, pfburh->r.y, pfburh->r.w, pfburh->r.h)            
 				break;
 		default:
-			log.Print(0, _T("Invalid number of bits per pixel: %d\n"), m_myFormat.bitsPerPixel);
+			g_log.Print(0, _T("Invalid number of bits per pixel: %d\n"), m_myFormat.bitsPerPixel);
 			return;
 		}
 		

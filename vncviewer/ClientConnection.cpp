@@ -239,7 +239,7 @@ void ClientConnection::CreateDisplay()
 
 	// Set a suitable palette up
 	if (GetDeviceCaps(m_hBitmapDC, RASTERCAPS) & RC_PALETTE) {
-		log.Print(3, _T("Palette-based display - %d entries, %d reserved\n"), 
+		g_log.Print(3, _T("Palette-based display - %d entries, %d reserved\n"), 
 			GetDeviceCaps(m_hBitmapDC, SIZEPALETTE), GetDeviceCaps(m_hBitmapDC, NUMRESERVED));
 		BYTE buf[sizeof(LOGPALETTE)+216*sizeof(PALETTEENTRY)];
 		LOGPALETTE *plp = (LOGPALETTE *) buf;
@@ -352,7 +352,7 @@ void ClientConnection::Connect()
 	thataddr.sin_port = htons(m_port);
 	res = connect(m_sock, (LPSOCKADDR) &thataddr, sizeof(thataddr));
 	if (res == SOCKET_ERROR) throw WarningException("Failed to connect to server");
-	log.Print(0, _T("Connected to %s port %d\n"), m_host, m_port);
+	g_log.Print(0, _T("Connected to %s port %d\n"), m_host, m_port);
 
 }
 
@@ -374,7 +374,7 @@ void ClientConnection::NegotiateProtocolVersion()
     try {
 		ReadExact(pv, sz_rfbProtocolVersionMsg);
 	} catch (Exception &c) {
-		log.Print(0, _T("Error reading protocol version: %s\n"), c);
+		g_log.Print(0, _T("Error reading protocol version: %s\n"), c);
 		throw QuietException(c.m_info);
 	}
 
@@ -390,13 +390,13 @@ void ClientConnection::NegotiateProtocolVersion()
     if (sscanf(pv,rfbProtocolVersionFormat,&m_majorVersion,&m_minorVersion) != 2) {
 		throw WarningException(_T("Invalid protocol"));
     }
-    log.Print(0, _T("RFB server supports protocol version %d.%d\n"),
+    g_log.Print(0, _T("RFB server supports protocol version %d.%d\n"),
 	    m_majorVersion,m_minorVersion);
 
     if ((m_majorVersion == 3) && (m_minorVersion < 3)) {
 		
         /* if server is 3.2 we can't use the new authentication */
-		log.Print(0, _T("Can't use IDEA authentication\n"));
+		g_log.Print(0, _T("Can't use IDEA authentication\n"));
         /* This will be reported later if authentication is requested*/
 
     } else {
@@ -412,7 +412,7 @@ void ClientConnection::NegotiateProtocolVersion()
 
     WriteExact(pv, sz_rfbProtocolVersionMsg);
 
-	log.Print(0, _T("Connected to RFB server, using protocol version %d.%d\n"),
+	g_log.Print(0, _T("Connected to RFB server, using protocol version %d.%d\n"),
 		rfbProtocolMajorVersion, rfbProtocolMinorVersion);
 }
 
@@ -433,19 +433,19 @@ void ClientConnection::Authenticate()
 		CheckBufferSize(reasonLen+1);
 		ReadString(m_netbuf, reasonLen);
 		
-		log.Print(0, _T("RFB connection failed, reason: %s\n"), m_netbuf);
+		g_log.Print(0, _T("RFB connection failed, reason: %s\n"), m_netbuf);
 		throw WarningException(m_netbuf);
         break;
 		
     case rfbNoAuth:
-		log.Print(0, _T("No authentication needed\n"));
+		g_log.Print(0, _T("No authentication needed\n"));
 		break;
 		
     case rfbVncAuth:
 		{
             if ((m_majorVersion == 3) && (m_minorVersion < 3)) {
                 /* if server is 3.2 we can't use the new authentication */
-                log.Print(0, _T("Can't use IDEA authentication\n"));
+                g_log.Print(0, _T("Can't use IDEA authentication\n"));
 
                 MessageBox(NULL, 
                     _T("Sorry - this server uses an older authentication scheme\n\r")
@@ -483,7 +483,7 @@ void ClientConnection::Authenticate()
 				passwd[newlen]= '\0';
 #endif
 				if (strlen(passwd) == 0) {
-					log.Print(0, _T("Password had zero length\n"));
+					g_log.Print(0, _T("Password had zero length\n"));
 					throw WarningException("Empty password");
 				}
 				if (strlen(passwd) > 8) {
@@ -506,16 +506,16 @@ void ClientConnection::Authenticate()
 			
 			switch (authResult) {
 			case rfbVncAuthOK:
-				log.Print(0, _T("VNC authentication succeeded\n"));
+				g_log.Print(0, _T("VNC authentication succeeded\n"));
 				break;
 			case rfbVncAuthFailed:
-				log.Print(0, _T("VNC authentication failed!"));
+				g_log.Print(0, _T("VNC authentication failed!"));
 				throw WarningException("VNC authentication failed!");
 			case rfbVncAuthTooMany:
 				throw WarningException(
 					"VNC authentication failed - too many tries!");
 			default:
-				log.Print(0, _T("Unknown VNC authentication result: %d\n"),
+				g_log.Print(0, _T("Unknown VNC authentication result: %d\n"),
 					(int)authResult);
 				throw ErrorException("Unknown VNC authentication result!");
 			}
@@ -523,7 +523,7 @@ void ClientConnection::Authenticate()
 		}
 		
 	default:
-		log.Print(0, _T("Unknown authentication scheme from RFB server: %d\n"),
+		g_log.Print(0, _T("Unknown authentication scheme from RFB server: %d\n"),
 			(int)authScheme);
 		throw ErrorException("Unknown authentication scheme!");
     }
@@ -565,8 +565,8 @@ void ClientConnection::ReadServerInit()
     
 	SetWindowText(m_hwnd, m_desktopName);	
 
-	log.Print(0, _T("Desktop name \"%s\"\n"),m_desktopName);
-	log.Print(1, _T("Geometry %d x %d depth %d\n"),
+	g_log.Print(0, _T("Desktop name \"%s\"\n"),m_desktopName);
+	g_log.Print(1, _T("Geometry %d x %d depth %d\n"),
 		m_si.framebufferWidth, m_si.framebufferHeight, m_si.format.depth );
 	SetWindowText(m_hwnd, m_desktopName);	
 
@@ -580,7 +580,7 @@ void ClientConnection::SizeWindow()
 	SystemParametersInfo(SPI_GETWORKAREA, 0, &workrect, 0);
 	int workwidth = workrect.right -  workrect.left;
 	int workheight = workrect.bottom - workrect.top;
-	log.Print(2, _T("Screen work area is %d x %d\n"), workwidth, workheight);
+	g_log.Print(2, _T("Screen work area is %d x %d\n"), workwidth, workheight);
 
 	// Size the window.
 	// Let's find out how big a window would be needed to display the
@@ -650,14 +650,14 @@ void ClientConnection::SetupPixelFormat() {
 	// Have we requested a reduction to 8-bit?
     if (m_opts.m_Use8Bit) {		
       
-		log.Print(2, _T("Requesting 8-bit truecolour\n"));  
+		g_log.Print(2, _T("Requesting 8-bit truecolour\n"));
 		m_myFormat = vnc8bitFormat;
     
 		// We don't support colormaps so we'll ask the server to convert
     } else if (!m_si.format.trueColour) {
         
         // We'll just request a standard 16-bit truecolor
-        log.Print(2, _T("Requesting 16-bit truecolour\n"));
+		g_log.Print(2, _T("Requesting 16-bit truecolour\n"));
         m_myFormat = vnc16bitFormat;
         
     } else {
@@ -684,7 +684,7 @@ void ClientConnection::SetupPixelFormat() {
 			TempDC hrootdc(NULL);
 			int localBitsPerPixel = GetDeviceCaps(hrootdc, BITSPIXEL);
 			int localRasterCaps	  = GetDeviceCaps(hrootdc, RASTERCAPS);
-			log.Print(2, _T("Memory DC has depth of %d and %s pallete-based.\n"), 
+			g_log.Print(2, _T("Memory DC has depth of %d and %s pallete-based.\n"),
 				localBitsPerPixel, (localRasterCaps & RC_PALETTE) ? "is" : "is not");
 			
 			// If we're using truecolor, and the server has more bits than we do
@@ -944,7 +944,7 @@ LRESULT CALLBACK ClientConnection::WndProc(HWND hwnd, UINT iMsg,
 
 				SetWindowPos(hwnd, hwndafter, 0,0,100,100, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
 			}
-			log.Print(6, _T("Losing focus - cancelling modifiers\n"));
+			g_log.Print(6, _T("Losing focus - cancelling modifiers\n"));
 			_this->SendKeyEvent(XK_Alt_L,     false);
 			_this->SendKeyEvent(XK_Control_L, false);
 			_this->SendKeyEvent(XK_Shift_L,   false);
@@ -1360,7 +1360,7 @@ ClientConnection::ProcessPointerEvent(int x, int y, DWORD keyflags, UINT msg)
 		  
 		  if (!m_emulate3ButtonsTimer)
 		    {
-		      log.Print(0, _T("Failed to create timer for emulating 3 buttons"));
+			  g_log.Print(0, _T("Failed to create timer for emulating 3 buttons"));
 		      PostMessage(m_hwnd, WM_CLOSE, 0, 0);
 		      return;
 		    }
@@ -1509,42 +1509,42 @@ inline void ClientConnection::ProcessKeyEvent(int virtkey, DWORD keyData)
 		
 		if (kas.releaseModifiers & KEYMAP_LCONTROL) {
 			SendKeyEvent(XK_Control_L, false );
-			log.Print(5, _T("fake L Ctrl raised\n"));
+			g_log.Print(5, _T("fake L Ctrl raised\n"));
 		}
 		if (kas.releaseModifiers & KEYMAP_LALT) {
 			SendKeyEvent(XK_Alt_L, false );
-			log.Print(5, _T("fake L Alt raised\n"));
+			g_log.Print(5, _T("fake L Alt raised\n"));
 		}
 		if (kas.releaseModifiers & KEYMAP_RCONTROL) {
 			SendKeyEvent(XK_Control_R, false );
-			log.Print(5, _T("fake R Ctrl raised\n"));
+			g_log.Print(5, _T("fake R Ctrl raised\n"));
 		}
 		if (kas.releaseModifiers & KEYMAP_RALT) {
 			SendKeyEvent(XK_Alt_R, false );
-			log.Print(5, _T("fake R Alt raised\n"));
+			g_log.Print(5, _T("fake R Alt raised\n"));
 		}
 		
 		for (int i = 0; kas.keycodes[i] != XK_VoidSymbol && i < MaxKeysPerKey; i++) {
 			SendKeyEvent(kas.keycodes[i], down );
-			log.Print(4, _T("Sent keysym %04x (%s)\n"), 
+			g_log.Print(4, _T("Sent keysym %04x (%s)\n"),
 				kas.keycodes[i], down ? _T("press") : _T("release"));
 		}
 		
 		if (kas.releaseModifiers & KEYMAP_RALT) {
 			SendKeyEvent(XK_Alt_R, true );
-			log.Print(5, _T("fake R Alt pressed\n"));
+			g_log.Print(5, _T("fake R Alt pressed\n"));
 		}
 		if (kas.releaseModifiers & KEYMAP_RCONTROL) {
 			SendKeyEvent(XK_Control_R, true );
-			log.Print(5, _T("fake R Ctrl pressed\n"));
+			g_log.Print(5, _T("fake R Ctrl pressed\n"));
 		}
 		if (kas.releaseModifiers & KEYMAP_LALT) {
 			SendKeyEvent(XK_Alt_L, false );
-			log.Print(5, _T("fake L Alt pressed\n"));
+			g_log.Print(5, _T("fake L Alt pressed\n"));
 		}
 		if (kas.releaseModifiers & KEYMAP_LCONTROL) {
 			SendKeyEvent(XK_Control_L, false );
-			log.Print(5, _T("fake L Ctrl pressed\n"));
+			g_log.Print(5, _T("fake L Ctrl pressed\n"));
 		}
 	} catch (Exception &e) {
 		e.Report();
@@ -1566,7 +1566,7 @@ ClientConnection::SendKeyEvent(CARD32 key, bool down)
     ke.down = down ? 1 : 0;
     ke.key = Swap32IfLE(key);
     WriteExact((char *)&ke, sz_rfbKeyEventMsg);
-    log.Print(6, _T("SendKeyEvent: key = x%04x status = %s\n"), key, 
+	g_log.Print(6, _T("SendKeyEvent: key = x%04x status = %s\n"), key,
         down ? _T("down") : _T("up"));
 }
 
@@ -1583,7 +1583,7 @@ void ClientConnection::SendClientCutText(char *str, int len)
     cct.length = Swap32IfLE(len);
     WriteExact((char *)&cct, sz_rfbClientCutTextMsg);
 	WriteExact(str, len);
-	log.Print(6, _T("Sent %d bytes of clipboard\n"), len);
+	g_log.Print(6, _T("Sent %d bytes of clipboard\n"), len);
 }
 #endif
 
@@ -1643,7 +1643,7 @@ inline void ClientConnection::DoBlit()
 			(ps.rcPaint.bottom-ps.rcPaint.top) * d / n, 
 			SRCCOPY)) 
 		{
-			log.Print(0, _T("Blit error %d\n"), GetLastError());
+			g_log.Print(0, _T("Blit error %d\n"), GetLastError());
 			// throw ErrorException("Error in blit!\n");
 		};
 	} else {
@@ -1651,7 +1651,7 @@ inline void ClientConnection::DoBlit()
 			ps.rcPaint.right-ps.rcPaint.left, ps.rcPaint.bottom-ps.rcPaint.top, 
 			m_hBitmapDC, ps.rcPaint.left+m_hScrollPos, ps.rcPaint.top+m_vScrollPos, SRCCOPY)) 
 		{
-			log.Print(0, _T("Blit error %d\n"), GetLastError());
+			g_log.Print(0, _T("Blit error %d\n"), GetLastError());
 			// throw ErrorException("Error in blit!\n");
 		}
 	}
@@ -1721,7 +1721,7 @@ void ClientConnection::ShowConnInfo()
 
 void* ClientConnection::run_undetached(void* arg) {
 
-	log.Print(9,_T("Update-processing thread started\n"));
+	g_log.Print(9,_T("Update-processing thread started\n"));
 
 	m_threadStarted = true;
 
@@ -1742,11 +1742,11 @@ void* ClientConnection::run_undetached(void* arg) {
 			  omni_mutex_lock l(m_readMutex);  // we need this if we're not using ReadExact
 			  int bytes = recv(m_sock, (char *) &msgType, 1, MSG_PEEK);
 			  if (bytes == 0) {
-			    log.Print(0, _T("Socket closed\n") );
+				  g_log.Print(0, _T("Socket closed\n") );
 			    throw QuietException(_T("SocketClosed"));
 			  }
 			  if (bytes < 0) {
-			    log.Print(3, _T("Socket error reading message: %d\n"), WSAGetLastError() );
+				  g_log.Print(3, _T("Socket error reading message: %d\n"), WSAGetLastError() );
 			    throw WarningException("Error while waiting for server message");
 			  }
 			}
@@ -1756,7 +1756,7 @@ void* ClientConnection::run_undetached(void* arg) {
 				ReadScreenUpdate();
 				break;
 			case rfbSetColourMapEntries:
-		        log.Print(3, _T("rfbSetColourMapEntries read but not supported\n") );
+				g_log.Print(3, _T("rfbSetColourMapEntries read but not supported\n") );
 				throw WarningException("Unhandled SetColormap message type received!\n");
 				break;
 			case rfbBell:
@@ -1774,7 +1774,7 @@ void* ClientConnection::run_undetached(void* arg) {
 				if (msgType >= rfbExtensionData) {
 					ReadExtensionData();
 				} else {
-	                log.Print(3, _T("Unknown message type x%02x\n"), msgType );
+					g_log.Print(3, _T("Unknown message type x%02x\n"), msgType );
 					throw WarningException("Unhandled message type received!\n");
 				}
 				break;
@@ -1788,7 +1788,7 @@ void* ClientConnection::run_undetached(void* arg) {
 
 		}
         
-        log.Print(4, _T("Update-processing thread finishing\n") );
+		g_log.Print(4, _T("Update-processing thread finishing\n") );
 
 	} catch (WarningException) {
 		PostMessage(m_hwnd, WM_CLOSE, 0, 0);
@@ -1816,7 +1816,7 @@ ClientConnection::SendFramebufferUpdateRequest(int x, int y, int w, int h, bool 
     fur.w = Swap16IfLE(w);
     fur.h = Swap16IfLE(h);
 
-	log.Print(10, _T("Request %s update\n"), incremental ? _T("incremental") : _T("full"));
+	g_log.Print(10, _T("Request %s update\n"), incremental ? _T("incremental") : _T("full"));
     WriteExact((char *)&fur, sz_rfbFramebufferUpdateRequestMsg);
 }
 
@@ -1836,7 +1836,7 @@ inline void ClientConnection::SendFullFramebufferUpdateRequest()
 void ClientConnection::SendAppropriateFramebufferUpdateRequest()
 {
 	if (m_pendingFormatChange) {
-		log.Print(3, _T("Requesting new pixel format\n") );
+		g_log.Print(3, _T("Requesting new pixel format\n") );
 		rfbPixelFormat oldFormat = m_myFormat;
 		SetupPixelFormat();
 		SetFormatAndEncodings();
@@ -1890,7 +1890,7 @@ void ClientConnection::ReadScreenUpdate() {
 			ReadHextileRect(&surh);
 			break;
 		default:
-			log.Print(0, _T("Unknown encoding %d - not supported!\n"), surh.encoding);
+			g_log.Print(0, _T("Unknown encoding %d - not supported!\n"), surh.encoding);
 			break;
 		}
 		
@@ -1927,7 +1927,7 @@ void ClientConnection::ReadScreenUpdate() {
 
 void ClientConnection::SetDormant(bool newstate)
 {
-	log.Print(5, _T("%s dormant mode\n"), newstate ? _T("Entering") : _T("Leaving"));
+	g_log.Print(5, _T("%s dormant mode\n"), newstate ? _T("Entering") : _T("Leaving"));
 	m_dormant = newstate;
 	if (!m_dormant)
 		SendIncrementalFramebufferUpdateRequest();
@@ -1938,7 +1938,7 @@ void ClientConnection::SetDormant(bool newstate)
 
 void ClientConnection::ReadServerCutText() {
 	rfbServerCutTextMsg sctm;
-	log.Print(6, _T("Read remote clipboard change\n"));
+	g_log.Print(6, _T("Read remote clipboard change\n"));
 	ReadExact((char *) &sctm, sz_rfbServerCutTextMsg);
 	int len = Swap32IfLE(sctm.length);
 	
@@ -1971,7 +1971,7 @@ void ClientConnection::ReadBell() {
 			ShowWindow(m_hwnd, SW_SHOWNORMAL);
 		}
 	}
-	log.Print(6, _T("Bell!\n"));
+	g_log.Print(6, _T("Bell!\n"));
 }
 
 void ClientConnection::ReadEnableExtension() {
@@ -2010,7 +2010,7 @@ void ClientConnection::ReadExact(char *inbuf, int wanted)
 	omni_mutex_lock l(m_readMutex);
 
 	int offset = 0;
-    log.Print(10, _T("  reading %d bytes\n"), wanted);
+	g_log.Print(10, _T("  reading %d bytes\n"), wanted);
 	
 	while (wanted > 0) {
 
@@ -2018,7 +2018,7 @@ void ClientConnection::ReadExact(char *inbuf, int wanted)
 		if (bytes == 0) throw WarningException("Connection closed.");
 		if (bytes == SOCKET_ERROR) {
 			int err = ::GetLastError();
-			log.Print(1, _T("Socket error while reading %d\n"), err);
+			g_log.Print(1, _T("Socket error while reading %d\n"), err);
 			m_running = false;
 			throw WarningException("ReadExact: Socket error while reading.");
 		}
@@ -2034,7 +2034,7 @@ inline void ClientConnection::ReadString(char *buf, int length)
 	if (length > 0)
 		ReadExact(buf, length);
 	buf[length] = '\0';
-    log.Print(10, _T("Read a %d-byte string\n"), length);
+	g_log.Print(10, _T("Read a %d-byte string\n"), length);
 }
 
 
@@ -2043,7 +2043,7 @@ inline void ClientConnection::WriteExact(char *buf, int bytes)
 {
 	if (bytes == 0) return;
 	omni_mutex_lock l(m_writeMutex);
-	log.Print(10, _T("  writing %d bytes\n"), bytes);
+	g_log.Print(10, _T("  writing %d bytes\n"), bytes);
 
 	int i = 0;
     int j;
@@ -2060,7 +2060,7 @@ inline void ClientConnection::WriteExact(char *buf, int bytes)
 				FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
 				err, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
 				(LPTSTR) &lpMsgBuf, 0, NULL ); // Process any inserts in lpMsgBuf.
-			log.Print(1, _T("Socket error %d: %s\n"), err, lpMsgBuf);
+			g_log.Print(1, _T("Socket error %d: %s\n"), err, lpMsgBuf);
 			LocalFree( lpMsgBuf );
 			m_running = false;
 
@@ -2090,5 +2090,5 @@ void ClientConnection::CheckBufferSize(int bufsize)
 		delete [] m_netbuf;
 	m_netbuf = newbuf;
 	m_netbufsize=bufsize + 256;
-	log.Print(4, _T("bufsize expanded to %d\n"), m_netbufsize);
+	g_log.Print(4, _T("bufsize expanded to %d\n"), m_netbufsize);
 }

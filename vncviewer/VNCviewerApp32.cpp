@@ -47,7 +47,7 @@ VNCviewerApp32::VNCviewerApp32(HINSTANCE hInstance, PSTR szCmdLine) :
 	// Start listening daemons if requested
 	
 	if (m_options.m_listening) {
-		log.Print(3, _T("In listening mode - staring daemons\n"));
+		g_log.Print(3, _T("In listening mode - staring daemons\n"));
 		
 		try {
 			m_pflasher = new Flasher(FLASH_PORT_OFFSET);

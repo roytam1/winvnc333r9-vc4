@@ -114,20 +114,20 @@ Daemon::Daemon(int port)
 }
 
 void Daemon::AddTrayIcon() {
-	log.Print(4, _T("Adding tray icon\n"));
+	g_log.Print(4, _T("Adding tray icon\n"));
 	SendTrayMsg(NIM_ADD);
 }
 
 void Daemon::CheckTrayIcon() {
-	log.Print(8, _T("Checking tray icon\n"));
+	g_log.Print(8, _T("Checking tray icon\n"));
 	if (!SendTrayMsg(NIM_MODIFY)) {
-		log.Print(4, _T("Tray icon not there - reinstalling\n"));
+		g_log.Print(4, _T("Tray icon not there - reinstalling\n"));
 		AddTrayIcon();
 	};
 }
 
 void Daemon::RemoveTrayIcon() {
-	log.Print(4, _T("Deleting tray icon\n"));
+	g_log.Print(4, _T("Deleting tray icon\n"));
 	SendTrayMsg(NIM_DELETE);
 }
 
@@ -191,7 +191,7 @@ LRESULT CALLBACK Daemon::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 					break;
 				}
 			case FD_CLOSE:
-				log.Print(5, _T("Daemon connection closed\n"));
+				g_log.Print(5, _T("Daemon connection closed\n"));
 				DestroyWindow(hwnd);
 				break;
 			}
@@ -223,7 +223,7 @@ LRESULT CALLBACK Daemon::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 					GetMenuItemID(hSubMenu, 0), 0);
 			} else if (lParam==WM_RBUTTONUP || lParam==WM_LBUTTONUP) {
 				if (hSubMenu == NULL) { 
-					log.Print(2, _T("No systray submenu\n"));
+					g_log.Print(2, _T("No systray submenu\n"));
 					return 0;
 				}
 				// Make first menu item the default (bold font)

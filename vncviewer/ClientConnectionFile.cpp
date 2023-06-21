@@ -52,7 +52,7 @@ void ofnInit()
 
 void ClientConnection::SaveConnection()
 {
-	log.Print(2, _T("Saving connection info\n"));	
+	g_log.Print(2, _T("Saving connection info\n"));	
 	char fname[_MAX_PATH];
 	char tname[_MAX_FNAME + _MAX_EXT];
 	ofnInit();
@@ -73,12 +73,12 @@ void ClientConnection::SaveConnection()
 			MessageBox(m_hwnd, msg, "Error saving file", MB_ICONERROR | MB_OK);
 			break;
 		default:
-			log.Print(0, "Error %d from GetSaveFileName\n", err);
+			g_log.Print(0, "Error %d from GetSaveFileName\n", err);
 			break;
 		}
 		return;
 	}
-	log.Print(1, "Saving to %s\n", fname);	
+	g_log.Print(1, "Saving to %s\n", fname);	
 	int ret = WritePrivateProfileString("connection", "host", m_host, fname);
 	char buf[32];
 	sprintf(buf, "%d", m_port);

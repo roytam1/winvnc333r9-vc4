@@ -83,7 +83,7 @@ Flasher::Flasher(int port)
 	lf.lfFaceName[0] = '\0';
 	m_hfont = CreateFontIndirect(&lf);
 	if (m_hfont == NULL) {
-		log.Print(1, _T("FAILED TO SELECT FLASHER FONT!\n"));
+		g_log.Print(1, _T("FAILED TO SELECT FLASHER FONT!\n"));
 	}
 
 	// Create a listening socket
@@ -182,7 +182,7 @@ LRESULT CALLBACK Flasher::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					int namelen = recv(hNewSock, username, 250, 0);
 					if (namelen >= 0) 
 						username[namelen] = 0;
-					log.Print(2, _T("Flash for '%s'\n"), username);
+					g_log.Print(2, _T("Flash for '%s'\n"), username);
 
 					closesocket(hNewSock);
 
@@ -238,7 +238,7 @@ LRESULT CALLBACK Flasher::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 					break;
 				}
 			case FD_CLOSE:
-				log.Print(2, _T("Flasher connection closed\n"));
+				g_log.Print(2, _T("Flasher connection closed\n"));
 				DestroyWindow(hwnd);
 				break;
 			}

@@ -40,12 +40,12 @@ VNCviewerApp::VNCviewerApp(HINSTANCE hInstance, LPTSTR szCmdLine) {
 	m_options.SetFromCommandLine(szCmdLine);
 	
 	// Logging info
-	log.SetLevel(m_options.m_logLevel);
+	g_log.SetLevel(m_options.m_logLevel);
 	if (m_options.m_logToConsole) {
-		log.SetMode(Log::ToConsole | Log::ToDebug);
+		g_log.SetMode(Log::ToConsole | Log::ToDebug);
 	}
 	if (m_options.m_logToFile) {
-		log.SetFile(m_options.m_logFilename);
+		g_log.SetFile(m_options.m_logFilename);
 	}
 
 #ifdef PALM_LOG
@@ -66,7 +66,7 @@ VNCviewerApp::VNCviewerApp(HINSTANCE hInstance, LPTSTR szCmdLine) {
 		MessageBox(NULL, _T("Error initialising sockets library"), _T("VNC info"), MB_OK | MB_ICONSTOP);
 		PostQuitMessage(1);
 	}
-	log.Print(3, _T("Started and Winsock (v %d) initialised\n"), wsaData.wVersion);
+	g_log.Print(3, _T("Started and Winsock (v %d) initialised\n"), wsaData.wVersion);
 }
 
 
@@ -79,12 +79,12 @@ void VNCviewerApp::RegisterConnection(ClientConnection *pConn) {
 	for (i = 0; i < MAX_CONNECTIONS; i++) {
 		if (m_clilist[i] == NULL) {
 			m_clilist[i] = pConn;
-			log.Print(4,_T("Registered connection with app\n"));
+			g_log.Print(4,_T("Registered connection with app\n"));
 			return;
 		}
 	}
 	// If we've got here, something is wrong.
-	log.Print(-1, _T("Client list overflow!\n"));
+	g_log.Print(-1, _T("Client list overflow!\n"));
 	MessageBox(NULL, _T("Client list overflow!"), _T("VNC error"),
 		MB_OK | MB_ICONSTOP);
 	PostQuitMessage(1);
@@ -100,7 +100,7 @@ void VNCviewerApp::DeregisterConnection(ClientConnection *pConn) {
 			for (int j = i; m_clilist[j] &&	j < MAX_CONNECTIONS-1 ; j++)
 				m_clilist[j] = m_clilist[j+1];
 			m_clilist[MAX_CONNECTIONS-1] = NULL;
-			log.Print(4,_T("Deregistered connection from app\n"));
+			g_log.Print(4,_T("Deregistered connection from app\n"));
 
 			// No clients left? then we should finish, unless we're in
 			// listening mode.
@@ -111,7 +111,7 @@ void VNCviewerApp::DeregisterConnection(ClientConnection *pConn) {
 		}
 	}
 	// If we've got here, something is wrong.
-	log.Print(-1, _T("Client not found for deregistering!\n"));
+	g_log.Print(-1, _T("Client not found for deregistering!\n"));
 	PostQuitMessage(1);
 }
 
@@ -124,6 +124,6 @@ VNCviewerApp::~VNCviewerApp() {
 	// Clean up winsock
 	WSACleanup();
 	
-	log.Print(2, _T("VNC viewer closing down\n"));
+	g_log.Print(2, _T("VNC viewer closing down\n"));
 
 }

@@ -442,15 +442,15 @@ void VNCOptions::Register()
 		RegSetValue(hKey, NULL, REG_SZ, "VncViewer.Config", 0);
 		RegCloseKey(hKey);
 	} else {
-		log.Print(0, "Failed to register .vnc extension\n");
+		g_log.Print(0, "Failed to register .vnc extension\n");
 	}
 
 	char filename[_MAX_PATH];
 	if (GetModuleFileName(NULL, filename, _MAX_PATH) == 0) {
-		log.Print(0, "Error getting vncviewer filename\n");
+		g_log.Print(0, "Error getting vncviewer filename\n");
 		return;
 	}
-	log.Print(2, "Viewer is %s\n", filename);
+	g_log.Print(2, "Viewer is %s\n", filename);
 
 	if ( RegCreateKey(HKEY_CLASSES_ROOT, "VncViewer.Config", &hKey)  == ERROR_SUCCESS ) {
 		RegSetValue(hKey, NULL, REG_SZ, "VNCviewer Config File", 0);
