@@ -114,7 +114,10 @@ static const vncKeymapping keymap[] = {
     {VK_NUMLOCK,	XK_Num_Lock},
     {VK_SCROLL,		XK_Scroll_Lock},
 	{VK_KEYPAD_ENTER,	XK_KP_Enter},
-	{VK_CANCEL,         XK_Break}
+	{VK_CANCEL,         XK_Break},
+	{VK_LWIN,       XK_Super_L},
+	{VK_RWIN,       XK_Super_R},
+	{VK_APPS,       XK_Menu}
 };
 
 

@@ -138,7 +138,10 @@ const vncKeymapping keymap[] = {
     {VK_F23,		XK_F23},
     {VK_F24,		XK_F24},
     {VK_NUMLOCK,	XK_Num_Lock},
-    {VK_SCROLL,		XK_Scroll_Lock}
+    {VK_SCROLL,		XK_Scroll_Lock},
+	{VK_LWIN,       XK_Super_L},
+	{VK_RWIN,       XK_Super_R},
+	{VK_APPS,       XK_Menu}
 };
 
 vncKeymap::vncKeymap()

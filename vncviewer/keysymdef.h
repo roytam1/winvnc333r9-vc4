@@ -136,4 +136,7 @@
 #define XK_Alt_L		0xFFE9
 #define XK_Alt_R		0xFFEA
 
+#define XK_Super_L		0xFFEB	/* Left super */
+#define XK_Super_R		0xFFEC	/* Right super */
+#define XK_Menu			0xFF67
 

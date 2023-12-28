@@ -56,6 +56,15 @@
 #ifndef WM_MOUSEWHEEL
 #define WM_MOUSEWHEEL 0x020A
 #endif
+#ifndef VK_LWIN
+#define VK_LWIN 0x5B
+#endif
+#ifndef VK_RWIN
+#define VK_RWIN 0x5C
+#endif
+#ifndef VK_APPS
+#define VK_APPS 0x5D
+#endif
 
 #ifndef GWLP_USERDATA
 #define GWLP_USERDATA GWL_USERDATA
