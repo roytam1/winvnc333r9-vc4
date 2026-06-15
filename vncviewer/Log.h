@@ -37,6 +37,9 @@
 //
 
 #pragma once
+#ifndef __LOG_H__
+#define __LOG_H__
+
 #include <stdarg.h>
 
 class Log  
@@ -85,3 +88,5 @@ private:
     int m_level;
     HANDLE hlogfile;
 };
+
+#endif

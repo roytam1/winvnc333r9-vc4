@@ -26,6 +26,8 @@
 // mapping of windows virtual key codes to X keysyms.
 
 #pragma once
+#ifndef __KEYMAP_H__
+#define __KEYMAP_H__
 
 #include "keysymdef.h"
 
@@ -63,3 +65,5 @@ private:
 	unsigned char buf[4]; // lots of space for now
 	BYTE keystate[256];
 };
+
+#endif

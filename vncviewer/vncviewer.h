@@ -23,6 +23,8 @@
 
 
 #pragma once
+#ifndef __VNCVIEWER_H__
+#define __VNCVIEWER_H__
 #include <tchar.h>
 
 #include "res\resource.h"
@@ -61,4 +63,6 @@ inline LPTSTR SELECT_MAKEINTRESOURCE(WORD res_palm, WORD res_hpc)
 	else
 		return MAKEINTRESOURCE(res_hpc);
 }
+#endif
+
 #endif

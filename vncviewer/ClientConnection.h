@@ -23,6 +23,8 @@
 
 
 #pragma once
+#ifndef __CLIENTCONNECTION_H__
+#define __CLIENTCONNECTION_H__
 
 #include "stdhdrs.h"
 #ifdef UNDER_CE
@@ -333,3 +335,5 @@ public:
 		}																		\
 	}
 
+
+#endif

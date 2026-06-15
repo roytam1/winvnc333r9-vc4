@@ -1,35 +1,35 @@
 # Microsoft Developer Studio Generated NMAKE File, Format Version 4.10
 # ** DO NOT EDIT **
 
-# TARGTYPE "Win32 (x86) Application" 0x0101
-# TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
+# TARGTYPE "Win64 (ALPHA64) Application" 0x0101
+# TARGTYPE "Win64 (ALPHA64) Dynamic-Link Library" 0x0102
 
 !IF "$(CFG)" == ""
-CFG=vnchooks - Win32 Debug
-!MESSAGE No configuration specified.  Defaulting to vnchooks - Win32 Debug.
+CFG=winvnc - Win64 Release
+!MESSAGE No configuration specified.  Defaulting to winvnc - Win64 Release.
 !ENDIF 
 
-!IF "$(CFG)" != "winvnc - Win32 Release" && "$(CFG)" != "winvnc - Win32 Debug"\
- && "$(CFG)" != "omnithread - Win32 Release" && "$(CFG)" !=\
- "omnithread - Win32 Debug" && "$(CFG)" != "vnchooks - Win32 Release" &&\
- "$(CFG)" != "vnchooks - Win32 Debug"
+!IF "$(CFG)" != "winvnc - Win64 Release" && "$(CFG)" != "winvnc - Win64 Debug"\
+ && "$(CFG)" != "omnithread - Win64 Release" && "$(CFG)" !=\
+ "omnithread - Win64 Debug" && "$(CFG)" != "vnchooks - Win64 Release" &&\
+ "$(CFG)" != "vnchooks - Win64 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
 !MESSAGE by defining the macro CFG on the command line.  For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "winvnc.mak" CFG="vnchooks - Win32 Debug"
+!MESSAGE NMAKE /f "winvnc-axp64.mak" CFG="vnchooks - Win64 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "winvnc - Win32 Release" (based on "Win32 (x86) Application")
-!MESSAGE "winvnc - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE "omnithread - Win32 Release" (based on\
- "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "omnithread - Win32 Debug" (based on\
- "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "vnchooks - Win32 Release" (based on\
- "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "vnchooks - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "winvnc - Win64 Release" (based on "Win64 (ALPHA64) Application")
+!MESSAGE "winvnc - Win64 Debug" (based on "Win64 (ALPHA64) Application")
+!MESSAGE "omnithread - Win64 Release" (based on\
+ "Win64 (ALPHA64) Dynamic-Link Library")
+!MESSAGE "omnithread - Win64 Debug" (based on\
+ "Win64 (ALPHA64) Dynamic-Link Library")
+!MESSAGE "vnchooks - Win64 Release" (based on\
+ "Win64 (ALPHA64) Dynamic-Link Library")
+!MESSAGE "vnchooks - Win64 Debug" (based on "Win64 (ALPHA64) Dynamic-Link Library")
 !MESSAGE 
 !ERROR An invalid configuration is specified.
 !ENDIF 
@@ -41,9 +41,9 @@ NULL=nul
 !ENDIF 
 ################################################################################
 # Begin Project
-# PROP Target_Last_Scanned "vnchooks - Win32 Debug"
+# PROP Target_Last_Scanned "vnchooks - Win64 Debug"
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -58,7 +58,7 @@ NULL=nul
 OUTDIR=.\Release
 INTDIR=.\Release
 
-ALL : "vnchooks - Win32 Release" "omnithread - Win32 Release"\
+ALL : "vnchooks - Win64 Release" "omnithread - Win64 Release"\
  "$(OUTDIR)\winvnc.exe"
 
 CLEAN : 
@@ -113,9 +113,9 @@ F90_OBJS=.\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /W3 /GX /O2 /I "..\stl" /I "omnithread" /I "vnchooks" /I "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
-CPP_PROJ=/nologo /ML /W3 /GX /O2 /I "..\stl" /I "omnithread" /I "vnchooks" /I\
+# ADD BASE CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
+CPP_PROJ=/nologo /ML /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /I\
  "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D\
  "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\Release/
@@ -154,12 +154,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/winvnc.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:ALPHA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /machine:ALPHA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib wsock32.lib /nologo /subsystem:windows /incremental:no\
- /pdb:"$(OUTDIR)/winvnc.pdb" /machine:I386 /out:"$(OUTDIR)/winvnc.exe" 
+ /pdb:"$(OUTDIR)/winvnc.pdb" /machine:ALPHA64 /out:"$(OUTDIR)/winvnc.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\d3des.obj" \
 	"$(INTDIR)\Log.obj" \
@@ -199,7 +199,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -214,7 +214,7 @@ LINK32_OBJS= \
 OUTDIR=.\Debug
 INTDIR=.\Debug
 
-ALL : "vnchooks - Win32 Debug" "omnithread - Win32 Debug"\
+ALL : "vnchooks - Win64 Debug" "omnithread - Win64 Debug"\
  "$(OUTDIR)\winvnc.exe"
 
 CLEAN : 
@@ -273,10 +273,10 @@ F90_OBJS=.\Debug/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /W3 /Gm /GX /Zi /Od /I "..\stl" /I "omnithread" /I "vnchooks" /I "." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
-CPP_PROJ=/nologo /MLd /W3 /Gm /GX /Zi /Od /I "..\stl" /I "omnithread" /I\
- "vnchooks" /I "." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D\
+# ADD BASE CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
+CPP_PROJ=/nologo /MLd /W3 /Gm /GX /Zi /Od /I "omnithread" /I\
+ "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D\
  "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX\
  /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\Debug/
@@ -315,12 +315,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/winvnc.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /debug /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:ALPHA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /debug /machine:ALPHA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib wsock32.lib /nologo /subsystem:windows /incremental:yes\
- /pdb:"$(OUTDIR)/winvnc.pdb" /debug /machine:I386 /out:"$(OUTDIR)/winvnc.exe" 
+ /pdb:"$(OUTDIR)/winvnc.pdb" /debug /machine:ALPHA64 /out:"$(OUTDIR)/winvnc.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\d3des.obj" \
 	"$(INTDIR)\Log.obj" \
@@ -360,7 +360,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Release"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -402,9 +402,9 @@ F90_OBJS=.\omnithread\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /I "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
-CPP_PROJ=/nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /I "." /D\
+# ADD BASE CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
+CPP_PROJ=/nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\omnithread\Release/
@@ -442,12 +442,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/omnithread.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/omnithread.pdb" /machine:I386 /out:"$(OUTDIR)/omnithread.dll"\
+ /pdb:"$(OUTDIR)/omnithread.pdb" /machine:ALPHA64 /out:"$(OUTDIR)/omnithread.dll"\
  /implib:"$(OUTDIR)/omnithread.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
@@ -457,7 +457,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -505,8 +505,8 @@ F90_OBJS=.\omnithread\Debug/
 
 CPP=cl.exe
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /I "." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
-CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /I "."\
+# ADD CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
+CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks"\
  /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\omnithread\Debug/
@@ -544,12 +544,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/omnithread.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)/omnithread.pdb" /debug /machine:I386\
+ /pdb:"$(OUTDIR)/omnithread.pdb" /debug /machine:ALPHA64\
  /out:"$(OUTDIR)/omnithread.dll" /implib:"$(OUTDIR)/omnithread.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
@@ -559,7 +559,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "vnchooks - Win32 Release"
+!ELSEIF  "$(CFG)" == "vnchooks - Win64 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -602,9 +602,9 @@ F90_OBJS=.\vnchooks\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /I "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /I "." /D\
+# ADD BASE CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchooks.pch" /YX\
  /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\vnchooks\Release/
@@ -643,12 +643,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/vnchooks.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/vnchooks.pdb" /machine:I386 /def:".\VNCHooks\VNCHooks.def"\
+ /pdb:"$(OUTDIR)/vnchooks.pdb" /machine:ALPHA64 /def:".\VNCHooks\VNCHooks.def"\
  /out:"$(OUTDIR)/vnchooks.dll" /implib:"$(OUTDIR)/vnchooks.lib" 
 DEF_FILE= \
 	".\VNCHooks\VNCHooks.def"
@@ -661,7 +661,7 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "vnchooks - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vnchooks - Win64 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -710,8 +710,8 @@ F90_OBJS=.\vnchooks\Debug/
 
 CPP=cl.exe
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /I "." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /I "."\
+# ADD CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks"\
  /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchooks.pch"\
  /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\vnchooks\Debug/
@@ -750,12 +750,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/vnchooks.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)/vnchooks.pdb" /debug /machine:I386\
+ /pdb:"$(OUTDIR)/vnchooks.pdb" /debug /machine:ALPHA64\
  /def:".\VNCHooks\VNCHooks.def" /out:"$(OUTDIR)/vnchooks.dll"\
  /implib:"$(OUTDIR)/vnchooks.lib" 
 DEF_FILE= \
@@ -774,12 +774,12 @@ LINK32_OBJS= \
 ################################################################################
 # Begin Target
 
-# Name "winvnc - Win32 Release"
-# Name "winvnc - Win32 Debug"
+# Name "winvnc - Win64 Release"
+# Name "winvnc - Win64 Debug"
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -788,15 +788,15 @@ LINK32_OBJS= \
 
 # Project_Dep_Name "omnithread"
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-"omnithread - Win32 Release" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc.mak" CFG="omnithread - Win32 Release" 
+"omnithread - Win64 Release" : 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="omnithread - Win64 Release" 
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
-"omnithread - Win32 Debug" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc.mak" CFG="omnithread - Win32 Debug" 
+"omnithread - Win64 Debug" : 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="omnithread - Win64 Debug" 
 
 !ENDIF 
 
@@ -806,15 +806,15 @@ LINK32_OBJS= \
 
 # Project_Dep_Name "vnchooks"
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-"vnchooks - Win32 Release" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc.mak" CFG="vnchooks - Win32 Release" 
+"vnchooks - Win64 Release" : 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="vnchooks - Win64 Release" 
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
-"vnchooks - Win32 Debug" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc.mak" CFG="vnchooks - Win32 Debug" 
+"vnchooks - Win64 Debug" : 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="vnchooks - Win64 Debug" 
 
 !ENDIF 
 
@@ -824,7 +824,6 @@ LINK32_OBJS= \
 
 SOURCE=.\WinVNC.cpp
 DEP_CPP_WINVN=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -833,7 +832,6 @@ DEP_CPP_WINVN=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -870,7 +868,6 @@ SOURCE=.\Log.cpp
 DEP_CPP_LOG_C=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\Log.obj" : $(SOURCE) $(DEP_CPP_LOG_C) "$(INTDIR)"
@@ -894,11 +891,9 @@ DEP_CPP_MINMA=\
 
 SOURCE=.\RectList.cpp
 DEP_CPP_RECTL=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\RectList.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\RectList.obj" : $(SOURCE) $(DEP_CPP_RECTL) "$(INTDIR)"
@@ -912,7 +907,6 @@ SOURCE=.\stdhdrs.cpp
 DEP_CPP_STDHD=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\stdhdrs.obj" : $(SOURCE) $(DEP_CPP_STDHD) "$(INTDIR)"
@@ -932,7 +926,6 @@ DEP_CPP_TRANS=\
 	".\tableinittctemplate.cpp"\
 	".\tabletranstemplate.cpp"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	
 
 "$(INTDIR)\translate.obj" : $(SOURCE) $(DEP_CPP_TRANS) "$(INTDIR)"
@@ -946,7 +939,6 @@ SOURCE=.\vncAbout.cpp
 DEP_CPP_VNCAB=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\WinVNC.h"\
 	
@@ -962,7 +954,6 @@ SOURCE=.\vncAcceptDialog.cpp
 DEP_CPP_VNCAC=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	".\vncAcceptDialog.h"\
 	".\vncService.h"\
 	".\WinVNC.h"\
@@ -992,7 +983,6 @@ DEP_CPP_VNCAU=\
 
 SOURCE=.\vncBuffer.cpp
 DEP_CPP_VNCBU=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\MinMax.h"\
 	".\omnithread\omnithread.h"\
@@ -1002,7 +992,6 @@ DEP_CPP_VNCBU=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1034,7 +1023,6 @@ NODEP_CPP_VNCBU=\
 
 SOURCE=.\vncClient.cpp
 DEP_CPP_VNCCL=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1043,7 +1031,6 @@ DEP_CPP_VNCCL=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncAcceptDialog.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -1074,7 +1061,6 @@ NODEP_CPP_VNCCL=\
 
 SOURCE=.\vncConnDialog.cpp
 DEP_CPP_VNCCO=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1083,7 +1069,6 @@ DEP_CPP_VNCCO=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1114,7 +1099,6 @@ NODEP_CPP_VNCCO=\
 
 SOURCE=.\vncDesktop.cpp
 DEP_CPP_VNCDE=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1123,7 +1107,6 @@ DEP_CPP_VNCDE=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1155,7 +1138,6 @@ NODEP_CPP_VNCDE=\
 
 SOURCE=.\vncEncodeCoRRE.cpp
 DEP_CPP_VNCEN=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\MinMax.h"\
 	".\omnithread\omnithread.h"\
@@ -1165,7 +1147,6 @@ DEP_CPP_VNCEN=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1195,7 +1176,6 @@ NODEP_CPP_VNCEN=\
 
 SOURCE=.\vncEncodeHexT.cpp
 DEP_CPP_VNCENC=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\MinMax.h"\
 	".\omnithread\omnithread.h"\
@@ -1205,7 +1185,6 @@ DEP_CPP_VNCENC=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1235,7 +1214,6 @@ NODEP_CPP_VNCENC=\
 
 SOURCE=.\vncEncoder.cpp
 DEP_CPP_VNCENCO=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1244,7 +1222,6 @@ DEP_CPP_VNCENCO=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1273,7 +1250,6 @@ NODEP_CPP_VNCENCO=\
 
 SOURCE=.\vncEncodeRRE.cpp
 DEP_CPP_VNCENCOD=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1282,7 +1258,6 @@ DEP_CPP_VNCENCOD=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1312,7 +1287,6 @@ NODEP_CPP_VNCENCOD=\
 
 SOURCE=.\vncHTTPConnect.cpp
 DEP_CPP_VNCHT=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1321,7 +1295,6 @@ DEP_CPP_VNCHT=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1352,7 +1325,6 @@ SOURCE=.\vncInstHandler.cpp
 DEP_CPP_VNCIN=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	".\vncInstHandler.h"\
 	
 
@@ -1370,7 +1342,6 @@ DEP_CPP_VNCKE=\
 	".\rfb.h"\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	".\vncKeymap.h"\
 	".\vncService.h"\
 	
@@ -1384,7 +1355,6 @@ DEP_CPP_VNCKE=\
 
 SOURCE=.\vncMenu.cpp
 DEP_CPP_VNCME=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1393,7 +1363,6 @@ DEP_CPP_VNCME=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -1427,8 +1396,10 @@ NODEP_CPP_VNCME=\
 # Begin Source File
 
 SOURCE=.\vncProperties.cpp
+
+!IF  "$(CFG)" == "winvnc - Win64 Release"
+
 DEP_CPP_VNCPR=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1437,7 +1408,6 @@ DEP_CPP_VNCPR=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1463,17 +1433,53 @@ NODEP_CPP_VNCPR=\
 "$(INTDIR)\vncProperties.obj" : $(SOURCE) $(DEP_CPP_VNCPR) "$(INTDIR)"
 
 
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
+
+DEP_CPP_VNCPR=\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
+	".\omnithread\omnithread/nt.h"\
+	".\RectList.h"\
+	".\rfb.h"\
+	".\rfbproto.h"\
+	".\stdhdrs.h"\
+	".\translate.h"\
+	".\vncauth.h"\
+	".\vncBuffer.h"\
+	".\vncClient.h"\
+	".\vncCorbaConnect.h"\
+	".\vncDesktop.h"\
+	".\vncEncoder.h"\
+	".\vncHTTPConnect.h"\
+	".\vncKeymap.h"\
+	".\vncPasswd.h"\
+	".\vncProperties.h"\
+	".\vncRegion.h"\
+	".\vncServer.h"\
+	".\vncService.h"\
+	".\vncSockConnect.h"\
+	".\VSocket.h"\
+	".\VTypes.h"\
+	".\WinVNC.h"\
+	
+NODEP_CPP_VNCPR=\
+	".\vnc.hh"\
+	
+
+"$(INTDIR)\vncProperties.obj" : $(SOURCE) $(DEP_CPP_VNCPR) "$(INTDIR)"
+
+
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\vncRegion.cpp
 DEP_CPP_VNCRE=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\RectList.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	".\vncRegion.h"\
 	
 
@@ -1486,7 +1492,6 @@ DEP_CPP_VNCRE=\
 
 SOURCE=.\vncServer.cpp
 DEP_CPP_VNCSE=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1495,7 +1500,6 @@ DEP_CPP_VNCSE=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1525,8 +1529,10 @@ NODEP_CPP_VNCSE=\
 # Begin Source File
 
 SOURCE=.\vncService.cpp
+
+!IF  "$(CFG)" == "winvnc - Win64 Release"
+
 DEP_CPP_VNCSER=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1535,7 +1541,6 @@ DEP_CPP_VNCSER=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncAbout.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
@@ -1564,13 +1569,32 @@ NODEP_CPP_VNCSER=\
 "$(INTDIR)\vncService.obj" : $(SOURCE) $(DEP_CPP_VNCSER) "$(INTDIR)"
 
 
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
+
+DEP_CPP_VNCSER=\
+	".\Log.h"\
+	".\omnithread\omnithread.h"\
+	".\omnithread\omnithread/nt.h"\
+	".\stdhdrs.h"\
+	".\vncMenu.h"\
+	".\vncProperties.h"\
+	".\vncServer.h"\
+	".\vncService.h"\
+	".\vncTimedMsgBox.h"\
+	".\WinVNC.h"\
+	
+
+"$(INTDIR)\vncService.obj" : $(SOURCE) $(DEP_CPP_VNCSER) "$(INTDIR)"
+
+
+!ENDIF 
+
 # End Source File
 ################################################################################
 # Begin Source File
 
 SOURCE=.\vncSockConnect.cpp
 DEP_CPP_VNCSO=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1579,7 +1603,6 @@ DEP_CPP_VNCSO=\
 	".\rfbproto.h"\
 	".\stdhdrs.h"\
 	".\translate.h"\
-	".\vc4yvals.h"\
 	".\vncauth.h"\
 	".\vncBuffer.h"\
 	".\vncClient.h"\
@@ -1612,7 +1635,6 @@ DEP_CPP_VNCTI=\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	".\vncTimedMsgBox.h"\
 	
 
@@ -1627,7 +1649,6 @@ SOURCE=.\VSocket.cpp
 DEP_CPP_VSOCK=\
 	".\Log.h"\
 	".\stdhdrs.h"\
-	".\vc4yvals.h"\
 	".\VSocket.h"\
 	".\VTypes.h"\
 	{$(INCLUDE)}"\sys\types.h"\
@@ -1654,9 +1675,9 @@ DEP_CPP_D3DES=\
 
 SOURCE=.\WinVNC.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1666,9 +1687,9 @@ SOURCE=.\WinVNC.h
 
 SOURCE=.\keysymdef.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1678,9 +1699,9 @@ SOURCE=.\keysymdef.h
 
 SOURCE=.\Log.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1690,9 +1711,9 @@ SOURCE=.\Log.h
 
 SOURCE=.\MinMax.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1702,9 +1723,9 @@ SOURCE=.\MinMax.h
 
 SOURCE=.\RectList.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1714,9 +1735,9 @@ SOURCE=.\RectList.h
 
 SOURCE=.\resource.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1726,9 +1747,9 @@ SOURCE=.\resource.h
 
 SOURCE=.\rfb.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1738,9 +1759,9 @@ SOURCE=.\rfb.h
 
 SOURCE=.\rfbproto.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1750,9 +1771,9 @@ SOURCE=.\rfbproto.h
 
 SOURCE=.\stdhdrs.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1762,9 +1783,9 @@ SOURCE=.\stdhdrs.h
 
 SOURCE=.\translate.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1774,9 +1795,9 @@ SOURCE=.\translate.h
 
 SOURCE=.\vncAbout.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1786,9 +1807,9 @@ SOURCE=.\vncAbout.h
 
 SOURCE=.\vncAcceptDialog.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1798,9 +1819,9 @@ SOURCE=.\vncAcceptDialog.h
 
 SOURCE=.\vncauth.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1810,9 +1831,9 @@ SOURCE=.\vncauth.h
 
 SOURCE=.\vncBuffer.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1822,9 +1843,9 @@ SOURCE=.\vncBuffer.h
 
 SOURCE=.\vncClient.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1834,9 +1855,9 @@ SOURCE=.\vncClient.h
 
 SOURCE=.\vncConnDialog.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1846,9 +1867,9 @@ SOURCE=.\vncConnDialog.h
 
 SOURCE=.\vncCorbaConnect.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1858,9 +1879,9 @@ SOURCE=.\vncCorbaConnect.h
 
 SOURCE=.\vncDesktop.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1870,9 +1891,9 @@ SOURCE=.\vncDesktop.h
 
 SOURCE=.\vncEncodeCoRRE.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1882,9 +1903,9 @@ SOURCE=.\vncEncodeCoRRE.h
 
 SOURCE=.\vncEncodeHexT.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1894,9 +1915,9 @@ SOURCE=.\vncEncodeHexT.h
 
 SOURCE=.\vncEncoder.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1906,9 +1927,9 @@ SOURCE=.\vncEncoder.h
 
 SOURCE=.\vncEncodeRRE.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1918,9 +1939,9 @@ SOURCE=.\vncEncodeRRE.h
 
 SOURCE=.\vncHTTPConnect.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1930,9 +1951,9 @@ SOURCE=.\vncHTTPConnect.h
 
 SOURCE=.\vncInstHandler.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1942,9 +1963,9 @@ SOURCE=.\vncInstHandler.h
 
 SOURCE=.\vncKeymap.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1954,9 +1975,9 @@ SOURCE=.\vncKeymap.h
 
 SOURCE=.\vncMenu.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1966,9 +1987,9 @@ SOURCE=.\vncMenu.h
 
 SOURCE=.\vncPasswd.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1978,9 +1999,9 @@ SOURCE=.\vncPasswd.h
 
 SOURCE=.\vncProperties.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -1990,9 +2011,9 @@ SOURCE=.\vncProperties.h
 
 SOURCE=.\vncRegion.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2002,9 +2023,9 @@ SOURCE=.\vncRegion.h
 
 SOURCE=.\vncServer.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2014,9 +2035,9 @@ SOURCE=.\vncServer.h
 
 SOURCE=.\vncService.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2026,9 +2047,9 @@ SOURCE=.\vncService.h
 
 SOURCE=.\vncSockConnect.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2038,9 +2059,9 @@ SOURCE=.\vncSockConnect.h
 
 SOURCE=.\vncTimedMsgBox.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2050,9 +2071,9 @@ SOURCE=.\vncTimedMsgBox.h
 
 SOURCE=.\VSocket.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2062,9 +2083,9 @@ SOURCE=.\VSocket.h
 
 SOURCE=.\VTypes.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2074,9 +2095,9 @@ SOURCE=.\VTypes.h
 
 SOURCE=.\d3des.h
 
-!IF  "$(CFG)" == "winvnc - Win32 Release"
+!IF  "$(CFG)" == "winvnc - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "winvnc - Win32 Debug"
+!ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 !ENDIF 
 
@@ -2109,12 +2130,12 @@ DEP_RSC_WINVNC=\
 ################################################################################
 # Begin Target
 
-# Name "omnithread - Win32 Release"
-# Name "omnithread - Win32 Debug"
+# Name "omnithread - Win64 Release"
+# Name "omnithread - Win64 Debug"
 
-!IF  "$(CFG)" == "omnithread - Win32 Release"
+!IF  "$(CFG)" == "omnithread - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 !ENDIF 
 
@@ -2137,9 +2158,9 @@ DEP_CPP_NT_CP=\
 
 SOURCE=.\omnithread\omnithread.h
 
-!IF  "$(CFG)" == "omnithread - Win32 Release"
+!IF  "$(CFG)" == "omnithread - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 !ENDIF 
 
@@ -2149,9 +2170,9 @@ SOURCE=.\omnithread\omnithread.h
 
 SOURCE=.\omnithread\omnithread\nt.h
 
-!IF  "$(CFG)" == "omnithread - Win32 Release"
+!IF  "$(CFG)" == "omnithread - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "omnithread - Win32 Debug"
+!ELSEIF  "$(CFG)" == "omnithread - Win64 Debug"
 
 !ENDIF 
 
@@ -2160,12 +2181,12 @@ SOURCE=.\omnithread\omnithread\nt.h
 ################################################################################
 # Begin Target
 
-# Name "vnchooks - Win32 Release"
-# Name "vnchooks - Win32 Debug"
+# Name "vnchooks - Win64 Release"
+# Name "vnchooks - Win64 Debug"
 
-!IF  "$(CFG)" == "vnchooks - Win32 Release"
+!IF  "$(CFG)" == "vnchooks - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vnchooks - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vnchooks - Win64 Debug"
 
 !ENDIF 
 
@@ -2174,7 +2195,7 @@ SOURCE=.\omnithread\omnithread\nt.h
 
 SOURCE=.\VNCHooks\VNCHooks.rc
 
-!IF  "$(CFG)" == "vnchooks - Win32 Release"
+!IF  "$(CFG)" == "vnchooks - Win64 Release"
 
 
 "$(INTDIR)\VNCHooks.res" : $(SOURCE) "$(INTDIR)"
@@ -2182,7 +2203,7 @@ SOURCE=.\VNCHooks\VNCHooks.rc
  $(SOURCE)
 
 
-!ELSEIF  "$(CFG)" == "vnchooks - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vnchooks - Win64 Debug"
 
 
 "$(INTDIR)\VNCHooks.res" : $(SOURCE) "$(INTDIR)"
@@ -2211,9 +2232,9 @@ DEP_CPP_VNCHO=\
 
 SOURCE=.\VNCHooks\VNCHooks.h
 
-!IF  "$(CFG)" == "vnchooks - Win32 Release"
+!IF  "$(CFG)" == "vnchooks - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vnchooks - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vnchooks - Win64 Debug"
 
 !ENDIF 
 
@@ -2223,9 +2244,9 @@ SOURCE=.\VNCHooks\VNCHooks.h
 
 SOURCE=.\VNCHooks\resource.h
 
-!IF  "$(CFG)" == "vnchooks - Win32 Release"
+!IF  "$(CFG)" == "vnchooks - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vnchooks - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vnchooks - Win64 Debug"
 
 !ENDIF 
 
@@ -2235,9 +2256,9 @@ SOURCE=.\VNCHooks\resource.h
 
 SOURCE=.\VNCHooks\VNCHooks.def
 
-!IF  "$(CFG)" == "vnchooks - Win32 Release"
+!IF  "$(CFG)" == "vnchooks - Win64 Release"
 
-!ELSEIF  "$(CFG)" == "vnchooks - Win32 Debug"
+!ELSEIF  "$(CFG)" == "vnchooks - Win64 Debug"
 
 !ENDIF 
 

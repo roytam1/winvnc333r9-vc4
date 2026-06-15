@@ -22,6 +22,8 @@
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
 #pragma once
+#ifndef __VNCVIEWERAPP_H__
+#define __VNCVIEWERAPP_H__
 
 // The state of the application as a whole is contained in the app object
 class VNCviewerApp;
@@ -55,3 +57,4 @@ private:
 	omni_mutex m_clilistMutex;
 };
 
+#endif
