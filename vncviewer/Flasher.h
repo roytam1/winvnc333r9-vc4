@@ -22,7 +22,8 @@
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
 
-#pragma once
+#ifndef __FLASHER_H__
+#define __FLASHER_H__
 
 // Flasher is used with the AT&T internal version of VNC, when the user may need to 
 // choose which monitor in a room should be used to display his desktop. A server can
@@ -43,3 +44,4 @@ protected:
 	HFONT m_hfont;
 };
 
+#endif

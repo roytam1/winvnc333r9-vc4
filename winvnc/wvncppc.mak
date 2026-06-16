@@ -105,9 +105,9 @@ MTL=mktyplib.exe
 # ADD MTL /nologo /D "NDEBUG" /PPC
 MTL_PROJ=/nologo /D "NDEBUG" /PPC 
 CPP=cl.exe
-# ADD BASE CPP /nologo /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "..\STL" /I "omnithread" /I "vnchooks" /I "." /D "NDEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /ML /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "..\STL" /I "omnithread"\
+# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /GX /Zi /O2 /I "..\STL" /I "omnithread" /I "vnchooks" /I "." /D "NDEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /ML /W3 /GX /Zi /O2 /I "..\STL" /I "omnithread"\
  /I "vnchooks" /I "." /D "NDEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D\
  "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/wvncppc.pch" /YX\
  /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
@@ -252,9 +252,9 @@ MTL=mktyplib.exe
 # ADD MTL /nologo /D "_DEBUG" /PPC
 MTL_PROJ=/nologo /D "_DEBUG" /PPC 
 CPP=cl.exe
-# ADD BASE CPP /nologo /Gt0 /QMOb2000 /W3 /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /Gt0 /QMOb2000 /W3 /GX /Zi /Od /I "..\STL" /I "omnithread" /I "vnchooks" /I "." /D "_DEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MLd /Gt0 /QMOb2000 /W3 /GX /Zi /Od /I "..\STL" /I\
+# ADD BASE CPP /nologo /W3 /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /GX /Zi /Od /I "..\STL" /I "omnithread" /I "vnchooks" /I "." /D "_DEBUG" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MLd /W3 /GX /Zi /Od /I "..\STL" /I\
  "omnithread" /I "vnchooks" /I "." /D "_DEBUG" /D "__WIN32__" /D\
  "_OMNITHREAD_DLL" /D "__NT__" /D "WIN32" /D "_WINDOWS" /D "NCORBA"\
  /Fp"$(INTDIR)/wvncppc.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
@@ -370,9 +370,9 @@ MTL=mktyplib.exe
 # ADD MTL /nologo /D "NDEBUG" /PPC
 MTL_PROJ=/nologo /D "NDEBUG" /PPC 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /YX /c
-CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "omnithread" /D\
+# ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /GX /Zi /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /YX /c
+CPP_PROJ=/nologo /MT /W3 /GX /Zi /O2 /I "." /I "omnithread" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D\
  "__NT__" /Fp"$(INTDIR)/othdppc.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\othdppc\PPCRel/
@@ -456,9 +456,9 @@ MTL=mktyplib.exe
 # ADD MTL /nologo /D "_DEBUG" /PPC
 MTL_PROJ=/nologo /D "_DEBUG" /PPC 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MTd /Gt0 /QMOb2000 /W3 /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MTd /Gt0 /QMOb2000 /W3 /GX /Zi /Od /I "." /I "omnithread" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /YX /c
-CPP_PROJ=/nologo /MTd /Gt0 /QMOb2000 /W3 /GX /Zi /Od /I "." /I "omnithread" /D\
+# ADD BASE CPP /nologo /MTd /W3 /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MTd /W3 /GX /Zi /Od /I "." /I "omnithread" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D "__NT__" /YX /c
+CPP_PROJ=/nologo /MTd /W3 /GX /Zi /Od /I "." /I "omnithread" /D\
  "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_OMNITHREAD_DLL" /D\
  "__NT__" /Fp"$(INTDIR)/othdppc.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\othdppc\PPCDbg/
@@ -542,9 +542,9 @@ MTL=mktyplib.exe
 # ADD MTL /nologo /D "NDEBUG" /PPC
 MTL_PROJ=/nologo /D "NDEBUG" /PPC 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MT /Gt0 /QMOb2000 /W3 /GX /Zi /O2 /I "." /I "vnchooks" /D\
+# ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /GX /Zi /O2 /I "." /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MT /W3 /GX /Zi /O2 /I "." /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchppc.pch" /YX\
  /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\vnchppc\PPCRel/
@@ -631,9 +631,9 @@ MTL=mktyplib.exe
 # ADD MTL /nologo /D "_DEBUG" /PPC
 MTL_PROJ=/nologo /D "_DEBUG" /PPC 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MTd /Gt0 /QMOb2000 /W3 /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MTd /Gt0 /QMOb2000 /W3 /GX /Zi /Od /I "." /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MTd /Gt0 /QMOb2000 /W3 /GX /Zi /Od /I "." /I "vnchooks" /D\
+# ADD BASE CPP /nologo /MTd /W3 /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MTd /W3 /GX /Zi /Od /I "." /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MTd /W3 /GX /Zi /Od /I "." /I "vnchooks" /D\
  "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchppc.pch" /YX\
  /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\vnchppc\PPCDbg/

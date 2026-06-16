@@ -23,7 +23,6 @@
 
 
 
-#pragma once
 #ifndef __VNCOPTIONS_H__
 #define __VNCOPTIONS_H__
 #include "stdhdrs.h"

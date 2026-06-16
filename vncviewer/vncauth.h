@@ -26,6 +26,9 @@
  * vncauth.h - describes the functions provided by the vncauth library.
  */
 
+#ifndef __VNCAUTH_H__
+#define __VNCAUTH_H__
+
 #define MAXPWLEN 8
 #define CHALLENGESIZE 16
 
@@ -33,4 +36,4 @@ void vncEncryptBytes(unsigned char *bytes, char *passwd);
 void vncEncryptPasswd(unsigned char *encryptedPasswd, char *passwd);
 char *vncDecryptPasswd(const unsigned char *encryptedPasswd);
 
-
+#endif

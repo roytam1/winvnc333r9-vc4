@@ -21,7 +21,6 @@
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
-#pragma once
 #ifndef __VNCVIEWERAPP_H__
 #define __VNCVIEWERAPP_H__
 

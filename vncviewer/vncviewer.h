@@ -22,7 +22,6 @@
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
 
-#pragma once
 #ifndef __VNCVIEWER_H__
 #define __VNCVIEWER_H__
 #include <tchar.h>

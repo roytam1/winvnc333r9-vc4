@@ -25,7 +25,9 @@
 // MRU maintains a list of 'Most Recently Used' strings in the registry
 // 
 
-#pragma once
+#ifndef __MRU_H__
+#define __MRU_H__
+
 #include <windows.h>
 #include <tchar.h>
 
@@ -71,3 +73,4 @@ protected:
 	void WriteIndex();
 };
 
+#endif

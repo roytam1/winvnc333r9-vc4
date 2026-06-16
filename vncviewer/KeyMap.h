@@ -25,7 +25,6 @@
 // KeyMap.h
 // mapping of windows virtual key codes to X keysyms.
 
-#pragma once
 #ifndef __KEYMAP_H__
 #define __KEYMAP_H__
 

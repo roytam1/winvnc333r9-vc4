@@ -36,7 +36,6 @@
 //       log.Print(2, _T("x = %d\n"), x);
 //
 
-#pragma once
 #ifndef __LOG_H__
 #define __LOG_H__
 

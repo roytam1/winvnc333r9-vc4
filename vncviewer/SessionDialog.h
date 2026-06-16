@@ -23,7 +23,9 @@
 
 
 
-#pragma once
+#ifndef __SESSIONDIALOG_H__
+#define __SESSIONDIALOG_H__
+
 #include "VNCOptions.h"
 #include "MRU.h"
 
@@ -45,3 +47,5 @@ private:
 	static BOOL CALLBACK SessDlgProc(  HWND hwndDlg,  UINT uMsg, 
 		WPARAM wParam, LPARAM lParam );
 };
+
+#endif

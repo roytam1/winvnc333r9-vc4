@@ -20,6 +20,8 @@
 // If the source code for the VNC system is not available from the place 
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
+#ifndef __VNCVIEWERAPP32_H__
+#define __VNCVIEWERAPP32_H__
 
 #include "VNCviewerApp.h"
 #include "Daemon.h"
@@ -42,3 +44,4 @@ private:
 	Daemon  *m_pdaemon;
 };
 
+#endif

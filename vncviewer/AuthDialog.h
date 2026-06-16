@@ -23,7 +23,8 @@
 
 
 
-#pragma once
+#ifndef __AUTHDIALOG_H__
+#define __AUTHDIALOG_H__
 
 class AuthDialog  
 {
@@ -35,3 +36,5 @@ public:
 	static BOOL CALLBACK DlgProc(  HWND hwndDlg,  UINT uMsg, 
 		WPARAM wParam, LPARAM lParam );
 };
+
+#endif

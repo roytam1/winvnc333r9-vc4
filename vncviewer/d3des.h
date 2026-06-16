@@ -19,6 +19,9 @@
  *      (GEnie : OUTER; CIS : [71755,204])
  */
 
+#ifndef __D3DES_H__
+#define __D3DES_H__
+
 #define EN0     0       /* MODE == encrypt */
 #define DE1     1       /* MODE == decrypt */
 
@@ -49,3 +52,4 @@ extern void des(unsigned char *, unsigned char *);
 
 /* d3des.h V5.09 rwo 9208.04 15:06 Graven Imagery
  ********************************************************************/
+#endif

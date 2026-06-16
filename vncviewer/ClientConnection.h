@@ -22,7 +22,6 @@
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
 
-#pragma once
 #ifndef __CLIENTCONNECTION_H__
 #define __CLIENTCONNECTION_H__
 

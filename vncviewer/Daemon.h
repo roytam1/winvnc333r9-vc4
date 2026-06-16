@@ -22,7 +22,8 @@
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
 
-#pragma once
+#ifndef __DAEMON_H__
+#define __DAEMON_H__
 
 #include "stdhdrs.h"
 
@@ -45,3 +46,4 @@ protected:
 	char netbuf[1024];
 };
 
+#endif

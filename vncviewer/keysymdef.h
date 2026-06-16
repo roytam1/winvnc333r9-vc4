@@ -21,6 +21,9 @@
 // whence you received this file, check http://www.uk.research.att.com/vnc or contact
 // the authors on vnc@uk.research.att.com for information on obtaining it.
 
+#ifndef __KEYSYMDEF_H__
+#define __KEYSYMDEF_H__
+
 #define XK_VoidSymbol       0xFFFFFF
 
 #define XK_space            0x020
@@ -140,3 +143,4 @@
 #define XK_Super_R		0xFFEC	/* Right super */
 #define XK_Menu			0xFF67
 
+#endif
