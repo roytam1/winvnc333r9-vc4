@@ -131,9 +131,9 @@ F90_OBJS=.\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "_WINSTATIC" /D "__WIN32__" /FR /YX /c
-CPP_PROJ=/nologo /ML /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32"\
+# ADD BASE CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WIN32_IE=0x600" /YX /c
+# ADD CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__NT__" /D "_WINSTATIC" /D "__WIN32__" /D "_WIN32_IE=0x600" /FR /YX /c
+CPP_PROJ=/nologo /ML /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "_WIN32_IE=0x600" /D "WIN32"\
  /D "_WINDOWS" /D "__NT__" /D "_WINSTATIC" /D "__WIN32__" /FR"$(INTDIR)/"\
  /Fp"$(INTDIR)/vncviewer.pch" /YX /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\IA64Rel/
