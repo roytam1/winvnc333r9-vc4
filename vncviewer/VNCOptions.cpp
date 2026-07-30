@@ -504,7 +504,7 @@ int VNCOptions::DoDialog(bool running)
 {
 	m_running = running;
  	return DialogBoxParam(pApp->m_instance, DIALOG_MAKEINTRESOURCE(IDD_OPTIONDIALOG), 
-		NULL, (DLGPROC) OptDlgProc, (LONG) this);
+		NULL, (DLGPROC) OptDlgProc, (INT_PTR) this);
 }
 
 BOOL CALLBACK VNCOptions::OptDlgProc(  HWND hwnd,  UINT uMsg,  

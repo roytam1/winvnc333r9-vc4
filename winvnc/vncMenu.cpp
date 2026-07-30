@@ -106,7 +106,7 @@ vncMenu::vncMenu(vncServer *server)
 	SetTimer(m_hwnd, 1, 5000, NULL);
 
 	// record which client created this window
-	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG) this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (INT_PTR) this);
 
 	// Ask the server object to notify us of stuff
 	server->AddNotify(m_hwnd);

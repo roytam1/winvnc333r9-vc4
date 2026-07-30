@@ -49,7 +49,7 @@ SessionDialog::~SessionDialog()
 int SessionDialog::DoDialog()
 {
  	return DialogBoxParam(pApp->m_instance, DIALOG_MAKEINTRESOURCE(IDD_SESSION_DLG), 
-		NULL, (DLGPROC) SessDlgProc, (LONG) this);
+		NULL, (DLGPROC) SessDlgProc, (INT_PTR) this);
 }
 
 BOOL CALLBACK SessionDialog::SessDlgProc(  HWND hwnd,  UINT uMsg,  WPARAM wParam, LPARAM lParam ) {

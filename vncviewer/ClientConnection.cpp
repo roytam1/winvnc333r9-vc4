@@ -230,7 +230,7 @@ void ClientConnection::CreateDisplay()
 	ShowWindow(m_hwnd, SW_HIDE);
 
 	// record which client created this window
-	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG) this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (INT_PTR) this);
 
 
 	// Create a memory DC which we'll use for drawing to

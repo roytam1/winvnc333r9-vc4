@@ -53,7 +53,7 @@ vncAcceptDialog::~vncAcceptDialog()
 BOOL vncAcceptDialog::DoDialog()
 {
 	int retVal = DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_ACCEPT_CONN), 
-		NULL, (DLGPROC) vncAcceptDlgProc, (LONG) this);
+		NULL, (DLGPROC) vncAcceptDlgProc, (INT_PTR) this);
 	delete this;
 	return retVal == IDACCEPT;
 }

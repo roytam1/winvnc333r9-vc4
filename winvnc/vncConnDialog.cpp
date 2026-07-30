@@ -49,7 +49,7 @@ vncConnDialog::~vncConnDialog()
 void vncConnDialog::DoDialog()
 {
 	DialogBoxParam(hAppInstance, MAKEINTRESOURCE(IDD_OUTGOING_CONN), 
-		NULL, (DLGPROC) vncConnDlgProc, (LONG) this);
+		NULL, (DLGPROC) vncConnDlgProc, (INT_PTR) this);
 	delete this;
 }
 

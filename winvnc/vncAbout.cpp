@@ -60,7 +60,7 @@ vncAbout::Show(BOOL show)
 				MAKEINTRESOURCE(IDD_ABOUT), 
 				NULL,
 				(DLGPROC) DialogProc,
-				(LONG) this);
+				(INT_PTR) this);
 		}
 	}
 }

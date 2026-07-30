@@ -70,6 +70,11 @@
 #define GetWindowLongPtr GetWindowLong
 #endif
 
+#ifdef _WIN64
+#define MAKELONGLONG(lo, hi) ((LONGLONG)lo + ((LONGLONG)hi << 16))
+#else
+#define MAKELONGLONG(lo, hi) MAKELONG(lo, hi)
+#endif
 
 // LOGGING SUPPORT
 

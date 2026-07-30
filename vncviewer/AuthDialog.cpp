@@ -45,7 +45,7 @@ AuthDialog::~AuthDialog()
 int AuthDialog::DoDialog()
 {
 	return DialogBoxParam(pApp->m_instance, DIALOG_MAKEINTRESOURCE(IDD_AUTH_DIALOG), 
-		NULL, (DLGPROC) DlgProc, (LONG) this);
+		NULL, (DLGPROC) DlgProc, (INT_PTR) this);
 }
 
 BOOL CALLBACK AuthDialog::DlgProc(  HWND hwnd,  UINT uMsg,  

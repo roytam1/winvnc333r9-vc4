@@ -69,7 +69,7 @@ Daemon::Daemon(int port)
 				NULL);
 	
 	// record which client created this window
-	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG) this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (INT_PTR) this);
 
 	// Load a popup menu
 	m_hmenu = LoadMenu(pApp->m_instance, MAKEINTRESOURCE(IDR_TRAYMENU));

@@ -843,7 +843,7 @@ vncDesktop::InitWindow()
 		return FALSE;
 
 	// Set the "this" pointer for the window
-	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (long)this);
+	SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (INT_PTR)this);
 
 	// Enable clipboard hooking
 	m_hnextviewer = SetClipboardViewer(m_hwnd);
@@ -1178,7 +1178,7 @@ vncDesktop::CopyToBuffer(RECT &rect, BYTE *destbuff, UINT destbuffsize)
 BOOL CALLBACK
 EnumWindowsFn(HWND hwnd, LPARAM arg)
 {
-	HANDLE prop = GetProp(hwnd, (LPCTSTR) MAKELONG(VNC_WINDOWPOS_ATOM, 0));
+	HANDLE prop = GetProp(hwnd, (LPCTSTR) MAKELONGLONG(VNC_WINDOWPOS_ATOM, 0));
 	if (prop != NULL)
 	{
 		if (IsWindowVisible(hwnd))
@@ -1200,8 +1200,8 @@ EnumWindowsFn(HWND hwnd, LPARAM arg)
 					SHORT x = dest.left;
 					SHORT y = dest.top;
 					SetProp(hwnd,
-						(LPCTSTR) MAKELONG(VNC_WINDOWPOS_ATOM, 0),
-						(HANDLE) MAKELONG(x, y));
+						(LPCTSTR) MAKELONGLONG(VNC_WINDOWPOS_ATOM, 0),
+						(HANDLE) MAKELONGLONG(x, y));
 
 					// Notify all clients of the copyrect
 					((vncServer*)arg)->CopyRect(dest, source);
@@ -1211,11 +1211,11 @@ EnumWindowsFn(HWND hwnd, LPARAM arg)
 				}
 			}
 			else
-				RemoveProp(hwnd, (LPCTSTR) MAKELONG(VNC_WINDOWPOS_ATOM, 0));
+				RemoveProp(hwnd, (LPCTSTR) MAKELONGLONG(VNC_WINDOWPOS_ATOM, 0));
 		}
 		else
 		{
-			RemoveProp(hwnd, (LPCTSTR) MAKELONG(VNC_WINDOWPOS_ATOM, 0));
+			RemoveProp(hwnd, (LPCTSTR) MAKELONGLONG(VNC_WINDOWPOS_ATOM, 0));
 		}
 	}
 	else
@@ -1230,8 +1230,8 @@ EnumWindowsFn(HWND hwnd, LPARAM arg)
 				SHORT x = dest.left;
 				SHORT y = dest.top;
 				SetProp(hwnd,
-					(LPCTSTR) MAKELONG(VNC_WINDOWPOS_ATOM, 0),
-					(HANDLE) MAKELONG(x, y));
+					(LPCTSTR) MAKELONGLONG(VNC_WINDOWPOS_ATOM, 0),
+					(HANDLE) MAKELONGLONG(x, y));
 			}
 		}
 	}
