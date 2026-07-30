@@ -402,7 +402,7 @@ F90_OBJS=.\omnithread\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /W3 /As64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD BASE CPP /nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
 # ADD CPP /nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
 CPP_PROJ=/nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\

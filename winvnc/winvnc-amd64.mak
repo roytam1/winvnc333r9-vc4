@@ -17,7 +17,7 @@ CFG=winvnc - Win64 Release
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
 !MESSAGE by defining the macro CFG on the command line.  For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "winvnc-amd64.mak" CFG="vnchooks - Win64 Debug"
+!MESSAGE NMAKE /f "winvnc-AMD64.mak" CFG="vnchooks - Win64 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
@@ -113,9 +113,9 @@ F90_OBJS=.\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /W3 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
-CPP_PROJ=/nologo /ML /W3 /GX /O2 /I "omnithread" /I "vnchooks" /I\
+# ADD BASE CPP /nologo /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
+CPP_PROJ=/nologo /ML /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /I\
  "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D\
  "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\AMD64Rel/
@@ -273,8 +273,8 @@ F90_OBJS=.\Debug/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
+# ADD BASE CPP /nologo /W3 /Wp64 /DWIN64 /D_WIN64 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /Wp64 /DWIN64 /D_WIN64 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
 CPP_PROJ=/nologo /MLd /W3 /Gm /GX /Zi /Od /I "omnithread" /I\
  "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D\
  "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX\
@@ -402,9 +402,9 @@ F90_OBJS=.\omnithread\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
-CPP_PROJ=/nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /D\
+# ADD BASE CPP /nologo /MT /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
+CPP_PROJ=/nologo /MT /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\omnithread\AMD64Rel/
@@ -602,9 +602,9 @@ F90_OBJS=.\vnchooks\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /D\
+# ADD BASE CPP /nologo /MT /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MT /W3 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchooks.pch" /YX\
  /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\vnchooks\AMD64Rel/
@@ -791,12 +791,12 @@ LINK32_OBJS= \
 !IF  "$(CFG)" == "winvnc - Win64 Release"
 
 "omnithread - Win64 Release" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-amd64.mak" CFG="omnithread - Win64 Release" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-AMD64.mak" CFG="omnithread - Win64 Release" 
 
 !ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 "omnithread - Win64 Debug" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-amd64.mak" CFG="omnithread - Win64 Debug" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-AMD64.mak" CFG="omnithread - Win64 Debug" 
 
 !ENDIF 
 
@@ -809,12 +809,12 @@ LINK32_OBJS= \
 !IF  "$(CFG)" == "winvnc - Win64 Release"
 
 "vnchooks - Win64 Release" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-amd64.mak" CFG="vnchooks - Win64 Release" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-AMD64.mak" CFG="vnchooks - Win64 Release" 
 
 !ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 "vnchooks - Win64 Debug" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-amd64.mak" CFG="vnchooks - Win64 Debug" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-AMD64.mak" CFG="vnchooks - Win64 Debug" 
 
 !ENDIF 
 
@@ -824,7 +824,6 @@ LINK32_OBJS= \
 
 SOURCE=.\WinVNC.cpp
 DEP_CPP_WINVN=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -892,7 +891,6 @@ DEP_CPP_MINMA=\
 
 SOURCE=.\RectList.cpp
 DEP_CPP_RECTL=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\RectList.h"\
 	".\stdhdrs.h"\
@@ -985,7 +983,6 @@ DEP_CPP_VNCAU=\
 
 SOURCE=.\vncBuffer.cpp
 DEP_CPP_VNCBU=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\MinMax.h"\
 	".\omnithread\omnithread.h"\
@@ -1026,7 +1023,6 @@ NODEP_CPP_VNCBU=\
 
 SOURCE=.\vncClient.cpp
 DEP_CPP_VNCCL=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1065,7 +1061,6 @@ NODEP_CPP_VNCCL=\
 
 SOURCE=.\vncConnDialog.cpp
 DEP_CPP_VNCCO=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1104,7 +1099,6 @@ NODEP_CPP_VNCCO=\
 
 SOURCE=.\vncDesktop.cpp
 DEP_CPP_VNCDE=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1144,7 +1138,6 @@ NODEP_CPP_VNCDE=\
 
 SOURCE=.\vncEncodeCoRRE.cpp
 DEP_CPP_VNCEN=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\MinMax.h"\
 	".\omnithread\omnithread.h"\
@@ -1183,7 +1176,6 @@ NODEP_CPP_VNCEN=\
 
 SOURCE=.\vncEncodeHexT.cpp
 DEP_CPP_VNCENC=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\MinMax.h"\
 	".\omnithread\omnithread.h"\
@@ -1222,7 +1214,6 @@ NODEP_CPP_VNCENC=\
 
 SOURCE=.\vncEncoder.cpp
 DEP_CPP_VNCENCO=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1259,7 +1250,6 @@ NODEP_CPP_VNCENCO=\
 
 SOURCE=.\vncEncodeRRE.cpp
 DEP_CPP_VNCENCOD=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1297,7 +1287,6 @@ NODEP_CPP_VNCENCOD=\
 
 SOURCE=.\vncHTTPConnect.cpp
 DEP_CPP_VNCHT=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1366,7 +1355,6 @@ DEP_CPP_VNCKE=\
 
 SOURCE=.\vncMenu.cpp
 DEP_CPP_VNCME=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1412,7 +1400,6 @@ SOURCE=.\vncProperties.cpp
 !IF  "$(CFG)" == "winvnc - Win64 Release"
 
 DEP_CPP_VNCPR=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1449,7 +1436,6 @@ NODEP_CPP_VNCPR=\
 !ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 DEP_CPP_VNCPR=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1491,7 +1477,6 @@ NODEP_CPP_VNCPR=\
 
 SOURCE=.\vncRegion.cpp
 DEP_CPP_VNCRE=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\RectList.h"\
 	".\stdhdrs.h"\
@@ -1507,7 +1492,6 @@ DEP_CPP_VNCRE=\
 
 SOURCE=.\vncServer.cpp
 DEP_CPP_VNCSE=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1549,7 +1533,6 @@ SOURCE=.\vncService.cpp
 !IF  "$(CFG)" == "winvnc - Win64 Release"
 
 DEP_CPP_VNCSER=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\
@@ -1612,7 +1595,6 @@ DEP_CPP_VNCSER=\
 
 SOURCE=.\vncSockConnect.cpp
 DEP_CPP_VNCSO=\
-	"..\stl\list"\
 	".\Log.h"\
 	".\omnithread\omnithread.h"\
 	".\omnithread\omnithread/nt.h"\

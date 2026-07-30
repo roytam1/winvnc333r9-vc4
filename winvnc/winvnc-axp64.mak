@@ -47,8 +47,8 @@ NULL=nul
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Release"
-# PROP BASE Intermediate_Dir "Release"
+# PROP BASE Output_Dir "AXP64Rel"
+# PROP BASE Intermediate_Dir "AXP64Rel"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
@@ -364,8 +364,8 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "omnithread\Release"
-# PROP BASE Intermediate_Dir "omnithread\Release"
+# PROP BASE Output_Dir "omnithread\AXP64Rel"
+# PROP BASE Intermediate_Dir "omnithread\AXP64Rel"
 # PROP BASE Target_Dir "omnithread"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
