@@ -43,16 +43,16 @@ NULL=nul
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Release"
-# PROP BASE Intermediate_Dir "Release"
+# PROP BASE Output_Dir "AXP64Rel"
+# PROP BASE Intermediate_Dir "AXP64Rel"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
+# PROP Output_Dir "AXP64Rel"
+# PROP Intermediate_Dir "AXP64Rel"
 # PROP Target_Dir ""
-OUTDIR=.\Release
-INTDIR=.\Release
+OUTDIR=.\AXP64Rel
+INTDIR=.\AXP64Rel
 
 ALL : "omnithread - Win64 Release" "$(OUTDIR)\vncviewer.exe"\
  "$(OUTDIR)\vncviewer.bsc"
@@ -136,8 +136,8 @@ CPP=cl.exe
 CPP_PROJ=/nologo /ML /W3 /Ap64 /DWIN64 /D_WIN64 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32"\
  /D "_WINDOWS" /D "__NT__" /D "_WINSTATIC" /D "__WIN32__" /FR"$(INTDIR)/"\
  /Fp"$(INTDIR)/vncviewer.pch" /YX /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\Release/
-CPP_SBRS=.\Release/
+CPP_OBJS=.\AXP64Rel/
+CPP_SBRS=.\AXP64Rel/
 
 .c{$(CPP_OBJS)}.obj:
    $(CPP) $(CPP_PROJ) $<  
@@ -236,7 +236,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\vncviewer.res" \
 	"$(INTDIR)\VNCviewerApp.obj" \
 	"$(INTDIR)\VNCviewerApp32.obj" \
-	".\omnithread\Release\omnithread.lib"
+	".\omnithread\AXP64Rel\omnithread.lib"
 
 "$(OUTDIR)\vncviewer.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -247,16 +247,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Debug"
-# PROP BASE Intermediate_Dir "Debug"
+# PROP BASE Output_Dir "AXP64Dbg"
+# PROP BASE Intermediate_Dir "AXP64Dbg"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
-# PROP Intermediate_Dir "Debug"
+# PROP Output_Dir "AXP64Dbg"
+# PROP Intermediate_Dir "AXP64Dbg"
 # PROP Target_Dir ""
-OUTDIR=.\Debug
-INTDIR=.\Debug
+OUTDIR=.\AXP64Dbg
+INTDIR=.\AXP64Dbg
 
 ALL : "omnithread - Win64 Debug" "$(OUTDIR)\vncviewer.exe"\
  "$(OUTDIR)\vncviewer.bsc"
@@ -346,8 +346,8 @@ CPP_PROJ=/nologo /MLd /W3 /Gm /GX /Zi /Od /I "." /I "omnithread" /D "_DEBUG" /D\
  "WIN32" /D "_WINDOWS" /D "__NT__" /D "_WINSTATIC" /D "__WIN32__"\
  /FR"$(INTDIR)/" /Fp"$(INTDIR)/vncviewer.pch" /YX /Fo"$(INTDIR)/"\
  /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\Debug/
-CPP_SBRS=.\Debug/
+CPP_OBJS=.\AXP64Dbg/
+CPP_SBRS=.\AXP64Dbg/
 
 .c{$(CPP_OBJS)}.obj:
    $(CPP) $(CPP_PROJ) $<  
@@ -446,7 +446,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\vncviewer.res" \
 	"$(INTDIR)\VNCviewerApp.obj" \
 	"$(INTDIR)\VNCviewerApp32.obj" \
-	".\omnithread\Debug\omnithread.lib"
+	".\omnithread\AXP64Dbg\omnithread.lib"
 
 "$(OUTDIR)\vncviewer.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -457,16 +457,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "omnithread\omnithre"
-# PROP BASE Intermediate_Dir "omnithread\omnithre"
+# PROP BASE Output_Dir "omnithread\AXP64Rel"
+# PROP BASE Intermediate_Dir "omnithread\AXP64Rel"
 # PROP BASE Target_Dir "omnithread"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "omnithread\Release"
-# PROP Intermediate_Dir "omnithread\Release"
+# PROP Output_Dir "omnithread\AXP64Rel"
+# PROP Intermediate_Dir "omnithread\AXP64Rel"
 # PROP Target_Dir "omnithread"
-OUTDIR=.\omnithread\Release
-INTDIR=.\omnithread\Release
+OUTDIR=.\omnithread\AXP64Rel
+INTDIR=.\omnithread\AXP64Rel
 
 ALL : "$(OUTDIR)\omnithread.dll"
 
@@ -500,7 +500,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /GX /O2 /I "." /I "omnithread" /D "NDEBUG" /D "WIN32"\
  /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /Fp"$(INTDIR)/omnithread.pch"\
  /YX /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\omnithread\Release/
+CPP_OBJS=.\omnithread\AXP64Rel/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -554,16 +554,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "omnithread\Debug"
-# PROP BASE Intermediate_Dir "omnithread\Debug"
+# PROP BASE Output_Dir "omnithread\AXP64Dbg"
+# PROP BASE Intermediate_Dir "omnithread\AXP64Dbg"
 # PROP BASE Target_Dir "omnithread"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "omnithread\Debug"
-# PROP Intermediate_Dir "omnithread\Debug"
+# PROP Output_Dir "omnithread\AXP64Dbg"
+# PROP Intermediate_Dir "omnithread\AXP64Dbg"
 # PROP Target_Dir "omnithread"
-OUTDIR=.\omnithread\Debug
-INTDIR=.\omnithread\Debug
+OUTDIR=.\omnithread\AXP64Dbg
+INTDIR=.\omnithread\AXP64Dbg
 
 ALL : "$(OUTDIR)\omnithread.dll"
 
@@ -602,7 +602,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "." /I "omnithread" /D "_DEBUG" /D\
  "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\omnithread\Debug/
+CPP_OBJS=.\omnithread\AXP64Dbg/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:

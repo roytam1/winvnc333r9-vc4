@@ -47,16 +47,16 @@ NULL=nul
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Release"
-# PROP BASE Intermediate_Dir "Release"
+# PROP BASE Output_Dir "AMD64Rel"
+# PROP BASE Intermediate_Dir "AMD64Rel"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
+# PROP Output_Dir "AMD64Rel"
+# PROP Intermediate_Dir "AMD64Rel"
 # PROP Target_Dir ""
-OUTDIR=.\Release
-INTDIR=.\Release
+OUTDIR=.\AMD64Rel
+INTDIR=.\AMD64Rel
 
 ALL : "vnchooks - Win64 Release" "omnithread - Win64 Release"\
  "$(OUTDIR)\winvnc.exe"
@@ -118,7 +118,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /ML /W3 /GX /O2 /I "omnithread" /I "vnchooks" /I\
  "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D\
  "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\Release/
+CPP_OBJS=.\AMD64Rel/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -191,8 +191,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\VSocket.obj" \
 	"$(INTDIR)\WinVNC.obj" \
 	"$(INTDIR)\WinVNC.res" \
-	".\omnithread\Release\omnithread.lib" \
-	".\vnchooks\Release\vnchooks.lib"
+	".\omnithread\AMD64Rel\omnithread.lib" \
+	".\vnchooks\AMD64Rel\vnchooks.lib"
 
 "$(OUTDIR)\winvnc.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -203,16 +203,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Debug"
-# PROP BASE Intermediate_Dir "Debug"
+# PROP BASE Output_Dir "AMD64Dbg"
+# PROP BASE Intermediate_Dir "AMD64Dbg"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
-# PROP Intermediate_Dir "Debug"
+# PROP Output_Dir "AMD64Dbg"
+# PROP Intermediate_Dir "AMD64Dbg"
 # PROP Target_Dir ""
-OUTDIR=.\Debug
-INTDIR=.\Debug
+OUTDIR=.\AMD64Dbg
+INTDIR=.\AMD64Dbg
 
 ALL : "vnchooks - Win64 Debug" "omnithread - Win64 Debug"\
  "$(OUTDIR)\winvnc.exe"
@@ -279,7 +279,7 @@ CPP_PROJ=/nologo /MLd /W3 /Gm /GX /Zi /Od /I "omnithread" /I\
  "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D\
  "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX\
  /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\Debug/
+CPP_OBJS=.\AMD64Dbg/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -352,8 +352,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\VSocket.obj" \
 	"$(INTDIR)\WinVNC.obj" \
 	"$(INTDIR)\WinVNC.res" \
-	".\omnithread\Debug\omnithread.lib" \
-	".\vnchooks\Debug\vnchooks.lib"
+	".\omnithread\AMD64Dbg\omnithread.lib" \
+	".\vnchooks\AMD64Dbg\vnchooks.lib"
 
 "$(OUTDIR)\winvnc.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -364,16 +364,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "omnithread\Release"
-# PROP BASE Intermediate_Dir "omnithread\Release"
+# PROP BASE Output_Dir "omnithread\AMD64Rel"
+# PROP BASE Intermediate_Dir "omnithread\AMD64Rel"
 # PROP BASE Target_Dir "omnithread"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "omnithread\Release"
-# PROP Intermediate_Dir "omnithread\Release"
+# PROP Output_Dir "omnithread\AMD64Rel"
+# PROP Intermediate_Dir "omnithread\AMD64Rel"
 # PROP Target_Dir "omnithread"
-OUTDIR=.\omnithread\Release
-INTDIR=.\omnithread\Release
+OUTDIR=.\omnithread\AMD64Rel
+INTDIR=.\omnithread\AMD64Rel
 
 ALL : "$(OUTDIR)\omnithread.dll"
 
@@ -407,7 +407,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\omnithread\Release/
+CPP_OBJS=.\omnithread\AMD64Rel/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -461,16 +461,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "omnithread\Debug"
-# PROP BASE Intermediate_Dir "omnithread\Debug"
+# PROP BASE Output_Dir "omnithread\AMD64Dbg"
+# PROP BASE Intermediate_Dir "omnithread\AMD64Dbg"
 # PROP BASE Target_Dir "omnithread"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "omnithread\Debug"
-# PROP Intermediate_Dir "omnithread\Debug"
+# PROP Output_Dir "omnithread\AMD64Dbg"
+# PROP Intermediate_Dir "omnithread\AMD64Dbg"
 # PROP Target_Dir "omnithread"
-OUTDIR=.\omnithread\Debug
-INTDIR=.\omnithread\Debug
+OUTDIR=.\omnithread\AMD64Dbg
+INTDIR=.\omnithread\AMD64Dbg
 
 ALL : "$(OUTDIR)\omnithread.dll"
 
@@ -509,7 +509,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks"\
  /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\omnithread\Debug/
+CPP_OBJS=.\omnithread\AMD64Dbg/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -563,16 +563,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "vnchooks\Release"
-# PROP BASE Intermediate_Dir "vnchooks\Release"
+# PROP BASE Output_Dir "vnchooks\AMD64Rel"
+# PROP BASE Intermediate_Dir "vnchooks\AMD64Rel"
 # PROP BASE Target_Dir "vnchooks"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "vnchooks\Release"
-# PROP Intermediate_Dir "vnchooks\Release"
+# PROP Output_Dir "vnchooks\AMD64Rel"
+# PROP Intermediate_Dir "vnchooks\AMD64Rel"
 # PROP Target_Dir "vnchooks"
-OUTDIR=.\vnchooks\Release
-INTDIR=.\vnchooks\Release
+OUTDIR=.\vnchooks\AMD64Rel
+INTDIR=.\vnchooks\AMD64Rel
 
 ALL : "$(OUTDIR)\vnchooks.dll"
 
@@ -607,7 +607,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MT /W3 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchooks.pch" /YX\
  /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\vnchooks\Release/
+CPP_OBJS=.\vnchooks\AMD64Rel/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -665,16 +665,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "vnchooks\Debug"
-# PROP BASE Intermediate_Dir "vnchooks\Debug"
+# PROP BASE Output_Dir "vnchooks\AMD64Dbg"
+# PROP BASE Intermediate_Dir "vnchooks\AMD64Dbg"
 # PROP BASE Target_Dir "vnchooks"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "vnchooks\Debug"
-# PROP Intermediate_Dir "vnchooks\Debug"
+# PROP Output_Dir "vnchooks\AMD64Dbg"
+# PROP Intermediate_Dir "vnchooks\AMD64Dbg"
 # PROP Target_Dir "vnchooks"
-OUTDIR=.\vnchooks\Debug
-INTDIR=.\vnchooks\Debug
+OUTDIR=.\vnchooks\AMD64Dbg
+INTDIR=.\vnchooks\AMD64Dbg
 
 ALL : "$(OUTDIR)\vnchooks.dll"
 
@@ -714,7 +714,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks"\
  /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchooks.pch"\
  /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\vnchooks\Debug/
+CPP_OBJS=.\vnchooks\AMD64Dbg/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:

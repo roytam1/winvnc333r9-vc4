@@ -1,8 +1,8 @@
 # Microsoft Developer Studio Generated NMAKE File, Format Version 4.10
 # ** DO NOT EDIT **
 
-# TARGTYPE "Win64 (ALPHA64) Application" 0x0101
-# TARGTYPE "Win64 (ALPHA64) Dynamic-Link Library" 0x0102
+# TARGTYPE "Win64 (IA64) Application" 0x0101
+# TARGTYPE "Win64 (IA64) Dynamic-Link Library" 0x0102
 
 !IF "$(CFG)" == ""
 CFG=winvnc - Win64 Release
@@ -17,19 +17,19 @@ CFG=winvnc - Win64 Release
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
 !MESSAGE by defining the macro CFG on the command line.  For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "winvnc-axp64.mak" CFG="vnchooks - Win64 Debug"
+!MESSAGE NMAKE /f "winvnc-IA64.mak" CFG="vnchooks - Win64 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "winvnc - Win64 Release" (based on "Win64 (ALPHA64) Application")
-!MESSAGE "winvnc - Win64 Debug" (based on "Win64 (ALPHA64) Application")
+!MESSAGE "winvnc - Win64 Release" (based on "Win64 (IA64) Application")
+!MESSAGE "winvnc - Win64 Debug" (based on "Win64 (IA64) Application")
 !MESSAGE "omnithread - Win64 Release" (based on\
- "Win64 (ALPHA64) Dynamic-Link Library")
+ "Win64 (IA64) Dynamic-Link Library")
 !MESSAGE "omnithread - Win64 Debug" (based on\
- "Win64 (ALPHA64) Dynamic-Link Library")
+ "Win64 (IA64) Dynamic-Link Library")
 !MESSAGE "vnchooks - Win64 Release" (based on\
- "Win64 (ALPHA64) Dynamic-Link Library")
-!MESSAGE "vnchooks - Win64 Debug" (based on "Win64 (ALPHA64) Dynamic-Link Library")
+ "Win64 (IA64) Dynamic-Link Library")
+!MESSAGE "vnchooks - Win64 Debug" (based on "Win64 (IA64) Dynamic-Link Library")
 !MESSAGE 
 !ERROR An invalid configuration is specified.
 !ENDIF 
@@ -47,16 +47,16 @@ NULL=nul
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Release"
-# PROP BASE Intermediate_Dir "Release"
+# PROP BASE Output_Dir "IA64Rel"
+# PROP BASE Intermediate_Dir "IA64Rel"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "AXP64Rel"
-# PROP Intermediate_Dir "AXP64Rel"
+# PROP Output_Dir "IA64Rel"
+# PROP Intermediate_Dir "IA64Rel"
 # PROP Target_Dir ""
-OUTDIR=.\AXP64Rel
-INTDIR=.\AXP64Rel
+OUTDIR=.\IA64Rel
+INTDIR=.\IA64Rel
 
 ALL : "vnchooks - Win64 Release" "omnithread - Win64 Release"\
  "$(OUTDIR)\winvnc.exe"
@@ -113,12 +113,12 @@ F90_OBJS=.\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
-CPP_PROJ=/nologo /ML /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /I\
+# ADD BASE CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
+CPP_PROJ=/nologo /ML /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /I\
  "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D\
  "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\AXP64Rel/
+CPP_OBJS=.\IA64Rel/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -154,12 +154,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/winvnc.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:ALPHA64
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /machine:ALPHA64
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:IA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /machine:IA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib wsock32.lib /nologo /subsystem:windows /incremental:no\
- /pdb:"$(OUTDIR)/winvnc.pdb" /machine:ALPHA64 /out:"$(OUTDIR)/winvnc.exe" 
+ /pdb:"$(OUTDIR)/winvnc.pdb" /machine:IA64 /out:"$(OUTDIR)/winvnc.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\d3des.obj" \
 	"$(INTDIR)\Log.obj" \
@@ -191,8 +191,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\VSocket.obj" \
 	"$(INTDIR)\WinVNC.obj" \
 	"$(INTDIR)\WinVNC.res" \
-	".\omnithread\AXP64Rel\omnithread.lib" \
-	".\vnchooks\AXP64Rel\vnchooks.lib"
+	".\omnithread\IA64Rel\omnithread.lib" \
+	".\vnchooks\IA64Rel\vnchooks.lib"
 
 "$(OUTDIR)\winvnc.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -203,16 +203,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "AXP64Dbg"
-# PROP BASE Intermediate_Dir "AXP64Dbg"
+# PROP BASE Output_Dir "IA64Dbg"
+# PROP BASE Intermediate_Dir "IA64Dbg"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "AXP64Dbg"
-# PROP Intermediate_Dir "AXP64Dbg"
+# PROP Output_Dir "IA64Dbg"
+# PROP Intermediate_Dir "IA64Dbg"
 # PROP Target_Dir ""
-OUTDIR=.\AXP64Dbg
-INTDIR=.\AXP64Dbg
+OUTDIR=.\IA64Dbg
+INTDIR=.\IA64Dbg
 
 ALL : "vnchooks - Win64 Debug" "omnithread - Win64 Debug"\
  "$(OUTDIR)\winvnc.exe"
@@ -273,13 +273,13 @@ F90_OBJS=.\Debug/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
+# ADD BASE CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /YX /c
 CPP_PROJ=/nologo /MLd /W3 /Gm /GX /Zi /Od /I "omnithread" /I\
  "vnchooks" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /D\
  "_OMNITHREAD_DLL" /D "__WIN32__" /D "NOMINMAX" /Fp"$(INTDIR)/winvnc.pch" /YX\
  /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\AXP64Dbg/
+CPP_OBJS=.\IA64Dbg/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -315,12 +315,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/winvnc.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:ALPHA64
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /debug /machine:ALPHA64
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:IA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:windows /debug /machine:IA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib wsock32.lib /nologo /subsystem:windows /incremental:yes\
- /pdb:"$(OUTDIR)/winvnc.pdb" /debug /machine:ALPHA64 /out:"$(OUTDIR)/winvnc.exe" 
+ /pdb:"$(OUTDIR)/winvnc.pdb" /debug /machine:IA64 /out:"$(OUTDIR)/winvnc.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\d3des.obj" \
 	"$(INTDIR)\Log.obj" \
@@ -352,8 +352,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\VSocket.obj" \
 	"$(INTDIR)\WinVNC.obj" \
 	"$(INTDIR)\WinVNC.res" \
-	".\omnithread\AXP64Dbg\omnithread.lib" \
-	".\vnchooks\AXP64Dbg\vnchooks.lib"
+	".\omnithread\IA64Dbg\omnithread.lib" \
+	".\vnchooks\IA64Dbg\vnchooks.lib"
 
 "$(OUTDIR)\winvnc.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -364,16 +364,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "omnithread\Release"
-# PROP BASE Intermediate_Dir "omnithread\Release"
+# PROP BASE Output_Dir "omnithread\IA64Rel"
+# PROP BASE Intermediate_Dir "omnithread\IA64Rel"
 # PROP BASE Target_Dir "omnithread"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "omnithread\AXP64Rel"
-# PROP Intermediate_Dir "omnithread\AXP64Rel"
+# PROP Output_Dir "omnithread\IA64Rel"
+# PROP Intermediate_Dir "omnithread\IA64Rel"
 # PROP Target_Dir "omnithread"
-OUTDIR=.\omnithread\AXP64Rel
-INTDIR=.\omnithread\AXP64Rel
+OUTDIR=.\omnithread\IA64Rel
+INTDIR=.\omnithread\IA64Rel
 
 ALL : "$(OUTDIR)\omnithread.dll"
 
@@ -402,12 +402,12 @@ F90_OBJS=.\omnithread\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
-CPP_PROJ=/nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D\
+# ADD BASE CPP /nologo /MT /W3 /As64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__" /YX /c
+CPP_PROJ=/nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\omnithread\AXP64Rel/
+CPP_OBJS=.\omnithread\IA64Rel/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -442,12 +442,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/omnithread.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:IA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:IA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/omnithread.pdb" /machine:ALPHA64 /out:"$(OUTDIR)/omnithread.dll"\
+ /pdb:"$(OUTDIR)/omnithread.pdb" /machine:IA64 /out:"$(OUTDIR)/omnithread.dll"\
  /implib:"$(OUTDIR)/omnithread.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
@@ -461,16 +461,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "omnithread\AXP64Dbg"
-# PROP BASE Intermediate_Dir "omnithread\AXP64Dbg"
+# PROP BASE Output_Dir "omnithread\IA64Dbg"
+# PROP BASE Intermediate_Dir "omnithread\IA64Dbg"
 # PROP BASE Target_Dir "omnithread"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "omnithread\AXP64Dbg"
-# PROP Intermediate_Dir "omnithread\AXP64Dbg"
+# PROP Output_Dir "omnithread\IA64Dbg"
+# PROP Intermediate_Dir "omnithread\IA64Dbg"
 # PROP Target_Dir "omnithread"
-OUTDIR=.\omnithread\AXP64Dbg
-INTDIR=.\omnithread\AXP64Dbg
+OUTDIR=.\omnithread\IA64Dbg
+INTDIR=.\omnithread\IA64Dbg
 
 ALL : "$(OUTDIR)\omnithread.dll"
 
@@ -509,7 +509,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks"\
  /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_OMNITHREAD_DLL" /D "__WIN32__"\
  /Fp"$(INTDIR)/omnithread.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\omnithread\AXP64Dbg/
+CPP_OBJS=.\omnithread\IA64Dbg/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -544,12 +544,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/omnithread.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:IA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:IA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)/omnithread.pdb" /debug /machine:ALPHA64\
+ /pdb:"$(OUTDIR)/omnithread.pdb" /debug /machine:IA64\
  /out:"$(OUTDIR)/omnithread.dll" /implib:"$(OUTDIR)/omnithread.lib" 
 LINK32_OBJS= \
 	"$(INTDIR)\nt.obj"
@@ -563,16 +563,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "vnchooks\AXP64Rel"
-# PROP BASE Intermediate_Dir "vnchooks\AXP64Rel"
+# PROP BASE Output_Dir "vnchooks\IA64Rel"
+# PROP BASE Intermediate_Dir "vnchooks\IA64Rel"
 # PROP BASE Target_Dir "vnchooks"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "vnchooks\AXP64Rel"
-# PROP Intermediate_Dir "vnchooks\AXP64Rel"
+# PROP Output_Dir "vnchooks\IA64Rel"
+# PROP Intermediate_Dir "vnchooks\IA64Rel"
 # PROP Target_Dir "vnchooks"
-OUTDIR=.\vnchooks\AXP64Rel
-INTDIR=.\vnchooks\AXP64Rel
+OUTDIR=.\vnchooks\IA64Rel
+INTDIR=.\vnchooks\IA64Rel
 
 ALL : "$(OUTDIR)\vnchooks.dll"
 
@@ -602,12 +602,12 @@ F90_OBJS=.\vnchooks\Release/
    $(F90) $(F90_PROJ) $<  
 
 CPP=cl.exe
-# ADD BASE CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
-CPP_PROJ=/nologo /MT /W3 /Ap64 /DWIN64 /D_WIN64 /Gt0 /GX /O2 /I "omnithread" /I "vnchooks" /D\
+# ADD BASE CPP /nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /c
+# ADD CPP /nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /YX /c
+CPP_PROJ=/nologo /MT /W3 /As64 /Wp64 /DWIN64 /D_WIN64 /GX /O2 /I "omnithread" /I "vnchooks" /D\
  "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchooks.pch" /YX\
  /Fo"$(INTDIR)/" /c 
-CPP_OBJS=.\vnchooks\AXP64Rel/
+CPP_OBJS=.\vnchooks\IA64Rel/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -643,12 +643,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/vnchooks.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:ALPHA64
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:IA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:IA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:no\
- /pdb:"$(OUTDIR)/vnchooks.pdb" /machine:ALPHA64 /def:".\VNCHooks\VNCHooks.def"\
+ /pdb:"$(OUTDIR)/vnchooks.pdb" /machine:IA64 /def:".\VNCHooks\VNCHooks.def"\
  /out:"$(OUTDIR)/vnchooks.dll" /implib:"$(OUTDIR)/vnchooks.lib" 
 DEF_FILE= \
 	".\VNCHooks\VNCHooks.def"
@@ -665,16 +665,16 @@ LINK32_OBJS= \
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "vnchooks\AXP64Dbg"
-# PROP BASE Intermediate_Dir "vnchooks\AXP64Dbg"
+# PROP BASE Output_Dir "vnchooks\IA64Dbg"
+# PROP BASE Intermediate_Dir "vnchooks\IA64Dbg"
 # PROP BASE Target_Dir "vnchooks"
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "vnchooks\AXP64Dbg"
-# PROP Intermediate_Dir "vnchooks\AXP64Dbg"
+# PROP Output_Dir "vnchooks\IA64Dbg"
+# PROP Intermediate_Dir "vnchooks\IA64Dbg"
 # PROP Target_Dir "vnchooks"
-OUTDIR=.\vnchooks\AXP64Dbg
-INTDIR=.\vnchooks\AXP64Dbg
+OUTDIR=.\vnchooks\IA64Dbg
+INTDIR=.\vnchooks\IA64Dbg
 
 ALL : "$(OUTDIR)\vnchooks.dll"
 
@@ -714,7 +714,7 @@ CPP=cl.exe
 CPP_PROJ=/nologo /MTd /W3 /Gm /GX /Zi /Od /I "omnithread" /I "vnchooks"\
  /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "NCORBA" /Fp"$(INTDIR)/vnchooks.pch"\
  /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
-CPP_OBJS=.\vnchooks\AXP64Dbg/
+CPP_OBJS=.\vnchooks\IA64Dbg/
 CPP_SBRS=.\.
 
 .c{$(CPP_OBJS)}.obj:
@@ -750,12 +750,12 @@ BSC32_FLAGS=/nologo /o"$(OUTDIR)/vnchooks.bsc"
 BSC32_SBRS= \
 	
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:ALPHA64
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:IA64
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:IA64
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
  advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib\
  odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes\
- /pdb:"$(OUTDIR)/vnchooks.pdb" /debug /machine:ALPHA64\
+ /pdb:"$(OUTDIR)/vnchooks.pdb" /debug /machine:IA64\
  /def:".\VNCHooks\VNCHooks.def" /out:"$(OUTDIR)/vnchooks.dll"\
  /implib:"$(OUTDIR)/vnchooks.lib" 
 DEF_FILE= \
@@ -791,12 +791,12 @@ LINK32_OBJS= \
 !IF  "$(CFG)" == "winvnc - Win64 Release"
 
 "omnithread - Win64 Release" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="omnithread - Win64 Release" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-IA64.mak" CFG="omnithread - Win64 Release" 
 
 !ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 "omnithread - Win64 Debug" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="omnithread - Win64 Debug" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-IA64.mak" CFG="omnithread - Win64 Debug" 
 
 !ENDIF 
 
@@ -809,12 +809,12 @@ LINK32_OBJS= \
 !IF  "$(CFG)" == "winvnc - Win64 Release"
 
 "vnchooks - Win64 Release" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="vnchooks - Win64 Release" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-IA64.mak" CFG="vnchooks - Win64 Release" 
 
 !ELSEIF  "$(CFG)" == "winvnc - Win64 Debug"
 
 "vnchooks - Win64 Debug" : 
-   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-axp64.mak" CFG="vnchooks - Win64 Debug" 
+   $(MAKE) /$(MAKEFLAGS) /F ".\winvnc-IA64.mak" CFG="vnchooks - Win64 Debug" 
 
 !ENDIF 
 
