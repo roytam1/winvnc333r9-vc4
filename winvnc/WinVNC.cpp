@@ -46,6 +46,7 @@
 HINSTANCE	hAppInstance;
 const char	*szAppName = "WinVNC";
 DWORD		mainthreadId;
+BOOL		noTray = FALSE;
 
 // WinMain parses the command line and either calls the main App
 // routine or, under NT, the main service routine.
@@ -92,6 +93,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 		argfound = TRUE;
 
 		// Now check for command-line arguments
+		if (strncmp(&szCmdLine[i], winvncRunNoTray, strlen(winvncRunNoTray)) == 0)
+		{
+			// create tray as minimized windows instead of system tray
+			noTray = TRUE;
+			i+=strlen(winvncRunNoTray);
+			continue;
+		}
 		if (strncmp(&szCmdLine[i], winvncRunServiceHelper, strlen(winvncRunServiceHelper)) == 0)
 		{
 			// NB : This flag MUST be parsed BEFORE "-service", otherwise it will match
@@ -225,7 +233,7 @@ int WinVNCAppMain()
 	log.Print(LL_STATE, VNCLOG("server created ok\n"));
 
 	// Create tray icon & menu if we're running as an app
-	vncMenu *menu = new vncMenu(&server);
+	vncMenu *menu = new vncMenu(&server, noTray);
 	if (menu == NULL)
 	{
 		log.Print(LL_INTERR, VNCLOG("failed to create tray menu\n"));

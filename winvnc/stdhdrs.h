@@ -68,6 +68,9 @@
 #define GWLP_USERDATA GWL_USERDATA
 #define SetWindowLongPtr SetWindowLong
 #define GetWindowLongPtr GetWindowLong
+#ifndef INT_PTR
+#define INT_PTR LONG
+#endif
 #endif
 
 #ifdef _WIN64

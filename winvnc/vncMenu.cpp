@@ -58,9 +58,33 @@ RestoreWallpaper()
 	SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, NULL, SPIF_SENDCHANGE);
 }
 
+/* Dynamic loading Shell_NotifyIcon */
+typedef BOOL (WINAPI *pfnShell_NotifyIconA)(DWORD dwMessage, PNOTIFYICONDATAA lpData);
+
+static BOOL DynamicShellNotifyIcon(DWORD dwMessage, PNOTIFYICONDATAA lpData) {
+    static pfnShell_NotifyIconA pfn = NULL;
+    static BOOL bAttempted = FALSE;
+
+    if (!bAttempted) {
+        HMODULE hShell = GetModuleHandle("SHELL32.DLL");
+        if (hShell) {
+            pfn = (pfnShell_NotifyIconA)GetProcAddress(hShell, "Shell_NotifyIconA");
+            if (!pfn) {
+                pfn = (pfnShell_NotifyIconA)GetProcAddress(hShell, "Shell_NotifyIcon");
+            }
+        }
+        bAttempted = TRUE;
+    }
+
+    if (pfn) {
+        return pfn(dwMessage, lpData);
+    }
+    return FALSE;
+}
+
 // Implementation
 
-vncMenu::vncMenu(vncServer *server)
+vncMenu::vncMenu(vncServer *server, BOOL noTray)
 {
 	// Save the server pointer
 	m_server = server;
@@ -69,25 +93,23 @@ vncMenu::vncMenu(vncServer *server)
 	vncService::CurrentUser((char *)&m_username, sizeof(m_username));
 
 	// Create a dummy window to handle tray icon messages
-	WNDCLASSEX wndclass;
+	WNDCLASS wndclass;
 
-	wndclass.cbSize			= sizeof(wndclass);
-	wndclass.style			= 0;
+	wndclass.style			= CS_HREDRAW | CS_VREDRAW;;
 	wndclass.lpfnWndProc	= vncMenu::WndProc;
 	wndclass.cbClsExtra		= 0;
 	wndclass.cbWndExtra		= 0;
 	wndclass.hInstance		= hAppInstance;
-	wndclass.hIcon			= LoadIcon(NULL, IDI_APPLICATION);
+	wndclass.hIcon			= LoadIcon(hAppInstance, MAKEINTRESOURCE(IDI_WINVNC)); // Explicit icon
 	wndclass.hCursor		= LoadCursor(NULL, IDC_ARROW);
-	wndclass.hbrBackground	= (HBRUSH) GetStockObject(WHITE_BRUSH);
+	wndclass.hbrBackground	= (HBRUSH)(COLOR_WINDOW + 1);
 	wndclass.lpszMenuName	= (const char *) NULL;
 	wndclass.lpszClassName	= MENU_CLASS_NAME;
-	wndclass.hIconSm		= LoadIcon(NULL, IDI_APPLICATION);
 
-	RegisterClassEx(&wndclass);
+	RegisterClass(&wndclass);
 
 	m_hwnd = CreateWindow(MENU_CLASS_NAME,
-				MENU_CLASS_NAME,
+				"WinVNC Server",
 				WS_OVERLAPPEDWINDOW,
 				CW_USEDEFAULT,
 				CW_USEDEFAULT,
@@ -95,7 +117,7 @@ vncMenu::vncMenu(vncServer *server)
 				NULL,
 				NULL,
 				hAppInstance,
-				NULL);
+				(LPVOID)this);
 	if (m_hwnd == NULL)
 	{
 		PostQuitMessage(0);
@@ -124,6 +146,20 @@ vncMenu::vncMenu(vncServer *server)
 
 	// Load the popup menu
 	m_hmenu = LoadMenu(hAppInstance, MAKEINTRESOURCE(IDR_TRAYMENU));
+
+	m_no_tray_icon = noTray;
+	// Add VNC options to the System Menu of the minimized window
+	HMENU hSysMenu = GetSystemMenu(m_hwnd, FALSE);
+	if (hSysMenu) {
+		AppendMenu(hSysMenu, MF_SEPARATOR, 0, NULL);
+		AppendMenu(hSysMenu, MF_STRING, ID_PROPERTIES, "&Properties...");
+		AppendMenu(hSysMenu, MF_STRING, ID_ABOUT, "&About WinVNC...");
+		AppendMenu(hSysMenu, MF_STRING, ID_CLOSE, "&Close WinVNC");
+	}
+
+	DWORD winver = GetVersion();
+	if ((LOBYTE(LOWORD(winver))) < 4) // Force not using system tray if windows major version is < 3
+		m_no_tray_icon = TRUE;
 
 	// Install the tray icon!
 	AddTrayIcon();
@@ -228,28 +264,71 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 	    }
 	}
 
-	// Send the message
-	if (Shell_NotifyIcon(msg, &m_nid))
-	{
-		// Set the enabled/disabled state of the menu items
-		log.Print(LL_INTINFO, VNCLOG("tray icon added ok\n"));
-
-		EnableMenuItem(m_hmenu, ID_PROPERTIES,
-			m_properties.AllowProperties() ? MF_ENABLED : MF_GRAYED);
-		EnableMenuItem(m_hmenu, ID_CLOSE,
-			m_properties.AllowShutdown() ? MF_ENABLED : MF_GRAYED);
-	} else {
-		if (!vncService::RunningAsService())
+	if(!m_no_tray_icon) {
+		// Send the message
+		if (DynamicShellNotifyIcon(msg, &m_nid))
 		{
-			if (msg == NIM_ADD)
+			// Set the enabled/disabled state of the menu items
+			log.Print(LL_INTINFO, VNCLOG("tray icon added ok\n"));
+
+			EnableMenuItem(m_hmenu, ID_PROPERTIES,
+				m_properties.AllowProperties() ? MF_ENABLED : MF_GRAYED);
+			EnableMenuItem(m_hmenu, ID_CLOSE,
+				m_properties.AllowShutdown() ? MF_ENABLED : MF_GRAYED);
+		} else {
+			if (!vncService::RunningAsService())
 			{
-				// The tray icon couldn't be created, so use the Properties dialog
-				// as the main program window
-				log.Print(LL_INTINFO, VNCLOG("opening dialog box\n"));
-				m_properties.Show(TRUE, TRUE);
-				PostQuitMessage(0);
+				if (msg == NIM_ADD)
+				{
+					// The tray icon couldn't be created, so use the Properties dialog
+					// as the main program window
+					log.Print(LL_INTINFO, VNCLOG("opening dialog box\n"));
+					m_properties.Show(TRUE, TRUE);
+					PostQuitMessage(0);
+				}
 			}
 		}
+	} else {
+		switch (msg) {
+			case NIM_ADD:
+				// Handled when creating/showing the window minimized
+				ShowWindow(m_hwnd, SW_SHOWMINNOACTIVE);
+				UpdateWindow(m_hwnd);
+				break;
+
+			case NIM_MODIFY:
+				// --- Update Icon ---
+				if (m_nid.uFlags & NIF_ICON) {
+					// NT 3.51 uses the Class Icon (GCL_HICON) to draw the desktop icon
+					SetClassLong(m_hwnd, GCL_HICON, (LONG)m_nid.hIcon);
+
+					// Also send WM_SETICON for compatibility if running under NT 4 / Win95 shell
+					#ifndef WM_SETICON
+					#define WM_SETICON 0x0080
+					#endif
+					SendMessage(m_hwnd, WM_SETICON, 0 /* ICON_SMALL */, (LPARAM)m_nid.hIcon);
+					SendMessage(m_hwnd, WM_SETICON, 1 /* ICON_BIG */,   (LPARAM)m_nid.hIcon);
+				}
+
+				// --- Update Tooltip / Status Text ---
+				if (m_nid.uFlags & NIF_TIP) {
+					// The caption under the minimized icon on NT 3.51 acts as the "tooltip"
+					SetWindowText(m_hwnd, m_nid.szTip);
+				}
+
+				// --- Force Immediate Desktop Redraw ---
+				// Invalidate the non-client area so Program Manager / Desktop updates the icon immediately
+				RedrawWindow(
+					m_hwnd, 
+					NULL, 
+					NULL, 
+					RDW_INVALIDATE | RDW_ERASE | RDW_FRAME | RDW_UPDATENOW
+				);
+				break;
+
+			case NIM_DELETE:
+				ShowWindow(m_hwnd, SW_HIDE);
+        }
 	}
 }
 
@@ -342,6 +421,45 @@ LRESULT CALLBACK vncMenu::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lP
 
 		}
 		return 0;
+
+	case WM_RBUTTONUP:
+	case WM_NCRBUTTONUP:
+		if (_this && _this->m_no_tray_icon) {
+			POINT pt;
+			GetCursorPos(&pt);
+			SetForegroundWindow(hwnd);
+			TrackPopupMenu(_this->m_hmenu, TPM_RIGHTBUTTON, pt.x, pt.y, 0, hwnd, NULL);
+			PostMessage(hwnd, WM_NULL, 0, 0);
+			return 0;
+		}
+		break;
+
+	case WM_LBUTTONDBLCLK:
+	case WM_NCLBUTTONDBLCLK:
+		if (_this && _this->m_no_tray_icon) {
+			// Opening properties dialog on double click
+			PostMessage(hwnd, WM_COMMAND, ID_PROPERTIES, 0);
+			return 0;
+		}
+		break;
+
+	case WM_SYSCOMMAND:
+		if (_this && _this->m_no_tray_icon) {
+			WORD cmd = LOWORD(wParam) & 0xFFF0;
+			if (cmd == SC_RESTORE || cmd == SC_MAXIMIZE) {
+				// Intercept window restore to open Properties instead of empty frame
+				PostMessage(hwnd, WM_COMMAND, ID_PROPERTIES, 0);
+				return 0;
+			}
+			// Route custom system menu items to command handler
+			if (wParam == ID_PROPERTIES ||
+				wParam == ID_ABOUT ||
+				wParam == ID_CLOSE) {
+				PostMessage(hwnd, WM_COMMAND, wParam, lParam);
+				return 0;
+			}
+		}
+		break;
 
 	case WM_TRAYNOTIFY:
 		// User has clicked on the tray icon or the menu

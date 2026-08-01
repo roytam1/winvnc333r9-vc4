@@ -49,6 +49,7 @@ extern int WinVNCAppMain();
 const char winvncRunService[]		= "-service";
 const char winvncRunServiceHelper[]	= "-servicehelper";
 const char winvncRunAsUserApp[]		= "-run";
+const char winvncRunNoTray[]		= "-notray";
 
 const char winvncInstallService[]	= "-install";
 const char winvncRemoveService[]	= "-remove";

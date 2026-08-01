@@ -49,7 +49,7 @@ extern const char *MENU_CLASS_NAME;
 class vncMenu
 {
 public:
-	vncMenu(vncServer *server);
+	vncMenu(vncServer *server, BOOL noTray);
 	~vncMenu();
 protected:
 	// Tray icon handling
@@ -71,6 +71,7 @@ protected:
 
 	// Properties object for this server
 	vncProperties	m_properties;
+	BOOL			m_no_tray_icon;
 
 	// About dialog for this server
 	vncAbout		m_about;
