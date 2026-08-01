@@ -5,8 +5,8 @@
 # TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
 
 !IF "$(CFG)" == ""
-CFG=omnithread - Win32 Debug
-!MESSAGE No configuration specified.  Defaulting to omnithread - Win32 Debug.
+CFG=vncviewer - Win32 Release
+!MESSAGE No configuration specified.  Defaulting to vncviewer - Win32 Release.
 !ENDIF 
 
 !IF "$(CFG)" != "vncviewer - Win32 Release" && "$(CFG)" !=\
@@ -16,7 +16,7 @@ CFG=omnithread - Win32 Debug
 !MESSAGE You can specify a configuration when running NMAKE on this makefile
 !MESSAGE by defining the macro CFG on the command line.  For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "vncviewer.mak" CFG="omnithread - Win32 Debug"
+!MESSAGE NMAKE /f "vncviewer.mak" CFG="vncviewer - Win32 Release"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
