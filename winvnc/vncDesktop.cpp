@@ -829,9 +829,8 @@ vncDesktop::InitWindow()
 {
 	if (m_wndClass == 0) {
 		// Create the window class
-		WNDCLASSEX wndclass;
+		WNDCLASS wndclass;
 
-		wndclass.cbSize			= sizeof(wndclass);
 		wndclass.style			= 0;
 		wndclass.lpfnWndProc	= &DesktopWndProc;
 		wndclass.cbClsExtra		= 0;
@@ -842,10 +841,9 @@ vncDesktop::InitWindow()
 		wndclass.hbrBackground	= (HBRUSH) GetStockObject(WHITE_BRUSH);
 		wndclass.lpszMenuName	= (const char *) NULL;
 		wndclass.lpszClassName	= szDesktopSink;
-		wndclass.hIconSm		= NULL;
 
 		// Register it
-		m_wndClass = RegisterClassEx(&wndclass);
+		m_wndClass = RegisterClass(&wndclass);
 	}
 
 	// And create a window
