@@ -64,6 +64,10 @@
 #define VK_APPS 0x5D
 #endif
 
+#ifndef GCL_HICON
+#define GCL_HICON (-14)
+#endif
+
 #ifndef GWLP_USERDATA
 #define GWLP_USERDATA GWL_USERDATA
 #define SetWindowLongPtr SetWindowLong
