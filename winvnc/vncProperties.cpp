@@ -54,6 +54,101 @@ const char NO_PASSWD_NO_LOGON_WARN [] =
 const char NO_CURRENT_USER_ERR [] = "The WinVNC settings for the current user are unavailable at present.";
 const char CANNOT_EDIT_DEFAULT_PREFS [] = "You do not have sufficient priviliges to edit the default local WinVNC settings.";
 
+BOOL MyWritePrivateProfileStructA(
+    LPCSTR lpAppName,
+    LPCSTR lpKeyName,
+    const void *lpStruct,
+    UINT uSizeStruct,
+    LPCSTR lpFileName)
+{
+    static const char hex[] = "0123456789ABCDEF";
+
+    if (!lpAppName || !lpKeyName || !lpStruct || !lpFileName)
+        return FALSE;
+
+    char *buf = (char *)malloc(uSizeStruct * 2 + 1);
+    if (!buf)
+        return FALSE;
+
+    const unsigned char *p = (const unsigned char *)lpStruct;
+
+    for (UINT i = 0; i < uSizeStruct; ++i) {
+        buf[i * 2 + 0] = hex[p[i] >> 4];
+        buf[i * 2 + 1] = hex[p[i] & 0x0F];
+    }
+
+    buf[uSizeStruct * 2] = '\0';
+
+    BOOL result = WritePrivateProfileStringA(
+        lpAppName,
+        lpKeyName,
+        buf,
+        lpFileName
+    );
+
+    free(buf);
+    return result;
+}
+
+BOOL MyGetPrivateProfileStructA(
+    LPCSTR lpAppName,
+    LPCSTR lpKeyName,
+    void *lpStruct,
+    UINT uSizeStruct,
+    LPCSTR lpFileName)
+{
+    if (!lpAppName || !lpKeyName || !lpStruct || !lpFileName)
+        return FALSE;
+
+    char *buf = (char *)malloc(uSizeStruct * 2 + 1);
+    if (!buf)
+        return FALSE;
+
+    DWORD n = GetPrivateProfileStringA(
+        lpAppName,
+        lpKeyName,
+        NULL,
+        buf,
+        uSizeStruct * 2 + 1,
+        lpFileName
+    );
+
+    if (n != uSizeStruct * 2) {
+        free(buf);
+        return FALSE;
+    }
+
+    unsigned char *p = (unsigned char *)lpStruct;
+
+    for (UINT i = 0; i < uSizeStruct; ++i) {
+        char h = buf[i * 2];
+        char l = buf[i * 2 + 1];
+
+        int hi, lo;
+
+        if (h >= '0' && h <= '9') hi = h - '0';
+        else if (h >= 'A' && h <= 'F') hi = h - 'A' + 10;
+        else if (h >= 'a' && h <= 'f') hi = h - 'a' + 10;
+        else {
+            free(buf);
+            return FALSE;
+        }
+
+        if (l >= '0' && l <= '9') lo = l - '0';
+        else if (l >= 'A' && l <= 'F') lo = l - 'A' + 10;
+        else if (l >= 'a' && l <= 'f') lo = l - 'a' + 10;
+        else {
+            free(buf);
+            return FALSE;
+        }
+
+        p[i] = (unsigned char)((hi << 4) | lo);
+    }
+
+    free(buf);
+    return TRUE;
+}
+
 // Constructor & Destructor
 vncProperties::vncProperties()
 {
@@ -507,7 +602,7 @@ vncProperties::LoadInt(LPCSTR key, LPCSTR valname, LONG defval)
 void
 vncProperties::LoadPassword(LPCSTR key, char *buffer)
 {
-	GetPrivateProfileStruct(key,"passwd",buffer,MAXPWLEN,m_Inifile);
+	MyGetPrivateProfileStructA(key,"passwd",buffer,MAXPWLEN,m_Inifile);
 }
 
 char *
@@ -686,7 +781,7 @@ vncProperties::SaveInt(LPCSTR key, LPCSTR valname, LONG val)
 void
 vncProperties::SavePassword(LPCSTR key, char *buffer)
 {
-	WritePrivateProfileStruct(key,"passwd", buffer,MAXPWLEN,m_Inifile);
+	MyWritePrivateProfileStructA(key,"passwd", buffer,MAXPWLEN,m_Inifile);
 }
 
 void
