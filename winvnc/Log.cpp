@@ -24,6 +24,7 @@ Log::Log(int mode, int level, LPSTR filename, bool append)
     m_todebug = false;
     m_toconsole = false;
     m_tofile = false;
+    m_level = level;
     SetFile(filename, append);
     SetMode(mode);
 }
