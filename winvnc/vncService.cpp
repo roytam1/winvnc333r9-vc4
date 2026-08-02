@@ -239,7 +239,7 @@ vncService::SelectHDESK(HDESK new_desktop)
 			return FALSE;
 		}
 
-		log.Print(LL_INTERR, VNCLOG("SelectHDESK to %s (%x) from %x"), new_name, new_desktop, old_desktop);
+		log.Print(LL_INTERR, VNCLOG("SelectHDESK to %s (%x) from %x\n"), new_name, new_desktop, old_desktop);
 
 		// Switch the desktop
 		if(!SetThreadDesktop(new_desktop)) {
