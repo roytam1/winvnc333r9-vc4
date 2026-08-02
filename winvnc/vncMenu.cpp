@@ -59,27 +59,30 @@ RestoreWallpaper()
 }
 
 /* Dynamic loading Shell_NotifyIcon */
+BOOL WINAPI MyShell_NotifyIcon_init(DWORD dwMessage, PNOTIFYICONDATAA lpData);
+
 typedef BOOL (WINAPI *pfnShell_NotifyIconA)(DWORD dwMessage, PNOTIFYICONDATAA lpData);
+static pfnShell_NotifyIconA MyShell_NotifyIcon = MyShell_NotifyIcon_init;
 
-static BOOL DynamicShellNotifyIcon(DWORD dwMessage, PNOTIFYICONDATAA lpData) {
-    static pfnShell_NotifyIconA pfn = NULL;
-    static BOOL bAttempted = FALSE;
+BOOL WINAPI MyShell_NotifyIcon_fallback(DWORD dwMessage, PNOTIFYICONDATAA lpData) {
+	return FALSE;
+}
 
-    if (!bAttempted) {
-        HMODULE hShell = GetModuleHandle("SHELL32.DLL");
-        if (hShell) {
-            pfn = (pfnShell_NotifyIconA)GetProcAddress(hShell, "Shell_NotifyIconA");
-            if (!pfn) {
-                pfn = (pfnShell_NotifyIconA)GetProcAddress(hShell, "Shell_NotifyIcon");
-            }
-        }
-        bAttempted = TRUE;
-    }
+BOOL WINAPI MyShell_NotifyIcon_init(DWORD dwMessage, PNOTIFYICONDATAA lpData) {
+	if( MyShell_NotifyIcon == MyShell_NotifyIcon_init ) {
+		HMODULE hShell32 = NULL;
+		if (hShell32 = LoadLibrary("shell32.dll")) {
+			MyShell_NotifyIcon = (pfnShell_NotifyIconA)GetProcAddress(hShell32, "Shell_NotifyIconA");
+			if (!MyShell_NotifyIcon) {
+				MyShell_NotifyIcon = (pfnShell_NotifyIconA)GetProcAddress(hShell32, "Shell_NotifyIcon");
+			}
+		}
+	}
+		if (!MyShell_NotifyIcon || MyShell_NotifyIcon == MyShell_NotifyIcon_init) {
+			MyShell_NotifyIcon = MyShell_NotifyIcon_fallback;
+		}
 
-    if (pfn) {
-        return pfn(dwMessage, lpData);
-    }
-    return FALSE;
+	return MyShell_NotifyIcon(dwMessage, lpData);
 }
 
 // Implementation
@@ -117,7 +120,7 @@ vncMenu::vncMenu(vncServer *server, BOOL noTray)
 				NULL,
 				NULL,
 				hAppInstance,
-				(LPVOID)this);
+				NULL);
 	if (m_hwnd == NULL)
 	{
 		PostQuitMessage(0);
@@ -158,7 +161,7 @@ vncMenu::vncMenu(vncServer *server, BOOL noTray)
 	}
 
 	DWORD winver = GetVersion();
-	if ((LOBYTE(LOWORD(winver))) < 4) // Force not using system tray if windows major version is < 3
+	if ((LOBYTE(LOWORD(winver))) < 4) // Force not using system tray if windows major version is < 4
 		m_no_tray_icon = TRUE;
 
 	// Install the tray icon!
@@ -266,7 +269,7 @@ vncMenu::SendTrayMsg(DWORD msg, BOOL flash)
 
 	if(!m_no_tray_icon) {
 		// Send the message
-		if (DynamicShellNotifyIcon(msg, &m_nid))
+		if (MyShell_NotifyIcon(msg, &m_nid))
 		{
 			// Set the enabled/disabled state of the menu items
 			log.Print(LL_INTINFO, VNCLOG("tray icon added ok\n"));
