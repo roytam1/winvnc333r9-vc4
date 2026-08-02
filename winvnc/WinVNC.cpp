@@ -97,6 +97,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 		{
 			// create tray as minimized windows instead of system tray
 			noTray = TRUE;
+			argfound = FALSE; // we need to reset this in order to run
 			i+=strlen(winvncRunNoTray);
 			continue;
 		}
