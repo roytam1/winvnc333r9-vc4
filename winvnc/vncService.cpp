@@ -53,6 +53,27 @@ BOOL	g_impersonating_user = 0;
 DWORD	g_version_major;
 DWORD	g_version_minor;
 
+/* Dynamic loading ImpersonateLoggedOnUser */
+BOOL WINAPI MyImpersonateLoggedOnUser_init(HANDLE hToken);
+
+typedef BOOL (WINAPI *pfnImpersonateLoggedOnUser)(HANDLE hToken);
+static pfnImpersonateLoggedOnUser MyImpersonateLoggedOnUser = MyImpersonateLoggedOnUser_init;
+
+BOOL WINAPI MyImpersonateLoggedOnUser_fallback(HANDLE hToken) {
+	return FALSE;
+}
+
+BOOL WINAPI MyImpersonateLoggedOnUser_init(HANDLE hToken) {
+	if( MyImpersonateLoggedOnUser == MyImpersonateLoggedOnUser_init ) {
+		MyImpersonateLoggedOnUser = (pfnImpersonateLoggedOnUser)GetProcAddress(GetModuleHandle("advapi32.dll"), "ImpersonateLoggedOnUser");
+	}
+		if (!MyImpersonateLoggedOnUser || MyImpersonateLoggedOnUser == MyImpersonateLoggedOnUser_init) {
+			MyImpersonateLoggedOnUser = MyImpersonateLoggedOnUser_fallback;
+		}
+
+	return MyImpersonateLoggedOnUser(hToken);
+}
+
 vncService::vncService()
 {
     OSVERSIONINFO osversioninfo;
@@ -577,7 +598,7 @@ vncService::ProcessUserHelperMessage(WPARAM wParam, LPARAM lParam) {
 	CloseHandle(processHandle);
 
 	// - Set this thread to impersonate them
-	if (!ImpersonateLoggedOnUser(userToken)) {
+	if (!MyImpersonateLoggedOnUser(userToken)) {
 		log.Print(LL_INTERR, VNCLOG("failed to impersonate user(%d)\n"), GetLastError());
 		CloseHandle(userToken);
 		return FALSE;
