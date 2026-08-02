@@ -46,6 +46,27 @@ const char szDesktopSink[] = "WinVNC desktop sink";
 const char *VNC_WINDOWPOS_ATOMNAME = "VNCHooks.CopyRect.WindowPos";
 ATOM VNC_WINDOWPOS_ATOM = NULL;
 
+/* Dynamic loading EnumDesktopWindows */
+BOOL WINAPI MyEnumDesktopWindows_init(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam);
+
+typedef BOOL (WINAPI *pfnEnumDesktopWindows)(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam);
+static pfnEnumDesktopWindows MyEnumDesktopWindows = MyEnumDesktopWindows_init;
+
+BOOL WINAPI MyEnumDesktopWindows_fallback(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam) {
+	return FALSE;
+}
+
+BOOL WINAPI MyEnumDesktopWindows_init(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam) {
+	if( MyEnumDesktopWindows == MyEnumDesktopWindows_init ) {
+		MyEnumDesktopWindows = (pfnEnumDesktopWindows)GetProcAddress(GetModuleHandle("user32.dll"), "EnumDesktopWindows");
+	}
+	if (!MyEnumDesktopWindows || MyEnumDesktopWindows == MyEnumDesktopWindows_init) {
+		MyEnumDesktopWindows = MyEnumDesktopWindows_fallback;
+	}
+
+	return MyEnumDesktopWindows(hDesktop, lpfn, lParam);
+}
+
 // The desktop handler thread
 // This handles the messages posted by RFBLib to the vncDesktop window
 
@@ -481,7 +502,7 @@ vncDesktop::KillScreenSaver()
 		{
 			// Windows 95
 
-			// Fidn the ScreenSaverClass window
+			// Find the ScreenSaverClass window
 			HWND hsswnd = FindWindow ("WindowsScreenSaverClass", NULL);
 			if (hsswnd != NULL)
 				PostMessage(hsswnd, WM_CLOSE, 0, 0); 
@@ -503,7 +524,7 @@ vncDesktop::KillScreenSaver()
 				log.Print(LL_INTINFO, VNCLOG("Killing ScreenSaver\n"));
 
 				// Close all windows on the screen saver desktop
-				EnumDesktopWindows(hDesk, (WNDENUMPROC) &KillScreenSaverFunc, 0);
+				MyEnumDesktopWindows(hDesk, (WNDENUMPROC) &KillScreenSaverFunc, 0);
 				CloseDesktop(hDesk);
 				// Pause long enough for the screen-saver to close
 				//Sleep(2000);
