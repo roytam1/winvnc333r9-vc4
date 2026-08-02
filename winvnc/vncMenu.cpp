@@ -160,8 +160,9 @@ vncMenu::vncMenu(vncServer *server, BOOL noTray)
 		AppendMenu(hSysMenu, MF_STRING, ID_CLOSE, "&Close WinVNC");
 	}
 
+	DWORD winver = GetVersion();
 	MyShell_NotifyIcon(NIM_DELETE, &m_nid); // test run Shell_NotifyIcon
-	if (MyShell_NotifyIcon == MyShell_NotifyIcon_fallback) // if Shell_NotifyIcon falls back, stop using it
+	if (MyShell_NotifyIcon == MyShell_NotifyIcon_fallback || (winver & 0xFF) < 4) // if Shell_NotifyIcon falls back or NT major version is too low, stop using it
 		m_no_tray_icon = TRUE;
 
 	// Install the tray icon!
