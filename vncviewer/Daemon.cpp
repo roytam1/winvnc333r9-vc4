@@ -74,7 +74,7 @@ Daemon::Daemon(int port)
 	wndclass.cbClsExtra		= 0;
 	wndclass.cbWndExtra		= 0;
 	wndclass.hInstance		= pApp->m_instance;
-	wndclass.hIcon			= LoadIcon(NULL, IDI_APPLICATION);
+	wndclass.hIcon			= LoadIcon(pApp->m_instance, MAKEINTRESOURCE(IDI_MAINICON));
 	wndclass.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wndclass.hbrBackground	= (HBRUSH) GetStockObject(WHITE_BRUSH);
 	wndclass.lpszMenuName	= (const char *) NULL;
