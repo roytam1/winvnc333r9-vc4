@@ -84,9 +84,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 void CentreWindow(HWND hwnd)
 {
 	RECT winrect, workrect;
-	
+	ZeroMemory(&winrect, sizeof(winrect));
+	ZeroMemory(&workrect, sizeof(workrect));
+
 	// Find how large the desktop work area is
 	SystemParametersInfo(SPI_GETWORKAREA, 0, &workrect, 0);
+    g_log.Print(3, _T("hwnd=%p, SPI_GETWORKAREA returns r=%d, l=%d, b=%d, t=%d\n"), hwnd, workrect.right, workrect.left, workrect.bottom, workrect.top);
+	if(!workrect.right && !workrect.left && !workrect.bottom && !workrect.top) {
+		// all values are zero, so the call is failed, use GetSystemMetrics instead
+		workrect.right = GetSystemMetrics(SM_CXSCREEN);
+		workrect.bottom = GetSystemMetrics(SM_CYSCREEN);
+	}
 	int workwidth = workrect.right -  workrect.left;
 	int workheight = workrect.bottom - workrect.top;
 	

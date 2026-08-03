@@ -577,7 +577,13 @@ void ClientConnection::SizeWindow()
 {
 	// Find how large the desktop work area is
 	RECT workrect;
+	ZeroMemory(&workrect, sizeof(workrect));
 	SystemParametersInfo(SPI_GETWORKAREA, 0, &workrect, 0);
+	if(!workrect.right && !workrect.left && !workrect.bottom && !workrect.top) {
+		// all values are zero, so the call is failed, use GetSystemMetrics instead
+		workrect.right = GetSystemMetrics(SM_CXSCREEN);
+		workrect.bottom = GetSystemMetrics(SM_CYSCREEN);
+	}
 	int workwidth = workrect.right -  workrect.left;
 	int workheight = workrect.bottom - workrect.top;
 	g_log.Print(2, _T("Screen work area is %d x %d\n"), workwidth, workheight);
