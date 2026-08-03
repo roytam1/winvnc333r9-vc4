@@ -63,9 +63,8 @@ Flasher::Flasher(int port)
 	// receiving socket events, so a seperate listening thread would
 	// probably be easier!
 
-	WNDCLASSEX wndclass;
+	WNDCLASS wndclass;
 
-	wndclass.cbSize			= sizeof(wndclass);
 	wndclass.style			= CS_HREDRAW | CS_VREDRAW;
 	wndclass.lpfnWndProc	= Flasher::WndProc;
 	wndclass.cbClsExtra		= 0;
@@ -76,9 +75,8 @@ Flasher::Flasher(int port)
 	wndclass.hbrBackground	= (HBRUSH) GetStockObject(WHITE_BRUSH);
 	wndclass.lpszMenuName	= (const char *) NULL;
 	wndclass.lpszClassName	= FLASHER_CLASS_NAME;
-	wndclass.hIconSm		= LoadIcon(NULL, IDI_APPLICATION);
 
-	RegisterClassEx(&wndclass);
+	RegisterClass(&wndclass);
 
 	m_hwnd = CreateWindow(FLASHER_CLASS_NAME,
 				FLASHER_CLASS_NAME,
