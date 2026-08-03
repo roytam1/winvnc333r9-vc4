@@ -29,6 +29,27 @@
 #include "Flasher.h"
 #include "Exception.h"
 
+/* Dynamic loading EnumDesktopWindows */
+BOOL WINAPI MyEnumDesktopWindows_init(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam);
+
+typedef BOOL (WINAPI *pfnEnumDesktopWindows)(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam);
+static pfnEnumDesktopWindows MyEnumDesktopWindows = MyEnumDesktopWindows_init;
+
+BOOL WINAPI MyEnumDesktopWindows_fallback(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam) {
+	return FALSE;
+}
+
+BOOL WINAPI MyEnumDesktopWindows_init(HDESK hDesktop, WNDENUMPROC lpfn, LPARAM lParam) {
+	if( MyEnumDesktopWindows == MyEnumDesktopWindows_init ) {
+		MyEnumDesktopWindows = (pfnEnumDesktopWindows)GetProcAddress(GetModuleHandle("user32.dll"), "EnumDesktopWindows");
+	}
+	if (!MyEnumDesktopWindows || MyEnumDesktopWindows == MyEnumDesktopWindows_init) {
+		MyEnumDesktopWindows = MyEnumDesktopWindows_fallback;
+	}
+
+	return MyEnumDesktopWindows(hDesktop, lpfn, lParam);
+}
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -275,7 +296,7 @@ void Flasher::CloseScreenSaver() {
 				TEXT("Screen-saver"),                       
 				0,	FALSE,	DESKTOP_READOBJECTS | DESKTOP_WRITEOBJECTS);
 			if (hdesk) {
-                if (EnumDesktopWindows(hdesk, (WNDENUMPROC) KillScreenSaverFunc, 0)) {
+                if (MyEnumDesktopWindows(hdesk, (WNDENUMPROC) KillScreenSaverFunc, 0)) {
 				    CloseDesktop(hdesk);
                 }
                 Sleep(1000);
