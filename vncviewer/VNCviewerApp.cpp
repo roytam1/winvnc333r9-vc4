@@ -66,7 +66,7 @@ VNCviewerApp::VNCviewerApp(HINSTANCE hInstance, LPTSTR szCmdLine) {
 		MessageBox(NULL, _T("Error initialising sockets library"), _T("VNC info"), MB_OK | MB_ICONSTOP);
 		PostQuitMessage(1);
 	}
-	g_log.Print(3, _T("Started and Winsock (v %d) initialised\n"), wsaData.wVersion);
+	g_log.Print(3, _T("Started and Winsock (v %x) initialised\n"), wsaData.wVersion);
 }
 
 
