@@ -42,6 +42,7 @@ protected:
 	HWND m_hwnd;
 	HMENU m_hmenu;
 	UINT m_timer;
+	BOOL m_no_tray_icon;
 	NOTIFYICONDATA m_nid;
 	char netbuf[1024];
 };
