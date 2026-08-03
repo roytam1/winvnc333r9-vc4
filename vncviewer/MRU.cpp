@@ -239,14 +239,21 @@ void MRU::Tidy()
     DWORD valtype;
     DWORD valnamelen;
     DWORD numValues;
+    char szClassName[64];
+    DWORD cchClassLen = 64;
+    DWORD cSubKeys;
+    DWORD cchMaxSubKey;
+    DWORD cchMaxClass;
+    DWORD cUnused;
+    FILETIME ft;
 
     RegQueryInfoKey ( m_hRegKey,  
-        NULL, NULL, 
-        NULL, NULL, 
-        NULL, NULL,  
+        (LPSTR)szClassName, &cchClassLen, 
+        NULL, &cSubKeys, 
+        &cchMaxSubKey, &cchMaxClass,  
         &numValues,  
-        NULL, NULL,
-        NULL, NULL);
+        &cUnused, &cUnused,
+        &cUnused, &ft);
 
     // We're being good here.  The documentation says we shouldn't
     // modify a key while enumerating its values. So this array will
