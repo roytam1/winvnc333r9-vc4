@@ -70,6 +70,13 @@
 #define GWLP_USERDATA GWL_USERDATA
 #define SetWindowLongPtr SetWindowLong
 #define GetWindowLongPtr GetWindowLong
+#ifndef INT_PTR
+#define INT_PTR LONG
+#endif
+#endif
+
+#if defined(_M_IX86)
+#define __unaligned
 #endif
 
 #endif
